@@ -1,0 +1,133 @@
+{
+  "active": false,
+  "connections": {
+    "Get Copper Price": {
+      "main": [
+        [
+          {
+            "node": "Calculate Variation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculate Variation": {
+      "main": [
+        [
+          {
+            "node": "Detect Alert",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Detect Alert": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Copper Price",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-29T10:04:22.858Z",
+  "id": "eez6AUpsbKLVfiER",
+  "isArchived": false,
+  "meta": null,
+  "name": "cuivre",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://query1.finance.yahoo.com/v8/finance/chart/HG=F?interval=1d&range=2d",
+        "options": {}
+      },
+      "name": "Get Copper Price",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "10b231c9-7d02-4f3b-9460-8465ad375d4b"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Parse Yahoo Finance response\nconst result = items[0].json;\nconst timestamps = result.chart.result[0].timestamp;\nconst prices = result.chart.result[0].indicators.quote[0].close;\nconst last = prices[prices.length - 1];\nconst prev = prices[prices.length - 2];\nconst change = ((last - prev) / prev) * 100;\nreturn [{ json: { last, prev, change } }];"
+      },
+      "name": "Calculate Variation",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        300,
+        0
+      ],
+      "id": "d5cd8e5c-5fdb-48c0-b885-468ff2e5bd5c"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Déclenche une alerte si variation > 5%\nif (Math.abs(items[0].json.change) > 5) {\n  return [{ json: { alert: `Variation cuivre: ${items[0].json.change.toFixed(2)}%`, ...items[0].json } }];\n}\nreturn [];"
+      },
+      "name": "Detect Alert",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        600,
+        0
+      ],
+      "id": "9a9c9cdd-9c13-407a-a365-60acd3a964dc"
+    },
+    {
+      "parameters": {
+        "fromEmail": "noreply@monapp.com",
+        "toEmail": "votre@email.com",
+        "subject": "Alerte Prix Cuivre",
+        "text": "{{$json[\"alert\"]}}",
+        "options": {}
+      },
+      "name": "Send Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        900,
+        0
+      ],
+      "id": "8f438467-27bb-4a1e-b5f1-d850c99108c0"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        -240
+      ],
+      "id": "b77eb381-fe88-4879-a66b-788a4efa1798",
+      "name": "When clicking ‘Test workflow’"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-29T10:05:58.000Z",
+  "versionId": "cb92a20c-3773-46a4-a092-65891e0d505d"
+}
