@@ -1,0 +1,317 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Generate Query Variations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Query Variations": {
+      "main": [
+        [
+          {
+            "node": "Split Queries",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Queries": {
+      "main": [
+        [
+          {
+            "node": "Generate Query Embedding",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Query Embedding": {
+      "main": [
+        [
+          {
+            "node": "Search Knowledge Base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search Knowledge Base": {
+      "main": [
+        [
+          {
+            "node": "Combine Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Results": {
+      "main": [
+        [
+          {
+            "node": "Prepare for LLM",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare for LLM": {
+      "main": [
+        [
+          {
+            "node": "Generate Answer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Answer": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-20T08:29:04.547Z",
+  "id": "NbrPsCyfIefiLiCx",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "rag fusion",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "query",
+        "options": {}
+      },
+      "id": "84a31ce2-0b24-48f5-8ca5-7eddfc14dba3",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -440
+      ],
+      "webhookId": "rag-fusion-query"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Get the user query from the webhook input\nconst userQuery = $input.item.query || \"What is machine learning?\";\n\n// Generate multiple query variations for fusion\nconst queryVariations = [\n  userQuery,\n  `Define ${userQuery}`,\n  `Explain ${userQuery}`,\n  `Summarize ${userQuery}`,\n  `Tell me about ${userQuery}`\n];\n\n// Define our knowledge base directly in the function\nconst knowledgeBase = [\n  {\n    \"id\": \"doc1\",\n    \"content\": \"Machine Learning is a subset of artificial intelligence that focuses on developing systems that can learn from data. It involves algorithms that can improve automatically through experience and by the use of data. Instead of explicit programming, machine learning allows a system to learn and improve from experience.\",\n    \"metadata\": { \"source\": \"Introduction to ML\" }\n  },\n  {\n    \"id\": \"doc2\",\n    \"content\": \"Deep Learning is a specialized form of machine learning that uses neural networks with many layers (deep neural networks). It has revolutionized fields like computer vision, natural language processing, and speech recognition.\",\n    \"metadata\": { \"source\": \"Deep Learning Basics\" }\n  },\n  {\n    \"id\": \"doc3\",\n    \"content\": \"Supervised Learning is a type of machine learning where the algorithm learns from labeled training data. It makes predictions based on evidence in the presence of uncertainty. Examples include classification and regression algorithms.\",\n    \"metadata\": { \"source\": \"ML Types\" }\n  },\n  {\n    \"id\": \"doc4\",\n    \"content\": \"Unsupervised Learning algorithms learn patterns from unlabeled data. Common techniques include clustering, association, and dimensionality reduction. They are useful for discovering hidden patterns in data without pre-existing labels.\",\n    \"metadata\": { \"source\": \"ML Types\" }\n  },\n  {\n    \"id\": \"doc5\",\n    \"content\": \"Reinforcement Learning is a type of machine learning where an agent learns to make decisions by taking actions in an environment to maximize a reward. It's widely used in robotics, gaming, and autonomous systems.\",\n    \"metadata\": { \"source\": \"ML Types\" }\n  },\n  {\n    \"id\": \"doc6\",\n    \"content\": \"Natural Language Processing (NLP) is a field of AI that focuses on the interaction between computers and humans through natural language. It combines computational linguistics, machine learning, and deep learning models to process and analyze large amounts of natural language data.\",\n    \"metadata\": { \"source\": \"NLP Overview\" }\n  },\n  {\n    \"id\": \"doc7\",\n    \"content\": \"Computer Vision is a field of artificial intelligence that trains computers to interpret and understand the visual world. It involves methods for acquiring, processing, analyzing, and understanding digital images to extract high-dimensional data from the real world.\",\n    \"metadata\": { \"source\": \"Computer Vision Basics\" }\n  },\n  {\n    \"id\": \"doc8\",\n    \"content\": \"RAG (Retrieval Augmented Generation) is an AI framework that enhances large language models by retrieving relevant information from external knowledge sources before generating responses. This approach improves accuracy and reduces hallucinations in AI systems.\",\n    \"metadata\": { \"source\": \"RAG Systems\" }\n  },\n  {\n    \"id\": \"doc9\",\n    \"content\": \"RAG Fusion is an advanced technique in retrieval-augmented generation that combines multiple query reformulations and search results to improve the quality of retrieved context. It works by generating variations of the original query, retrieving information for each variation, and then combining the results.\",\n    \"metadata\": { \"source\": \"RAG Advanced Techniques\" }\n  },\n  {\n    \"id\": \"doc10\",\n    \"content\": \"Vector databases store data as high-dimensional vectors and enable similarity search. They're crucial for modern AI applications, particularly in retrieval systems that need to find content based on semantic similarity rather than keyword matching.\",\n    \"metadata\": { \"source\": \"Vector Databases\" }\n  }\n];\n\nreturn {\n  json: {\n    originalQuery: userQuery,\n    queryVariations: queryVariations,\n    knowledgeBase: knowledgeBase\n  }\n};"
+      },
+      "id": "3fd6f214-fe10-44d2-bc4c-25ed883c336d",
+      "name": "Generate Query Variations",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        880,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "74b39856-8612-4103-9c69-5841eb3cd0ca",
+      "name": "Split Queries",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        1100,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.openai.com/v1/embeddings",
+        "authentication": "predefinedCredentialType",
+        "options": {}
+      },
+      "id": "8208e483-ba3f-41e1-ac86-a7c875305c33",
+      "name": "Generate Query Embedding",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        1320,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Get the query embedding and all documents\nconst queryEmbedding = $input.item.json.data[0].embedding;\nconst knowledgeBase = $input.item.json.knowledgeBase;\nconst queryVariation = $input.item.json.value;\n\n// Simple implementation of cosine similarity\nfunction cosineSimilarity(vecA, vecB) {\n  let dotProduct = 0;\n  let normA = 0;\n  let normB = 0;\n  \n  for (let i = 0; i < vecA.length; i++) {\n    dotProduct += vecA[i] * vecB[i];\n    normA += vecA[i] * vecA[i];\n    normB += vecB[i] * vecB[i];\n  }\n  \n  normA = Math.sqrt(normA);\n  normB = Math.sqrt(normB);\n  \n  if (normA === 0 || normB === 0) {\n    return 0;\n  }\n  \n  return dotProduct / (normA * normB);\n}\n\n// Generate embeddings for each document\nasync function getDocumentEmbeddings() {\n  // In a real implementation, we would call the OpenAI API for each document\n  // For this simplified version, we'll use a simple keyword matching to simulate embeddings\n  const results = [];\n  \n  for (const doc of knowledgeBase) {\n    // Calculate simple keyword-based score (in a real implementation, use embeddings)\n    const words = queryVariation.toLowerCase().split(' ');\n    let score = 0;\n    \n    for (const word of words) {\n      if (word.length > 3 && doc.content.toLowerCase().includes(word.toLowerCase())) {\n        score += 0.2;\n      }\n    }\n    \n    // Add a bit of randomness to simulate different matches for different query variations\n    score += Math.random() * 0.1;\n    \n    results.push({\n      id: doc.id,\n      content: doc.content,\n      metadata: doc.metadata,\n      score: score > 1 ? 1 : score\n    });\n  }\n  \n  // Sort by similarity score (descending)\n  return results.sort((a, b) => b.score - a.score);\n}\n\n// Get top documents for this query variation\nconst documents = await getDocumentEmbeddings();\nconst topDocuments = documents.filter(doc => doc.score > 0.2).slice(0, 3);\n\nreturn {\n  json: {\n    queryVariation: queryVariation,\n    documents: topDocuments,\n    originalQuery: $input.item.json.originalQuery,\n    knowledgeBase: knowledgeBase\n  }\n};"
+      },
+      "id": "366d53ef-1c5f-4310-b175-cf445d1ede7a",
+      "name": "Search Knowledge Base",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "mergeByFields": {
+          "values": [
+            {
+              "field1": "originalQuery",
+              "field2": "originalQuery"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8880e9fc-5082-4929-b700-4ab8b61c9de1",
+      "name": "Combine Results",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Get original query and search results\nconst originalQuery = $input.item.json[0].originalQuery;\n\n// Collect all document results from all query variations\nconst allResults = [];\nfor (const item of $input.item.json) {\n  for (const doc of item.documents || []) {\n    allResults.push({\n      id: doc.id,\n      content: doc.content,\n      metadata: doc.metadata,\n      score: doc.score\n    });\n  }\n}\n\n// Deduplicate results by ID while keeping the highest score\nconst resultMap = new Map();\nfor (const doc of allResults) {\n  if (!resultMap.has(doc.id) || resultMap.get(doc.id).score < doc.score) {\n    resultMap.set(doc.id, doc);\n  }\n}\n\n// Convert back to array and sort by score\nconst dedupedResults = Array.from(resultMap.values());\ndedupedResults.sort((a, b) => b.score - a.score);\n\n// Take top 5 results\nconst topResults = dedupedResults.slice(0, 5);\n\n// Create context for LLM\nconst context = topResults.map(doc => doc.content).join('\\n\\n');\n\nreturn {\n  json: {\n    query: originalQuery,\n    context: context,\n    topResults: topResults\n  }\n};"
+      },
+      "id": "fc816582-3471-4166-bfdf-585b7a3b0653",
+      "name": "Prepare for LLM",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1980,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "id": "eb7ea374-5f2c-46bf-8643-69e8884d5b05",
+      "name": "Generate Answer",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2200,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract the response from OpenAI\nconst responseData = $input.item.json;\nconst generatedText = responseData.choices && responseData.choices[0] && responseData.choices[0].message\n  ? responseData.choices[0].message.content\n  : 'No response generated';\n\n// Prepare the final output with the query, answer, and sources\nreturn {\n  json: {\n    query: $input.item.json.query,\n    answer: generatedText,\n    sources: $input.item.json.topResults.map(result => ({\n      id: result.id,\n      score: result.score,\n      source: result.metadata ? result.metadata.source : '',\n      excerpt: result.content.substring(0, 150) + '...'\n    }))\n  }\n};"
+      },
+      "id": "92152716-73dd-4ab9-a928-9c8becbd08eb",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        2420,
+        -440
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "options": {}
+      },
+      "id": "055e31d7-aa0b-4615-96ad-b350e36b739d",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2640,
+        -440
+      ]
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T08:23:57.804Z",
+      "updatedAt": "2025-05-20T08:23:57.804Z",
+      "id": "7GzHoBwmgwROvNqU",
+      "name": "Crypto Detector"
+    },
+    {
+      "createdAt": "2025-05-20T09:15:25.083Z",
+      "updatedAt": "2025-05-20T09:15:25.083Z",
+      "id": "EQ2RWyorqVRaSoNy",
+      "name": "monitoring"
+    },
+    {
+      "createdAt": "2025-05-20T07:07:46.376Z",
+      "updatedAt": "2025-05-20T07:07:46.376Z",
+      "id": "NMVeSwi3WnGyrgMd",
+      "name": "trading"
+    },
+    {
+      "createdAt": "2025-05-20T08:23:57.800Z",
+      "updatedAt": "2025-05-20T08:23:57.800Z",
+      "id": "QnE35BlfYOeIFLZt",
+      "name": "RAG Fusion"
+    },
+    {
+      "createdAt": "2025-05-20T10:03:07.931Z",
+      "updatedAt": "2025-05-20T10:03:07.931Z",
+      "id": "gLr0ZgWlO9HK8N2a",
+      "name": "RAG"
+    },
+    {
+      "createdAt": "2025-05-20T07:07:46.369Z",
+      "updatedAt": "2025-05-20T07:07:46.369Z",
+      "id": "pZnJjBvs8NJTWMSy",
+      "name": "crypto"
+    },
+    {
+      "createdAt": "2025-05-20T08:23:57.808Z",
+      "updatedAt": "2025-05-20T08:23:57.808Z",
+      "id": "qUyylFOqyhmx4U0n",
+      "name": "Automated Buy"
+    },
+    {
+      "createdAt": "2025-05-20T10:03:07.935Z",
+      "updatedAt": "2025-05-20T10:03:07.935Z",
+      "id": "yZsZGFh8xMLBzSQc",
+      "name": "LLM"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-20T10:35:12.000Z",
+  "versionId": "b5db6e9b-3f82-495d-9915-17f24e81cbcf"
+}
