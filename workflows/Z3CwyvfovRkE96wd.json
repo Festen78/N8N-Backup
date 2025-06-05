@@ -1,0 +1,147 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "lumiere tv on",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "lumiere tv off",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "lumiere tv on": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "lumiere tv off": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-03-02T07:48:58.177Z",
+  "id": "Z3CwyvfovRkE96wd",
+  "isArchived": false,
+  "meta": null,
+  "name": "HA tools",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "1b39f2e3-153d-40ec-9df7-7ae25fc9f820",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        20,
+        -240
+      ],
+      "id": "4b5819e2-fe82-4b94-880c-9a2901ac036d",
+      "name": "Webhook",
+      "webhookId": "1b39f2e3-153d-40ec-9df7-7ae25fc9f820"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        520,
+        0
+      ],
+      "id": "764f39c3-aa8a-4ea2-9be7-88956b8c3ddc",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "resource": "service",
+        "operation": "call",
+        "domain": "switch",
+        "service": "turn_off",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "switch.ac_1209a66_1"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistant",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -20
+      ],
+      "id": "8314bf23-e7ee-4b93-8295-12a5fc0b1fbd",
+      "name": "lumiere tv off",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "service",
+        "operation": "call",
+        "domain": "switch",
+        "service": "turn_on",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "switch.ac_1209a66_1"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistant",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -220
+      ],
+      "id": "304a9981-409a-4a63-8e7b-0b38690c4a07",
+      "name": "lumiere tv on",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-03-02T07:57:11.000Z",
+  "versionId": "e5ea2093-9f49-4a93-af0e-581e4a5016a6"
+}
