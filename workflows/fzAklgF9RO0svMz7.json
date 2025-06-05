@@ -1,0 +1,953 @@
+{
+  "active": false,
+  "connections": {
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store2": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "Code3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract from File": {
+      "main": [
+        [
+          {
+            "node": "Code2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code2": {
+      "main": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Extract from File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pinecone Vector Store3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pinecone Vector Store3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate2": {
+      "main": [
+        [
+          {
+            "node": "Code4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code4": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI2": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store3",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI3": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Pinecone Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-23T07:36:37.701Z",
+  "id": "fzAklgF9RO0svMz7",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "N8N Auto generation",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {
+          "allowFileUploads": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        940
+      ],
+      "id": "eae0497a-06fd-4a02-87a0-43fbecf05853",
+      "name": "When chat message received",
+      "webhookId": "efd35368-e213-48dc-80bb-d94daf820733"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "workflowObject": "={\n  \"name\": \"Test Workflow\",\n  \"nodes\": [\n    {\n      \"parameters\": {},\n      \"id\": \"start-1\",\n      \"name\": \"Start\",\n      \"type\": \"n8n-nodes-base.start\",\n      \"typeVersion\": 1,\n      \"position\": [300, 300]\n    }\n  ],\n  \"connections\": {},\n  \"active\": false,\n  \"settings\": {},\n  \"versionId\": \"1\"\n}\n",
+        "requestOptions": {}
+      },
+      "type": "n8n-nodes-base.n8n",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        1020
+      ],
+      "id": "9ba0b6bd-b066-4fa1-aac9-5b691129b34a",
+      "name": "n8n",
+      "credentials": {
+        "n8nApi": {
+          "id": "9qd9Xceser08rNvY",
+          "name": "n8n account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Function to clean the raw LLM output string\nfunction cleanLLMJsonOutput(rawOutput) {\n  if (typeof rawOutput !== 'string') {\n    console.error(\"cleanLLMJsonOutput received non-string input:\", rawOutput);\n    return \"\";\n  }\n  let cleaned = rawOutput.trim();\n  if (cleaned.startsWith(\"```json\\n\")) {\n    cleaned = cleaned.substring(7);\n  } else if (cleaned.startsWith(\"```json\")) {\n    cleaned = cleaned.substring(6);\n  } else if (cleaned.startsWith(\"```\\n\")) {\n    cleaned = cleaned.substring(4);\n  } else if (cleaned.startsWith(\"```\")) {\n    cleaned = cleaned.substring(3);\n  }\n  if (cleaned.endsWith(\"\\n```\")) {\n    cleaned = cleaned.substring(0, cleaned.length - 4);\n  } else if (cleaned.endsWith(\"```\")) {\n    cleaned = cleaned.substring(0, cleaned.length - 3);\n  }\n  return cleaned.trim();\n}\n\nconst outputObjects = [];\n\nfor (const item of items) {\n  const rawLLMOutputString = item.json.output; // Path to your LLM string\n  let finalWorkflowObject;\n\n  if (rawLLMOutputString === undefined || rawLLMOutputString === null) {\n    console.warn(\"Input field 'item.json.output' not found or is null in item:\", item.json);\n    finalWorkflowObject = {\n      error: \"Input field for LLM response (item.json.output) not found or is null.\",\n      checkedPath: \"item.json.output\",\n      originalInput: item.json\n    };\n  } else {\n    const cleanedString = cleanLLMJsonOutput(rawLLMOutputString);\n    try {\n      // processedJsonData should be an object like { nodes: [...], connections: {...} }\n      const processedJsonData = JSON.parse(cleanedString);\n\n      // Ensure it's an object and has nodes and connections\n      if (typeof processedJsonData === 'object' && processedJsonData !== null &&\n          Array.isArray(processedJsonData.nodes) && typeof processedJsonData.connections === 'object') {\n\n        // Add required 'name' and 'settings' to make the workflow object complete\n        finalWorkflowObject = {\n          name: item.json.workflowName || \"Generated Workflow from LLM\", // Use a name from input, or a default\n          nodes: processedJsonData.nodes,\n          connections: processedJsonData.connections,\n          settings: item.json.workflowSettings || { // Use settings from input, or defaults\n            saveExecutionProgress: true,\n            saveManualExecutions: true,\n            saveDataErrorExecution: \"all\",\n            saveDataSuccessExecution: \"all\",\n            executionTimeout: 3600,\n            errorWorkflow: \"\", // Optional: ID of an error workflow\n            timezone: \"UTC\",   // Or infer from user/instance settings if possible\n            executionOrder: \"v1\"\n          },\n          // staticData: processedJsonData.staticData || null // Include if LLM might provide it\n        };\n      } else {\n        // The parsed JSON was not the expected workflow structure\n        console.error(\"Parsed JSON does not have the expected 'nodes' and 'connections' structure:\", processedJsonData);\n        finalWorkflowObject = {\n          error: \"Parsed JSON is not a valid partial workflow structure (missing nodes/connections).\",\n          parsedContent: processedJsonData,\n          attemptedCleanedString: cleanedString,\n          originalRawOutput: rawLLMOutputString\n        };\n      }\n    } catch (error) {\n      console.error(\"Failed to parse cleaned JSON string:\", error.message);\n      console.error(\"Cleaned string was:\", cleanedString);\n      console.error(\"Original raw output was:\", rawLLMOutputString);\n      finalWorkflowObject = {\n        error: \"Failed to parse cleaned JSON string.\",\n        errorMessage: error.message,\n        attemptedCleanedString: cleanedString,\n        originalRawOutput: rawLLMOutputString\n      };\n    }\n  }\n  outputObjects.push(finalWorkflowObject);\n}\n\nreturn outputObjects;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1960,
+        1140
+      ],
+      "id": "9aff544d-c333-4951-a109-9c81822a917f",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "formTitle": "Ingest",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "file",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        740,
+        -40
+      ],
+      "id": "af8f1e35-1059-4cc9-aa39-68563ae3e393",
+      "name": "On form submission",
+      "webhookId": "bb9f815d-91b7-40a1-8a9c-7088c015f077"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "n8n",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.1,
+      "position": [
+        980,
+        -240
+      ],
+      "id": "4d98fe19-637e-4124-bdfd-d3b9b04121ef",
+      "name": "Pinecone Vector Store",
+      "credentials": {
+        "pineconeApi": {
+          "id": "AjHBwx9hGcIbNG6n",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "binaryMode": "specificField",
+        "binaryDataKey": "file",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        1080,
+        -20
+      ],
+      "id": "ec7a17cf-5422-4250-bddc-949e09b2351a",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkOverlap": 100,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1180,
+        180
+      ],
+      "id": "26118aff-a41c-4b06-a0c6-844b680f2a11",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Use This n8n Documentation : {{ $json.result }}\nTo generate this workflow based on this description : {{ $('When chat message received').item.json.chatInput }}\nAll nodes must be linked and parameters must not be empty",
+        "options": {
+          "systemMessage": "=You are a specialized n8n Workflow JSON Generation Bot. Your sole and direct responsibility is to generate a single, valid JSON object representing an n8n workflow, precisely adhering to the user's request and n8n's structural requirements.Core Directive: Accuracy and ValidityThe paramount goal is to produce JSON that is both syntactically valid and structurally correct for immediate use in an n8n environment.Available Tools & Knowledge:Internal n8n Documentation Knowledge: You have access to and must utilize your internal knowledge base, equivalent to comprehensive n8n documentation. If you are uncertain about any n8n node's name, type, available parameters, or the specific JSON structure required for its parameters field, you must consult this internal knowledge to find the correct information.\"Think\" Tool: After generating a preliminary JSON structure (especially after consulting your internal documentation knowledge or when dealing with complex nodes), use the \"Think\" tool to:Review the user's request against your generated JSON.Validate the structure of each node's parameters against known n8n patterns and information from your internal documentation knowledge.Perform a self-correction step to ensure all output requirements and n8n structural rules (including mandatory top-level fields like name and settings for the overall workflow) are met before finalizing the JSON.Strict Output Requirements:JSON Only: The output must be exclusively the JSON object.No Explanations or Conversation: Do not include any leading or trailing text, comments, greetings, apologies, or explanations.No Markdown: The output must not be wrapped in markdown code blocks (e.g., ```json) or any other markdown.Direct Output: The response must start directly with the opening curly brace { of the JSON object and end directly with the closing curly brace }.Syntactic Validity: The generated JSON must be syntactically flawless and ready for direct parsing.String Content Escaping: All string values within the JSON must have special characters correctly escaped (e.g., newlines as \\n, double quotes as \\\", backslashes as \\\\).Compact Output: Generate the JSON in a compact, minified, single-line format. This means no unnecessary whitespace or newlines outside of string literals.n8n Structural Integrity: The JSON must represent a valid n8n workflow.This includes correct top-level fields: name (string), nodes (array), connections (object), and settings (object) are mandatory for the root workflow object.Within nodes, ensure correct node types, parameter names, and crucially, the correct JSON structure for each node's parameters field (e.g., some nodes expect an object, some expect an array of objects for fields or values, etc.).Your Task:Upon receiving a user's request for an n8n workflow:a.  Analyze the request to determine the necessary nodes, their parameters, and the connections between them.b.  Mandatory Step for Accuracy: For each node, especially those with complex parameter configurations (e.g., \"Manual Input\", \"Set\", \"If\", \"Switch\", nodes with dynamic fields):i.  If you are not 100% certain of the exact JSON structure for its parameters (including nested objects, arrays like fields or values), consult your internal n8n documentation knowledge for that node type.ii. Pay extremely close attention to the expected structure of the parameters object for each node.c.  Construct the complete n8n workflow as a JSON object, ensuring it includes the mandatory top-level name, nodes, connections, and settings fields. Provide a default name (e.g., \"Generated Workflow\") and default settings if not specified by the user.d.  Mandatory Step for Validation: Before outputting, use the \"Think\" tool to review your generated JSON against the user's request, your internal documentation knowledge, and general n8n workflow structural rules (including the presence and structure of name, nodes, connections, and settings). Correct any discrepancies.e.  Output only this JSON object according to all requirements listed above. Do not show or mention your internal knowledge consultation or \"Think\" tool usage in the final output.Error Handling (within JSON output constraint):If the user's request is too ambiguous to generate a complete and accurate workflow even after using your tools, or if an internal error is encountered:a.  You must still only output a valid JSON object.b.  This JSON object should indicate the issue, for example: {\"error\": \"Request ambiguous: missing required information for 'X' node. Please specify Y.\", \"status\": \"incomplete\"} or {\"error\": \"Failed to generate workflow due to conflicting requirements for node Z.\"}.c.  Do not explain the error outside of this JSON error object.Example of a desired, compact output format (illustrating mandatory top-level fields):{\"name\":\"Generated Workflow\",\"nodes\":[{\"parameters\":{\"functionCode\":\"let a = 1;\\\\nreturn a;\"},\"name\":\"My Function\",\"type\":\"n8n-nodes-base.function\",\"typeVersion\":1}],\"connections\":{},\"settings\":{\"executionOrder\":\"v1\"}}(Note: position and typeVersion within nodes are often optional for basic workflow import/creation via API, but include them if the user's request implies specific placement or versioning, or if your internal knowledge indicates they are beneficial for the context. Default settings should be sensible.)Absolutely Forbidden in Output:Any text like \"Here is your JSON:\"Markdown backticks: ```Conversational phrases.Explanations or notes about the JSON.Your only function is to return the raw, valid, compact, and n8n-structurally-correct JSON."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1580,
+        1140
+      ],
+      "id": "0d909f0b-7865-4111-a185-6dec1b75e3a3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "n8n",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "prompt": "={{ $json.chatInput }}",
+        "topK": 20,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.1,
+      "position": [
+        760,
+        1140
+      ],
+      "id": "48e3dee5-b8bc-435c-932c-5b51f5ea2643",
+      "name": "Pinecone Vector Store1",
+      "credentials": {
+        "pineconeApi": {
+          "id": "AjHBwx9hGcIbNG6n",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "document.pageContent"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        1140
+      ],
+      "id": "09bd84fc-b0ab-4404-8c65-5ec78703ce05",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "jsCode": "const list =$input.first().json.pageContent\n\nconst joinedString = list.join(', ');\n\nreturn [\n  {\n    json: {\n      result: joinedString\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1360,
+        1140
+      ],
+      "id": "5ff473ce-8f5d-4d90-bbd1-866c37a0fa4f",
+      "name": "Code1"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=N8N Documentation : {{ $json.result }}\nFile Content: {{ $('Code2').item.json.text }}\nQuestion : {{ $('When chat message received').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "You are an n8n expert and you help people with questions about n8n. you will get passed the n8n documentation relevant to each question so use that to answer the questions you get"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        2420,
+        400
+      ],
+      "id": "b5469f3f-d7a5-4a39-a3f7-663bd1508ba5",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "n8n",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "prompt": "=File Content: {{ $json.text }}\nQuestion : {{ $('When chat message received').item.json.chatInput }}",
+        "topK": 20,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.1,
+      "position": [
+        1660,
+        400
+      ],
+      "id": "deabbaaa-5df6-4d4c-8788-2daa15a44508",
+      "name": "Pinecone Vector Store2",
+      "credentials": {
+        "pineconeApi": {
+          "id": "AjHBwx9hGcIbNG6n",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "document.pageContent"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        400
+      ],
+      "id": "55d7cdfc-513c-4c02-8c01-fdf38b108bb2",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "jsCode": "const list =$input.first().json.pageContent\n\nconst joinedString = list.join(', ');\n\nreturn [\n  {\n    json: {\n      result: joinedString\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        400
+      ],
+      "id": "fe189811-6043-44bb-a6c1-ef76e3c27eff",
+      "name": "Code3"
+    },
+    {
+      "parameters": {
+        "operation": "fromJson",
+        "binaryPropertyName": "data0",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        400
+      ],
+      "id": "203bf4ef-cf78-40ca-be62-bfab5eda5d59",
+      "name": "Extract from File"
+    },
+    {
+      "parameters": {
+        "jsCode": "\n    const jsonContent = $input.first().json.data;\n    const text = JSON.stringify(jsonContent, null, 2); // Pretty-print with 2-space indentation\n    return { json: { text } };\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1420,
+        400
+      ],
+      "id": "d7816cc0-2749-439b-9682-757d42f35eab",
+      "name": "Code2"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9ba0b7bb-f5e0-4d21-beb2-fbe804806ed5",
+              "leftValue": "={{ $json.files[0] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        980,
+        580
+      ],
+      "id": "0ef0f30f-e284-4f02-83c9-0556125c5dfb",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "content": "## N8N Docs Ingestion\n",
+        "height": 640,
+        "width": 760
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        -320
+      ],
+      "id": "6a4261dd-28c1-4153-a1eb-992c943ae75f",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## Answer N8n Questions\n\n",
+        "height": 640,
+        "width": 2280
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        340
+      ],
+      "id": "2e190566-5240-48f0-ab61-67bd0a4f2c1e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "## Generate Workflows\n\n",
+        "height": 640,
+        "width": 1780
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        660,
+        1000
+      ],
+      "id": "4ae7d082-25a7-43a4-a63d-f68d0cfda34d",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=N8N Documentation: {{ $json.result }}\nQuestion : {{ $('When chat message received').item.json.chatInput }}",
+        "options": {
+          "systemMessage": "You are an n8n expert and you help people with questions about n8n. you will get passed the n8n documentation relevant to each question so use that to answer the questions you get"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        2420,
+        720
+      ],
+      "id": "0f9a0474-a4e7-4944-aff2-6f200da5c7c7",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "pineconeIndex": {
+          "__rl": true,
+          "value": "n8n",
+          "mode": "list",
+          "cachedResultName": "n8n"
+        },
+        "prompt": "={{ $('When chat message received').item.json.chatInput }}",
+        "topK": 20,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
+      "typeVersion": 1.1,
+      "position": [
+        1660,
+        720
+      ],
+      "id": "af8d3d56-914b-4e47-95c2-04a07eac7dfd",
+      "name": "Pinecone Vector Store3",
+      "credentials": {
+        "pineconeApi": {
+          "id": "AjHBwx9hGcIbNG6n",
+          "name": "PineconeApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "document.pageContent"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2040,
+        720
+      ],
+      "id": "ed2bf240-5c81-4dab-b13a-a0d1470317d9",
+      "name": "Aggregate2"
+    },
+    {
+      "parameters": {
+        "jsCode": "const list =$input.first().json.pageContent\n\nconst joinedString = list.join(', ');\n\nreturn [\n  {\n    json: {\n      result: joinedString\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2240,
+        720
+      ],
+      "id": "16948a49-e568-41d7-8bf6-b0b5522f4bed",
+      "name": "Code4"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        0
+      ],
+      "id": "45dd3639-4e64-4cf0-9a4c-ad4517f3f161",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        620
+      ],
+      "id": "57a29c32-d563-4e4b-be35-1613e88ea380",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1760,
+        940
+      ],
+      "id": "1ce0b11d-6c64-478a-97db-c12b8bd5032d",
+      "name": "Embeddings OpenAI2",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2460,
+        620
+      ],
+      "id": "696a7989-b977-459d-a53c-a6348748bc21",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2460,
+        940
+      ],
+      "id": "a548412f-429c-44a2-92a3-269250d27a3c",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        860,
+        1360
+      ],
+      "id": "901f2cfc-9aef-4576-856e-ecd994886c93",
+      "name": "Embeddings OpenAI3",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1620,
+        1360
+      ],
+      "id": "74eeb0db-2d33-411f-b512-e133f7bbde71",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://n8n.festen78.site/api/v1/workflows",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "specifyHeaders": "json",
+        "jsonHeaders": "{\n  \"Content-Type\": \"application/json\"\n}",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2380,
+        1140
+      ],
+      "id": "64047206-931a-49f4-8b34-9be6d9fc5706",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-26T10:32:08.000Z",
+  "versionId": "f44dc518-6fce-4254-a4c6-ccce3443db7f"
+}
