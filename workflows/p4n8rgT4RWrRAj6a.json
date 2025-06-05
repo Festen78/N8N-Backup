@@ -1,0 +1,1205 @@
+{
+  "active": false,
+  "connections": {
+    "Réception de Document": {
+      "main": [
+        [
+          {
+            "node": "Classification OCR",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classification OCR": {
+      "main": [
+        [
+          {
+            "node": "Enregistrement Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrement Airtable": {
+      "main": [
+        [
+          {
+            "node": "Vérif Document Expiré",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérif Document Expiré": {
+      "main": [
+        [
+          {
+            "node": "Alerte Document Expiré",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scanner Quotidien": {
+      "main": [
+        [
+          {
+            "node": "Liste Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liste Documents": {
+      "main": [
+        [
+          {
+            "node": "Vérifier Expiration Imminente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérifier Expiration Imminente": {
+      "main": [
+        [
+          {
+            "node": "Traiter Individuellement",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traiter Individuellement": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Alerte Expiration",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Déclencheur Hebdomadaire": {
+      "main": [
+        [
+          {
+            "node": "Scraper Veille Réglementaire",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Liste Formateurs",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Liste Indicateurs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liste Indicateurs": {
+      "main": [
+        [
+          {
+            "node": "Liste Documents pour Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liste Documents pour Audit": {
+      "main": [
+        [
+          {
+            "node": "Analyse de Conformité",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse de Conformité": {
+      "main": [
+        [
+          {
+            "node": "Enregistrer Rapport",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrer Rapport": {
+      "main": [
+        [
+          {
+            "node": "Diffuser Rapport",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérifier Seuil d'Alerte": {
+      "main": [
+        [
+          {
+            "node": "Envoi Alerte Conformité",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liste Formateurs": {
+      "main": [
+        [
+          {
+            "node": "Vérifier Certifications",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérifier Certifications": {
+      "main": [
+        [
+          {
+            "node": "Traiter Par Formateur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Traiter Par Formateur": {
+      "main": [
+        [
+          {
+            "node": "Alerte Expiration Certification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Scraper Veille Réglementaire": {
+      "main": [
+        [
+          {
+            "node": "Analyser Changements",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyser Changements": {
+      "main": [
+        [
+          {
+            "node": "Si Changements Détectés",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Si Changements Détectés": {
+      "main": [
+        [
+          {
+            "node": "Enregistrer Veille",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Notification Veille",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Déclencheur Nouvelle Formation": {
+      "main": [
+        [
+          {
+            "node": "Préparer Données Formation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Regrouper Documents": {
+      "main": [
+        [
+          {
+            "node": "Enregistrer Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Déclencheur Formation Terminée": {
+      "main": [
+        []
+      ]
+    },
+    "Préparer Évaluations": {
+      "main": [
+        [
+          {
+            "node": "Par Participant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Par Participant": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Questionnaire Évaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoyer Questionnaire Évaluation": {
+      "main": [
+        [
+          {
+            "node": "Enregistrer Envoi Évaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Réception Évaluation": {
+      "main": [
+        [
+          {
+            "node": "Analyser Évaluation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyser Évaluation": {
+      "main": [
+        [
+          {
+            "node": "Enregistrer Résultats",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrer Résultats": {
+      "main": [
+        [
+          {
+            "node": "Vérifier Évaluation Insatisfaisante",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérifier Évaluation Insatisfaisante": {
+      "main": [
+        [
+          {
+            "node": "Créer Action Corrective",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer Action Corrective": {
+      "main": [
+        [
+          {
+            "node": "Notifier Responsable Qualité",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Génération Rapports Mensuels": {
+      "main": [
+        [
+          {
+            "node": "Récupérer Évaluations Récentes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer Évaluations Récentes": {
+      "main": [
+        [
+          {
+            "node": "Générer Rapport Mensuel",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Préparer Évaluations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-22T12:39:17.913Z",
+  "id": "p4n8rgT4RWrRAj6a",
+  "isArchived": false,
+  "meta": null,
+  "name": "qualiopi",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "document-reception",
+        "options": {}
+      },
+      "name": "Réception de Document",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        -360
+      ],
+      "webhookId": "document-reception",
+      "id": "11dd27f0-a9e7-417f-9016-23e403bb134e"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyse et classement par OCR\nconst document = items[0].json;\nconst documentContent = document.content || \"\";\n\n// Simulation d'une analyse OCR & IA\nlet category = \"Divers\";\nlet indicators = [];\n\nif(documentContent.includes(\"convention\") || document.type === \"convention\") {\n  category = \"Conventions\";\n  indicators = [\"1.1\", \"1.2\"];\n} else if(documentContent.includes(\"attestation\") || document.type === \"attestation\") {\n  category = \"Attestations\";\n  indicators = [\"3.1\", \"3.2\"];\n} else if(documentContent.includes(\"programme\") || document.type === \"programme\") {\n  category = \"Programmes\";\n  indicators = [\"2.1\"];\n} else if(documentContent.includes(\"évaluation\") || document.type === \"evaluation\") {\n  category = \"Évaluations\";\n  indicators = [\"2.3\", \"7.2\"];\n} else if(documentContent.includes(\"formateur\") || document.type === \"cv\") {\n  category = \"Formateurs\";\n  indicators = [\"5.1\", \"5.2\"];\n}\n\nreturn [\n  {\n    json: {\n      ...document,\n      category,\n      relatedIndicators: indicators,\n      classificationDate: new Date().toISOString(),\n      isClassified: true\n    }\n  }\n];"
+      },
+      "name": "Classification OCR",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -360
+      ],
+      "id": "4cf1a4d7-2c9d-4795-a708-690c215ce430"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Documents Qualiopi"
+      },
+      "name": "Enregistrement Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        -360
+      ],
+      "id": "ba0ceb55-b412-4202-8913-cf809dda34e1"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.status}}",
+              "operation": "equals",
+              "value2": "expired"
+            }
+          ]
+        }
+      },
+      "name": "Vérif Document Expiré",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        -360
+      ],
+      "id": "2be724cb-ed99-4f87-b99f-98e2d5f2aebc"
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.TELEGRAM_CHAT_ID}}",
+        "text": "⚠️ DOCUMENT EXPIRÉ ⚠️\n\nLe document \"{{$json.reference}}\" de type \"{{$json.type}}\" est expiré depuis le {{$json.expirationDate}}.\n\nVeuillez le renouveler pour maintenir la conformité Qualiopi.",
+        "additionalFields": {}
+      },
+      "name": "Alerte Document Expiré",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -460
+      ],
+      "id": "9715e9c3-94e0-483f-8368-af22bd7ee722",
+      "webhookId": "67bc9bf9-a404-4973-855d-01a698d0fe67"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "name": "Scanner Quotidien",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        -60
+      ],
+      "id": "8ab21f7e-2dcf-41bc-80e7-631a74b696d7"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Documents Qualiopi"
+      },
+      "name": "Liste Documents",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        -60
+      ],
+      "id": "8de4e7d4-ce88-4da7-bca2-dcee53896908"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Vérifier les docs qui vont bientôt expirer (dans les 30 jours)\nconst documents = items;\nconst today = new Date();\nconst warningDocs = [];\n\nfor (const doc of documents) {\n  if (doc.json.expirationDate) {\n    const expDate = new Date(doc.json.expirationDate);\n    const diffTime = expDate - today;\n    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));\n    \n    if (diffDays <= 30 && diffDays > 0) {\n      warningDocs.push({\n        json: {\n          ...doc.json,\n          daysUntilExpiration: diffDays\n        }\n      });\n    }\n  }\n}\n\nreturn warningDocs;"
+      },
+      "name": "Vérifier Expiration Imminente",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        -60
+      ],
+      "id": "328cf05b-785b-4186-b7dd-78a7c37b0791"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Traiter Individuellement",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        -60
+      ],
+      "id": "4647a618-851e-42f4-bca4-4588e1847a52"
+    },
+    {
+      "parameters": {
+        "subject": "Alerte Qualiopi - Document expirant dans {{$json.daysUntilExpiration}} jours",
+        "text": "Bonjour,\n\nLe document \"{{$json.reference}}\" de type \"{{$json.type}}\" va expirer dans {{$json.daysUntilExpiration}} jours.\n\nCe document est lié aux indicateurs Qualiopi suivants : {{$json.relatedIndicators.join(\", \")}}.\n\nMerci de prévoir son renouvellement pour maintenir la conformité.\n\nCordialement,\nSystème d'automatisation Qualiopi",
+        "options": {}
+      },
+      "name": "Envoyer Alerte Expiration",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        -60
+      ],
+      "id": "b7426775-37e9-43ca-a21d-770ef9def40a"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Indicateurs Qualiopi"
+      },
+      "name": "Liste Indicateurs",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        140
+      ],
+      "id": "428511c1-92f9-4002-b002-8c4bc75b5b42"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Documents Qualiopi"
+      },
+      "name": "Liste Documents pour Audit",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        140
+      ],
+      "id": "1d9f80ba-f317-4851-bab8-29fde22be001"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyse de conformité\nconst indicators = items[0].json.data; // tous les indicateurs\nconst documents = items[1].json.data; // tous les documents\n\nconst conformityReport = [];\nlet globalConformity = 0;\n\n// Pour chaque indicateur, vérifier les documents associés\nfor (const indicator of indicators) {\n  const indicatorCode = indicator.fields.Code;\n  const requiredDocs = indicator.fields.DocumentsRequis?.split(',').map(d => d.trim()) || [];\n  \n  // Compter combien de types requis sont couverts\n  let coveredDocsCount = 0;\n  let associatedDocs = [];\n  \n  for (const reqDoc of requiredDocs) {\n    const matchingDocs = documents.filter(d => {\n      return d.fields.type === reqDoc || \n             (d.fields.relatedIndicators && d.fields.relatedIndicators.includes(indicatorCode));\n    });\n    \n    if (matchingDocs.length > 0) {\n      coveredDocsCount++;\n      associatedDocs = [...associatedDocs, ...matchingDocs.map(d => d.fields.reference)];\n    }\n  }\n  \n  // Calculer le taux de conformité pour cet indicateur\n  const conformityRate = requiredDocs.length > 0 \n    ? Math.round((coveredDocsCount / requiredDocs.length) * 100) \n    : 100;\n  \n  conformityReport.push({\n    indicatorCode,\n    indicatorName: indicator.fields.Libelle,\n    conformityRate,\n    requiredDocs,\n    associatedDocs,\n    status: conformityRate >= 100 ? 'conforme' : conformityRate >= 70 ? 'partiel' : 'non-conforme'\n  });\n  \n  // Ajouter à la conformité globale\n  globalConformity += conformityRate;\n}\n\n// Moyenne de conformité globale\nglobalConformity = Math.round(globalConformity / indicators.length);\n\n// Trier par priorité (non-conformes en premier)\nconformityReport.sort((a, b) => a.conformityRate - b.conformityRate);\n\nreturn [\n  {\n    json: {\n      reportDate: new Date().toISOString(),\n      globalConformity,\n      globalStatus: globalConformity >= 90 ? 'conforme' : globalConformity >= 70 ? 'à améliorer' : 'critique',\n      detailedReport: conformityReport\n    }\n  }\n];"
+      },
+      "name": "Analyse de Conformité",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        140
+      ],
+      "id": "3c6c5977-0899-452c-a854-106299bd119d"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Rapports Mensuels"
+      },
+      "name": "Enregistrer Rapport",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        140
+      ],
+      "id": "4a4f5af0-c425-4892-af93-2212c8db3ea8"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{$json.globalConformity}}",
+              "value2": 80
+            }
+          ]
+        }
+      },
+      "name": "Vérifier Seuil d'Alerte",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        20,
+        -40
+      ],
+      "id": "a205b93e-4130-4a79-935d-5c628364ccc5"
+    },
+    {
+      "parameters": {
+        "subject": "⚠️ ALERTE QUALIOPI - Taux de conformité : {{$json.globalConformity}}%",
+        "text": "=Rapport de conformité Qualiopi du {{$json.reportDate.split('T')[0]}}\n\nStatut global : {{$json.globalStatus.toUpperCase()}} ({{$json.globalConformity}}%)\n\nIndicateurs non conformes à traiter en priorité :\n{% for item in $json.detailedReport %}{% if item.status === 'non-conforme' %}\n- {{item.indicatorCode}} ({{item.conformityRate}}%) : {{item.indicatorName}}\n  Documents manquants : {{ item.requiredDocs.filter(doc => !item.associatedDocs.includes(doc)).join(', ') }}\n{% endif %}{% endfor %}\n\nVeuillez prendre les mesures nécessaires pour restaurer la conformité avant le prochain audit.",
+        "options": {}
+      },
+      "name": "Envoi Alerte Conformité",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        240,
+        -60
+      ],
+      "id": "69906582-dd01-45f2-b4cc-ba3b08c09d0d"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks"
+            }
+          ]
+        }
+      },
+      "name": "Déclencheur Hebdomadaire",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        340
+      ],
+      "id": "e0b4c4e4-42d1-444e-9015-73689d4cc31e"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Formateurs"
+      },
+      "name": "Liste Formateurs",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        340
+      ],
+      "id": "f988e7c6-49b0-442a-b441-c6982bc95644"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Vérifier les certifications des formateurs qui expirent bientôt\nconst formateurs = items;\nconst today = new Date();\nconst alertFormateurs = [];\n\nfor (const formateur of formateurs) {\n  const certifications = formateur.json.certifications || [];\n  const alertCertifications = [];\n  \n  for (const cert of certifications) {\n    if (cert.expirationDate) {\n      const expDate = new Date(cert.expirationDate);\n      const diffTime = expDate - today;\n      const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));\n      \n      if (diffDays <= 60 && diffDays > 0) {\n        alertCertifications.push({\n          ...cert,\n          daysUntilExpiration: diffDays\n        });\n      }\n    }\n  }\n  \n  if (alertCertifications.length > 0) {\n    alertFormateurs.push({\n      json: {\n        formateurId: formateur.json.id,\n        nom: formateur.json.nom,\n        prenom: formateur.json.prenom,\n        email: formateur.json.email,\n        certifications: alertCertifications\n      }\n    });\n  }\n}\n\nreturn alertFormateurs;"
+      },
+      "name": "Vérifier Certifications",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        340
+      ],
+      "id": "01ca9370-a585-45f3-a08f-eb14d2c3364c"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Traiter Par Formateur",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        340
+      ],
+      "id": "0cf116e5-cc08-47b6-808d-8ca28f911236"
+    },
+    {
+      "parameters": {
+        "subject": "Qualiopi - Alerte expiration de certification(s)",
+        "text": "=Bonjour {{$json.prenom}},\n\nNous vous informons que les certifications suivantes arrivent à expiration :\n\n{% for cert in $json.certifications %}\n- {{cert.nom}} : expire dans {{cert.daysUntilExpiration}} jours ({{cert.expirationDate.split('T')[0]}})\n{% endfor %}\n\nAfin de maintenir notre certification Qualiopi, merci de prévoir le renouvellement de ces qualifications.\n\nCordialement,\nService Qualité",
+        "options": {}
+      },
+      "name": "Alerte Expiration Certification",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        340
+      ],
+      "id": "5528d62f-4944-4351-8f55-5e8306abcbd9"
+    },
+    {
+      "parameters": {
+        "url": "={{$env.VEILLE_QUALIOPI_URL}}",
+        "options": {
+          "fullResponse": true
+        }
+      },
+      "name": "Scraper Veille Réglementaire",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        540
+      ],
+      "id": "4328189d-7c3e-42de-a750-c12c6e77eab7"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyse des changements réglementaires\nconst response = items[0].json;\nconst previousData = $getWorkflowStaticData('node', 'previousContent') || '';\nconst currentContent = response.body;\n\n// Si pas de contenu précédent, sauvegarder et sortir\nif (!previousData) {\n  $setWorkflowStaticData('node', 'previousContent', currentContent);\n  return [];\n}\n\n// Détecter les changements\nif (previousData === currentContent) {\n  // Aucun changement\n  return [];\n}\n\n// Simuler une analyse IA des changements\nconst changes = {\n  detectedDate: new Date().toISOString(),\n  source: 'Veille automatique',\n  changesDetected: true,\n  summary: 'Nouvelles informations détectées sur la réglementation Qualiopi',\n  contentSnippet: currentContent.substring(0, 500) + '...',\n  importance: 'moyenne',\n  affectedCriteria: ['Critère 6', 'Critère 7']\n};\n\n// Sauvegarder le nouveau contenu\n$setWorkflowStaticData('node', 'previousContent', currentContent);\n\nreturn [{ json: changes }];"
+      },
+      "name": "Analyser Changements",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        540
+      ],
+      "id": "7d18d7c0-0120-44bb-93af-2d79645ce3ca"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{$json.changesDetected}}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "Si Changements Détectés",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        540
+      ],
+      "id": "9efe4807-8873-47d6-a4e6-1341a5471f7b"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Veille Réglementaire"
+      },
+      "name": "Enregistrer Veille",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        460
+      ],
+      "id": "95419556-b123-441f-b8a3-2de91158bf0e"
+    },
+    {
+      "parameters": {
+        "chatId": "={{$env.QUALIOPI_CHAT_GROUP}}",
+        "text": "🔔 *ALERTE VEILLE RÉGLEMENTAIRE*\n\n{{$json.summary}}\n\nCritères concernés : {{$json.affectedCriteria.join(', ')}}\nImportance : {{$json.importance}}\n\nExtrait : {{$json.contentSnippet.substring(0, 200)}}...",
+        "additionalFields": {}
+      },
+      "name": "Notification Veille",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        620
+      ],
+      "id": "5fd33602-5235-470d-b375-4707feb7dbfa",
+      "webhookId": "69ea2fa6-5dfe-4abc-afdc-0c35692168b9"
+    },
+    {
+      "parameters": {
+        "path": "formation-creation",
+        "options": {}
+      },
+      "name": "Déclencheur Nouvelle Formation",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        740
+      ],
+      "webhookId": "formation-creation",
+      "id": "ba826226-44f8-4c62-b229-10ac2f752dad"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Préparation des données de formation pour génération des documents\nconst sessionData = items[0].json;\n\n// Structurer les données pour les templates de documents\nconst formationData = {\n  id: sessionData.id,\n  titre: sessionData.titre,\n  dateDebut: new Date(sessionData.dateDebut).toLocaleDateString('fr-FR'),\n  dateFin: new Date(sessionData.dateFin).toLocaleDateString('fr-FR'),\n  duree: sessionData.duree,\n  lieu: sessionData.lieu,\n  formateur: sessionData.formateur,\n  objectifs: sessionData.objectifs,\n  participants: sessionData.participants || [],\n  prix: sessionData.prix,\n  programme: sessionData.programme,\n  prerequis: sessionData.prerequis,\n  modalitesEvaluation: sessionData.modalitesEvaluation,\n  client: sessionData.client,\n  dateGeneration: new Date().toLocaleDateString('fr-FR')\n};\n\nreturn [{ json: formationData }];"
+      },
+      "name": "Préparer Données Formation",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        740
+      ],
+      "id": "07d91c12-5325-4d93-8ac6-9cd307255be8"
+    },
+    {
+      "parameters": {},
+      "name": "Générer Programme",
+      "type": "n8n-nodes-base.documint",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        640
+      ],
+      "id": "e80fdb25-9053-42c6-a1cd-3d2f4110dd71",
+      "credentials": {}
+    },
+    {
+      "parameters": {},
+      "name": "Générer Convention",
+      "type": "n8n-nodes-base.documint",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        740
+      ],
+      "id": "182b6d08-dbad-4c52-822f-d2b88607029d",
+      "credentials": {}
+    },
+    {
+      "parameters": {},
+      "name": "Générer Attestation",
+      "type": "n8n-nodes-base.documint",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        840
+      ],
+      "id": "94d77927-0be2-480e-8fdd-ecabf3c20a50",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "functionCode": "// Combinaison des résultats des documents générés\nconst formationData = items[0].json;\nconst programmeDoc = items[1].json;\nconst conventionDoc = items[2].json;\nconst attestationDoc = items[3].json;\n\nreturn [{\n  json: {\n    formationId: formationData.id,\n    formationTitre: formationData.titre,\n    dateGeneration: new Date().toISOString(),\n    documents: {\n      programme: programmeDoc.url || programmeDoc.fileContent,\n      convention: conventionDoc.url || conventionDoc.fileContent,\n      attestation: attestationDoc.url || attestationDoc.fileContent,\n    },\n    participants: formationData.participants,\n    formateur: formationData.formateur,\n    client: formationData.client\n  }\n}];"
+      },
+      "name": "Regrouper Documents",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        740
+      ],
+      "id": "299c0bd2-527d-4e32-a858-ea5c8ec73e50"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Documents Formations"
+      },
+      "name": "Enregistrer Documents",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        740
+      ],
+      "id": "d1b7be14-b24b-4e03-8485-45fab219234d"
+    },
+    {
+      "parameters": {},
+      "name": "Demande Signatures",
+      "type": "n8n-nodes-base.signNow",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        740
+      ],
+      "id": "8f51b0bb-e6bc-4ef2-9b41-fa9b99893c0f",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "path": "formation-completed",
+        "options": {}
+      },
+      "name": "Déclencheur Formation Terminée",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        940
+      ],
+      "webhookId": "formation-completed",
+      "id": "21b0ffaa-8781-4b2c-b226-cd5940f63cf7"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extraction des données de formation complétée\nconst formationData = items[0].json;\nconst participants = formationData.participants || [];\n\n// Créer un élément par participant pour les évaluations\nconst participantsItems = [];\n\nfor (const participant of participants) {\n  participantsItems.push({\n    json: {\n      formationId: formationData.id,\n      formationTitre: formationData.titre,\n      dateFin: formationData.dateFin,\n      participant: participant,\n      formateur: formationData.formateur,\n      evaluationLink: `https://forms.example.com/evaluation?session=${formationData.id}&participant=${participant.id}`\n    }\n  });\n}\n\nreturn participantsItems;"
+      },
+      "name": "Préparer Évaluations",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        940
+      ],
+      "id": "f41d5ced-7c58-43e3-b823-8f2dbe2e8dd4"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Par Participant",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        940
+      ],
+      "id": "0640ea41-9a61-4390-8c32-aa04631df1d4"
+    },
+    {
+      "parameters": {
+        "subject": "Évaluation de la formation \"{{$json.formationTitre}}\"",
+        "text": "=Bonjour {{$json.participant.prenom}},\n\nMerci d'avoir participé à notre formation \"{{$json.formationTitre}}\".\n\nDans le cadre de notre démarche qualité Qualiopi, nous vous invitons à compléter l'évaluation à chaud de cette session en cliquant sur le lien suivant :\n\n{{$json.evaluationLink}}\n\nVotre retour nous est précieux pour améliorer continuellement nos formations.\n\nCordialement,\nL'équipe pédagogique",
+        "options": {}
+      },
+      "name": "Envoyer Questionnaire Évaluation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        940
+      ],
+      "id": "228417d3-0da7-40c2-9df5-68a6546d9139"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Suivi Évaluations"
+      },
+      "name": "Enregistrer Envoi Évaluation",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        940
+      ],
+      "id": "fca617ca-3b4c-418b-b4cb-92fd736c6dc9"
+    },
+    {
+      "parameters": {
+        "path": "evaluation-received",
+        "options": {}
+      },
+      "name": "Réception Évaluation",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        1140
+      ],
+      "webhookId": "evaluation-received",
+      "id": "78420ff2-584f-4135-a810-e546883a6e56"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Traitement de l'évaluation reçue\nconst evaluationData = items[0].json;\n\n// Calculer un score global\nconst scores = evaluationData.scores || {};\nlet totalScore = 0;\nlet count = 0;\n\nfor (const key in scores) {\n  if (typeof scores[key] === 'number') {\n    totalScore += scores[key];\n    count++;\n  }\n}\n\nconst averageScore = count > 0 ? Math.round((totalScore / count) * 10) / 10 : 0;\n\n// Identifier les points d'amélioration\nconst lowScoreThreshold = 3;\nconst improvementAreas = [];\n\nfor (const key in scores) {\n  if (typeof scores[key] === 'number' && scores[key] <= lowScoreThreshold) {\n    improvementAreas.push(key);\n  }\n}\n\n// Préparer le résumé\nreturn [{\n  json: {\n    ...evaluationData,\n    averageScore,\n    improvementAreas,\n    status: averageScore >= 4 ? 'satisfaisant' : averageScore >= 3 ? 'moyen' : 'insatisfaisant',\n    dateReception: new Date().toISOString(),\n    commentaireAnalyse: improvementAreas.length > 0 \n      ? `Points à améliorer : ${improvementAreas.join(', ')}` \n      : 'Aucun point critique identifié'\n  }\n}];"
+      },
+      "name": "Analyser Évaluation",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        1140
+      ],
+      "id": "5cb90d1a-6d51-43a0-9ef6-c506ed4935d4"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Résultats Évaluations"
+      },
+      "name": "Enregistrer Résultats",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        1140
+      ],
+      "id": "5726e624-3079-4259-b4bc-1c7f6a8ef936"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{$json.status}}",
+              "operation": "equals",
+              "value2": "insatisfaisant"
+            }
+          ]
+        }
+      },
+      "name": "Vérifier Évaluation Insatisfaisante",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        1140
+      ],
+      "id": "3bae5c39-a142-4cbd-a7e8-29018dcd22d8"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableTokenApi",
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Actions Correctives"
+      },
+      "name": "Créer Action Corrective",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -500,
+        1040
+      ],
+      "id": "c4e46022-3019-4dee-82e4-95af77650f95",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "gf1ZgQWH7bI6wnPg",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "subject": "⚠️ Alerte Qualiopi - Évaluation insatisfaisante",
+        "text": "=Alerte qualité formation\n\nUne évaluation insatisfaisante a été reçue pour la formation \"{{$json.formationTitre}}\".\n\nScore moyen : {{$json.averageScore}}/5\n\nPoints d'amélioration identifiés :\n{% for area in $json.improvementAreas %}- {{area}}\n{% endfor %}\n\nCommentaires du participant :\n{{$json.commentaire}}\n\nUne action corrective a été automatiquement créée dans le système.\nMerci de la traiter conformément à notre procédure qualité Qualiopi.",
+        "options": {}
+      },
+      "name": "Notifier Responsable Qualité",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        1040
+      ],
+      "id": "f6a4b3e0-59d0-47d4-aa8f-3302524c90d3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months"
+            }
+          ]
+        }
+      },
+      "name": "Génération Rapports Mensuels",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        1340
+      ],
+      "id": "39fe0936-70f2-4bc0-ac1e-96157441381d"
+    },
+    {
+      "parameters": {
+        "application": {
+          "__rl": true,
+          "mode": "url",
+          "value": ""
+        },
+        "table": "Résultats Évaluations"
+      },
+      "name": "Récupérer Évaluations Récentes",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "position": [
+        -1100,
+        1340
+      ],
+      "id": "c688adb7-dd38-4470-acf9-d97a31488ac1"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Générer le rapport mensuel d'évaluation\nconst evaluations = items[0].json.data;\nconst now = new Date();\nconst monthAgo = new Date();\nmonthAgo.setMonth(now.getMonth() - 1);\n\n// Filtrer les évaluations du dernier mois\nconst recentEvaluations = evaluations.filter(eval => {\n  const evalDate = new Date(eval.fields.dateReception);\n  return evalDate >= monthAgo && evalDate <= now;\n});\n\n// Calculer les statistiques\nlet totalScore = 0;\nconst formationScores = {};\nconst formateurScores = {};\nconst improvementAreasCount = {};\n\nrecentEvaluations.forEach(eval => {\n  // Score moyen global\n  totalScore += eval.fields.averageScore || 0;\n  \n  // Scores par formation\n  const formationId = eval.fields.formationId;\n  if (!formationScores[formationId]) {\n    formationScores[formationId] = {\n      titre: eval.fields.formationTitre,\n      scores: [],\n      total: 0,\n      count: 0\n    };\n  }\n  formationScores[formationId].scores.push(eval.fields.averageScore);\n  formationScores[formationId].total += eval.fields.averageScore;\n  formationScores[formationId].count++;\n  \n  // Scores par formateur\n  const formateurId = eval.fields.formateurId;\n  if (!formateurScores[formateurId]) {\n    formateurScores[formateurId] = {\n      nom: eval.fields.formateurNom,\n      scores: [],\n      total: 0,\n      count: 0\n    };\n  }\n  formateurScores[formateurId].scores.push(eval.fields.averageScore);\n  formateurScores[formateurId].total += eval.fields.averageScore;\n  formateurScores[formateurId].count++;\n  \n  // Points d'amélioration\n  (eval.fields.improvementAreas || []).forEach(area => {\n    if (!improvementAreasCount[area]) {\n      improvementAreasCount[area] = 0;\n    }\n    improvementAreasCount[area]++;\n  });\n});\n\n// Calcul des moyennes\nconst globalAverage = recentEvaluations.length > 0 ? Math.round((totalScore / recentEvaluations.length) * 10) / 10 : 0;\n\n// Classement des formations par score\nconst formationRanking = Object.keys(formationScores)\n  .map(id => ({\n    id,\n    titre: formationScores[id].titre,\n    average: formationScores[id].count > 0 ? Math.round((formationScores[id].total / formationScores[id].count) * 10) / 10 : 0\n  }))\n  .sort((a, b) => b.average - a.average);\n\n// Classement des formateurs par score\nconst formateurRanking = Object.keys(formateurScores)\n  .map(id => ({\n    id,\n    nom: formateurScores[id].nom,\n    average: formateurScores[id].count > 0 ? Math.round((formateurScores[id].total / formateurScores[id].count) * 10) / 10 : 0\n  }))\n  .sort((a, b) => b.average - a.average);\n\n// Points d'amélioration les plus fréquents\nconst topImprovementAreas = Object.keys(improvementAreasCount)\n  .map(area => ({ area, count: improvementAreasCount[area] }))\n  .sort((a, b) => b.count - a.count)\n  .slice(0, 5);\n\n// Rapport final\nreturn [{\n  json: {\n    periode: `${monthAgo.toLocaleDateString()} - ${now.toLocaleDateString()}`,\n    dateGeneration: now.toISOString(),\n    nombreEvaluations: recentEvaluations.length,\n    scoreMoyenGlobal: globalAverage,\n    tendance: 0, // À calculer avec l'historique\n    meilleuresFormations: formationRanking.slice(0, 3),\n    formationsAmeliorer: formationRanking.slice(-3).reverse(),\n    meilleursFormateurs: formateurRanking.slice(0, 3),\n    pointsAmelioration: topImprovementAreas,\n    qualiopiStatus: globalAverage >= 4 ? 'conforme' : globalAverage >= 3.5 ? 'à surveiller' : 'non-conforme'\n  }\n}];"
+      },
+      "name": "Générer Rapport Mensuel",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -900,
+        1340
+      ],
+      "id": "f4a356b0-cc71-481d-ac32-09da600d6ab5"
+    },
+    {
+      "parameters": {},
+      "name": "Générer PDF Rapport",
+      "type": "n8n-nodes-base.documint",
+      "typeVersion": 1,
+      "position": [
+        -700,
+        1340
+      ],
+      "id": "47a645b4-aaef-475e-ba70-8205c94d2cc6",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "subject": "Rapport mensuel Qualiopi - {{$json.periode}}",
+        "text": "=Bonjour,\n\nVeuillez trouver ci-joint le rapport mensuel de conformité Qualiopi pour la période {{$json.periode}}.\n\nPoints clés :\n- Score moyen global : {{$json.scoreMoyenGlobal}}/5\n- Nombre d'évaluations traitées : {{$json.nombreEvaluations}}\n- Statut Qualiopi : {{$json.qualiopiStatus}}\n\nFormations les mieux évaluées :\n{% for formation in $json.meilleuresFormations %}- {{formation.titre}} ({{formation.average}}/5)\n{% endfor %}\n\nPoints d'amélioration principaux :\n{% for point in $json.pointsAmelioration %}- {{point.area}} (mentionné {{point.count}} fois)\n{% endfor %}\n\nCordialement,\nSystème d'assurance qualité Qualiopi",
+        "options": {}
+      },
+      "name": "Diffuser Rapport",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        -300,
+        140
+      ],
+      "id": "f7794e01-f004-4e26-a52d-4df6413de396"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1540,
+        840
+      ],
+      "id": "51e04c82-1bfe-4530-b262-8def22256bdd",
+      "name": "When clicking ‘Test workflow’"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-22T12:50:53.000Z",
+  "versionId": "cd685b54-4b43-41c9-b572-3e7fca58875c"
+}
