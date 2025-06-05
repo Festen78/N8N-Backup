@@ -1,0 +1,1149 @@
+{
+  "active": false,
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "creer event": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "obtenir events": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Telegram2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA lumiere tv on": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA lumiere tv off": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA image portail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA temperature salon": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA temperature exterieur": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA temperature grenier": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HA temperature chambre enzo": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brave List": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Brave Execute": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub List": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub Execute": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent2",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft Outlook Trigger": {
+      "main": [
+        [
+          {
+            "node": "Telegram3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-02-28T11:34:44.660Z",
+  "id": "Lg0Qy8gBGN96AW2i",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "assistant perso",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "7aa0a614-b452-419d-b0a1-071523a98a79",
+      "name": "Telegram Trigger",
+      "webhookId": "75d59304-7d52-4f93-84a0-c2bbe3368f4c",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    },
+                    "id": "553b2824-69cc-44c0-a2eb-f33b4f76720a"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "text"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "babca016-3a5b-4537-9b66-fc8bda11c03c",
+                    "leftValue": "={{ $json.message.voice.file_id }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "audio"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "e5947419-6ec9-41d2-a823-7b7aedfbbc84",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        440,
+        100
+      ],
+      "id": "72fe9398-36f1-4bad-ae94-9317ef66ee33",
+      "name": "Telegram",
+      "webhookId": "3bcfaeac-0180-4bd6-b7fd-5b6b722d9418",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        660,
+        100
+      ],
+      "id": "245de23f-1750-4b77-b02c-8ecc63115f0a",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "=Tu es un super agent. Tu dois m'aider au quotidien, plannifier sa journée en te plongeant dans ses emails, évènements, tâches et nouvelles IA de la journée. Tu dois aussi gerer sa maison via les tools home assistant. Tes réponses doivent etre brèves. Tu dois toujours m'appeler \"monsieur\".\n\nAujourd'hui on es le {{ $now }}.\n\nObtenir les emails :\nQuand on te demande les emails, renvoie les emails récupérés de l'outil \"get emails\", avec l'expéditeur, l'objet, le contenu en texte et un lien pour l'ouvrir directetment.\n\nObtenir les évènements :\nQuand on te demande les évènements, utilise l'outil \"get events\" pour récuperer les évènements en te basant sur la date d'aujourd'hui pour remplir les champs before et after. Donne tous les details de l'évenement et le lien sur google meet.\n\nCéer un évenement :\nQuand on te demande de créer un évenement, ajoute le titre \"title\", la date et heure de début \"stratdate\" et la date et heure de din \"enddate\".\n\nObtenir les 10 news IA du jour :\nQuand on te demande les news IA du jour, utilise l'outils \"perplexity AI news\" et renvoie les 10 news du jour de manière concise avec les liens vers les articles.\n\nhome assistant:\nQuand je te demande d'allumer la lumiere, utilise l'outil home assistant pour gerer les switchs et éléments home assistant demandés.\nQuand je te demande de me montrer le portail, recupere l'url du screenshot et envoie la moi.\nquand je te demande des informations sur les températures de la maison, utilise le ou les outils homeassistant necessaires.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1040,
+        20
+      ],
+      "id": "f4e8ee1c-eb0a-49f8-908b-f210145c5566",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        940,
+        260
+      ],
+      "id": "c04fa74d-b70b-4e9b-b3ca-4063b4e1c381",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').first().json.message.from.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        1100,
+        260
+      ],
+      "id": "b5da5e55-a330-4978-8b71-d73fb385dcc0",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "useDefaultReminders": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Use_Default_Reminders', ``, 'boolean') }}",
+        "additionalFields": {
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1300,
+        240
+      ],
+      "id": "36f209c7-3a0a-4ffb-9fb3-deee3d5dac79",
+      "name": "creer event",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "qtRBLnVQKZZQMBX0",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Calendar', ``, 'string') }}",
+          "mode": "id",
+          "__regex": "(^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*)"
+        },
+        "limit": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}",
+        "timeMin": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('After', ``, 'string') }}",
+        "timeMax": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Before', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1440,
+        240
+      ],
+      "id": "82a98a84-bdfb-41b1-9c13-9c6e4a4d09f1",
+      "name": "obtenir events",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "qtRBLnVQKZZQMBX0",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.perplexity.ai/chat/completions",
+        "sendHeaders": true,
+        "parametersHeaders": {
+          "values": [
+            {
+              "name": "Autorization",
+              "valueProvider": "fieldValue",
+              "value": "Bearer"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"sonar\",\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"Donne moi les 10 news IA du jour de source crédible comme Superhuman ou The Rundown\"\n    }\n  ],\n  \"max_tokens\": 4096,\n  \"temperature\": 0.2,\n  \"top_p\": 0.9,\n  \"search_domain_filter\": null,\n  \"return_images\": false,\n  \"return_related_questions\": false,\n  \"search_recency_filter\": \"<string>\",\n  \"top_k\": 0,\n  \"stream\": false,\n  \"presence_penalty\": 0,\n  \"frequency_penalty\": 1,\n  \"response_format\": null\n}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1620,
+        220
+      ],
+      "id": "71a1b4c3-8b44-4dbd-99c8-6f57873e9858",
+      "name": "Perplexity"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $('AI Agent').item.json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2140,
+        20
+      ],
+      "id": "941c4d7a-e2af-46c4-b55c-9742005514aa",
+      "name": "Telegram1",
+      "webhookId": "dbe1e358-2d03-4eee-b497-54c01ebe405d",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $('AI Agent').item.json.output }}",
+        "options": {
+          "systemMessage": "Reformate ce message pour qu'il soit lu en audio (enlève tous les caractères spéciaux et liens qui empêchent la bonne compréhension)"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2540,
+        -20
+      ],
+      "id": "78a6552d-dd8f-4cbf-b476-afe7d3d03b48",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        2540,
+        180
+      ],
+      "id": "5c4c025b-8242-4612-9fd7-2b36034b07db",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.elevenlabs.io/v1/text-to-speech/SJNOjOXkHi2mVtUXZ0Je",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "xi-api-key",
+              "value": "sk_f7b3de5ee9f54945bab7a6c0bef649b5d1106ccedd244957"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=text",
+              "value": "={{ $('AI Agent1').item.json.output }}"
+            },
+            {
+              "name": "model_id",
+              "value": "eleven_multilingual_v2"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        2920,
+        -20
+      ],
+      "id": "3265b10c-160d-4422-a488-c56b55930f5a",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "sendAudio",
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "binaryData": true,
+        "additionalFields": {
+          "fileName": "audio.mpeg"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3140,
+        -20
+      ],
+      "id": "f0e696ee-479f-42e5-a70d-20a10c579b9b",
+      "name": "Telegram2",
+      "webhookId": "f3109fa6-5471-485f-a63e-d4823050c016",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "service",
+        "operation": "call",
+        "domain": "switch",
+        "service": "turn_on",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "switch.ac_1209a66_1"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        1200,
+        520
+      ],
+      "id": "7f58b2e5-f8a8-4d70-ab47-ae7fda498c28",
+      "name": "HA lumiere tv on",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "service",
+        "operation": "call",
+        "domain": "switch",
+        "service": "turn_off",
+        "serviceAttributes": {
+          "attributes": [
+            {
+              "name": "entity_id",
+              "value": "switch.ac_1209a66_1"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        680
+      ],
+      "id": "1ae2effe-f0fa-4ae2-98cc-ebf6e32554ff",
+      "name": "HA lumiere tv off",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "cameraProxy",
+        "cameraEntityId": "camera.portail",
+        "binaryPropertyName": "=data"
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        1540,
+        720
+      ],
+      "id": "caaf5b34-87c9-4c36-b21b-001599a4b027",
+      "name": "HA image portail",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "state",
+        "entityId": "sensor.tempzigbeesalon_temperature"
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        640
+      ],
+      "id": "b219527f-9fe6-4409-acf0-1417dc84a79b",
+      "name": "HA temperature salon",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "state",
+        "entityId": "sensor.tempzigbeesalon_temperature"
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        2060,
+        640
+      ],
+      "id": "eb91e387-ba73-4fa8-818b-eb9c5f0d1db1",
+      "name": "HA temperature exterieur",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "state",
+        "entityId": "sensor.tfa_ts34c_cresta_20_0e_temperature"
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        640
+      ],
+      "id": "965ec09a-a5ea-4c1b-90d2-de0ce99029c8",
+      "name": "HA temperature grenier",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "state",
+        "entityId": "sensor.tfa_ts34c_cresta_41_0e_temperature"
+      },
+      "type": "n8n-nodes-base.homeAssistantTool",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        640
+      ],
+      "id": "be8fbc81-8125-43c4-ba3b-1b17d2440b21",
+      "name": "HA temperature chambre enzo",
+      "credentials": {
+        "homeAssistantApi": {
+          "id": "iMXBABNYizGcYmG7",
+          "name": "Home Assistant account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('To', ``, 'string') }}",
+        "subject": "Assistant n8n",
+        "message": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmailTool",
+      "typeVersion": 2.1,
+      "position": [
+        1780,
+        220
+      ],
+      "id": "5e7f29b8-1f83-4782-baa1-1c262472980f",
+      "name": "Gmail",
+      "webhookId": "18dc9ebd-b8dd-4e9a-bab0-3f97ec750ab6",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "e1ot0erfpxo5ndX9",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a helpful assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        1400,
+        -540
+      ],
+      "id": "84d98f93-46f3-48b4-b153-20af83ca36a4",
+      "name": "AI Agent2"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1180,
+        -220
+      ],
+      "id": "795570cf-0b79-4f78-80b6-76f4b22fdb17",
+      "name": "OpenAI Chat Model2",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        1060,
+        -540
+      ],
+      "id": "c23b0adb-690e-4fca-97bf-79cb1f12b28e",
+      "name": "When chat message received",
+      "webhookId": "15f8c183-bfb5-44d6-84ca-bf3d40814948"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-mcp.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        2160,
+        -440
+      ],
+      "id": "80a76177-1ca5-439b-9c9c-c2f08a1e4ee6",
+      "name": "Brave List",
+      "credentials": {
+        "mcpClientApi": {
+          "id": "sKbOwWJuS8j6xKLF",
+          "name": "MCP Client (STDIO) BRAVE"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeTool",
+        "toolName": "={{ $fromAI('tool', 'selected tool to execute') }}",
+        "toolParameters": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tool_Parameters', ``, 'json') }}"
+      },
+      "type": "n8n-nodes-mcp.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        2280,
+        -440
+      ],
+      "id": "cec87169-0bab-4af1-9395-0fd1f012957a",
+      "name": "Brave Execute",
+      "credentials": {
+        "mcpClientApi": {
+          "id": "sKbOwWJuS8j6xKLF",
+          "name": "MCP Client (STDIO) BRAVE"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-mcp.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        1560,
+        -240
+      ],
+      "id": "0de97e6c-389e-4f03-a1e2-973d6db69150",
+      "name": "GitHub List",
+      "credentials": {
+        "mcpClientApi": {
+          "id": "YLEirhGfSO8gr81l",
+          "name": "MCP GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeTool",
+        "toolName": "={{ $fromAI('tool', 'selected tool to execute') }}",
+        "toolParameters": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Tool_Parameters', ``, 'json') }}"
+      },
+      "type": "n8n-nodes-mcp.mcpClientTool",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        -240
+      ],
+      "id": "56c9ceb0-cb56-41b1-9c06-f752bc7d5cad",
+      "name": "GitHub Execute",
+      "credentials": {
+        "mcpClientApi": {
+          "id": "YLEirhGfSO8gr81l",
+          "name": "MCP GitHub"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        560,
+        -460
+      ],
+      "id": "e74ddf88-0a85-4ebc-b94a-4b5be7fd4344",
+      "name": "Microsoft Outlook",
+      "webhookId": "7d73da2d-b4b6-4e2f-9898-b0ee5ed91e6a",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "output": "raw",
+        "filters": {},
+        "options": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlookTrigger",
+      "typeVersion": 1,
+      "position": [
+        780,
+        -1200
+      ],
+      "id": "b87c3d17-a530-458c-94b4-e1aeb48c620b",
+      "name": "Microsoft Outlook Trigger",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "=8009516974",
+        "text": "={{ $json.from.emailAddress.name }}{{ $json.from.emailAddress.address }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1420,
+        -1200
+      ],
+      "id": "6a9d33e4-586c-450a-ac39-b01a8a2c3e05",
+      "name": "Telegram3",
+      "webhookId": "1d662041-59e3-466f-9895-246a1bbc3ff4",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://api.telegram.org/bot7839608265:AAFSvJErTvMcwbcEMUkyc3BaWLOoHhD1MAs/getUpdates",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        860,
+        -720
+      ],
+      "id": "c5cc8315-2c02-473c-b4e3-31deecc9df17",
+      "name": "HTTP Request1",
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Microsoft Outlook Trigger": {
+      "lastTimeChecked": "2025-05-16T18:34:38.033+02:00"
+    }
+  },
+  "tags": [],
+  "triggerCount": 3,
+  "updatedAt": "2025-05-16T16:34:54.000Z",
+  "versionId": "1fe7cc7c-b986-49a2-9259-63892fae1da7"
+}
