@@ -1,0 +1,109 @@
+{
+  "active": false,
+  "connections": {
+    "Schedule Weather Check": {
+      "main": [
+        [
+          {
+            "node": "Get Weather",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Weather": {
+      "main": [
+        [
+          {
+            "node": "Save to Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-26T10:03:03.119Z",
+  "id": "hLMBMxnz0uFoX6lE",
+  "isArchived": false,
+  "meta": null,
+  "name": "Generated Workflow from LLM",
+  "nodes": [
+    {
+      "parameters": {
+        "mode": "manual",
+        "cronExpression": "0 8 * * *"
+      },
+      "name": "Schedule Weather Check",
+      "type": "n8n-nodes-base.schedule",
+      "typeVersion": 1,
+      "id": "56eecd1e-f5f1-4b73-b495-7283af9be8f7"
+    },
+    {
+      "parameters": {
+        "cityName": "Paris,fr",
+        "language": "en"
+      },
+      "name": "Get Weather",
+      "type": "n8n-nodes-base.openWeatherMap",
+      "typeVersion": 1,
+      "credentials": {
+        "openWeatherMapApi": {
+          "id": "202",
+          "name": "OpenWeatherMap account"
+        }
+      },
+      "id": "fad11b1d-2610-4fa5-95e7-ad75af2c0399"
+    },
+    {
+      "parameters": {
+        "table": "Weather",
+        "fields": [
+          {
+            "name": "city",
+            "value": "Paris"
+          },
+          {
+            "name": "weather",
+            "value": "={{$json[\"weather\"][0][\"description\"]}}"
+          },
+          {
+            "name": "temperature",
+            "value": "={{$json[\"main\"][\"temp\"]}}"
+          },
+          {
+            "name": "date",
+            "value": "={{$json[\"dt\"] | formatDate(\"YYYY-MM-DD\")}}"
+          }
+        ]
+      },
+      "name": "Save to Airtable",
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 1,
+      "credentials": {
+        "airtableApi": {
+          "id": "1",
+          "name": "Airtable account"
+        }
+      },
+      "id": "546b998d-82c9-4a3a-a1f9-54d25a85ff9b"
+    }
+  ],
+  "pinData": null,
+  "settings": {
+    "saveExecutionProgress": true,
+    "saveManualExecutions": true,
+    "saveDataErrorExecution": "all",
+    "saveDataSuccessExecution": "all",
+    "executionTimeout": 3600,
+    "errorWorkflow": "",
+    "timezone": "UTC",
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-26T10:03:03.119Z",
+  "versionId": "2a62bc40-2316-4bef-8d29-502c7b5e0ada"
+}
