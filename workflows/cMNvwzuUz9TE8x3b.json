@@ -1,0 +1,1300 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI2": {
+      "main": [
+        [
+          {
+            "node": "image to base64",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select newsletter": {
+      "main": [
+        [
+          {
+            "node": "select newsletter_ton",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select newsletter_ton": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook sans image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "select newsletter1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select newsletter1": {
+      "main": [
+        [
+          {
+            "node": "select newsletter_ton1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select newsletter_ton1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft Outlook": {
+      "main": [
+        []
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Revision Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Revision Agent": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Revision Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "LinkedIn1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft Outlook1": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Microsoft Outlook3": {
+      "main": [
+        [
+          {
+            "node": "Microsoft Outlook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook2": {
+      "main": [
+        [
+          {
+            "node": "select newsletter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook3": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select newsletter2": {
+      "main": [
+        [
+          {
+            "node": "select newsletter_ton2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "select newsletter_ton2": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate1": {
+      "main": [
+        [
+          {
+            "node": "select newsletter2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image to base64": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Respond to Webhook sans image": {
+      "main": [
+        []
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhookavec image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Revision Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-25T17:07:18.227Z",
+  "id": "cMNvwzuUz9TE8x3b",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Newsletter LinkedIn",
+  "nodes": [
+    {
+      "parameters": {
+        "resource": "image",
+        "model": "gpt-image-1",
+        "prompt": "={{ $json.output }}",
+        "options": {
+          "size": "1024x1024"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        2380,
+        -680
+      ],
+      "id": "af50740c-d5dd-45de-9034-0da215fcd486",
+      "name": "OpenAI2",
+      "retryOnFail": true,
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "person": "caAePooRDZ",
+        "text": "={{ $('If').item.json.post }}",
+        "shareMediaCategory": "IMAGE",
+        "additionalFields": {
+          "title": "={{ $('If').item.json.title }}"
+        }
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        3420,
+        -480
+      ],
+      "id": "a972c0d9-5e74-446a-a70a-64b1cf4dc2a0",
+      "name": "LinkedIn",
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "XrsYwsviEHn0ypfJ",
+          "name": "LinkedIn test"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters",
+          "mode": "list",
+          "cachedResultName": "newsletters"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -240,
+        -260
+      ],
+      "id": "0ca60051-0a3c-4443-834e-04b8f4c26e17",
+      "name": "select newsletter",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters_tons",
+          "mode": "list",
+          "cachedResultName": "newsletters_tons"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.ton }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        -60,
+        -260
+      ],
+      "id": "233917ed-2934-41a6-bb4e-75c3116b392c",
+      "name": "select newsletter_ton",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "82c8975e-7ebd-4985-8679-0f8a52682a03",
+              "leftValue": "={{ $('select newsletter2').item.json.image }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1440,
+        -260
+      ],
+      "id": "e61d5319-3ff7-47e5-88f0-6e9ec4633418",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "person": "caAePooRDZ",
+        "text": "={{ $('Edit Fields1').item.json.post }}\n",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        3180,
+        -260
+      ],
+      "id": "68d0014b-906b-4ae5-a149-9193817d5817",
+      "name": "LinkedIn1",
+      "retryOnFail": true,
+      "credentials": {
+        "linkedInOAuth2Api": {
+          "id": "XrsYwsviEHn0ypfJ",
+          "name": "LinkedIn test"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.2,
+      "position": [
+        1040,
+        500
+      ],
+      "id": "92af14fd-16ea-4bb8-801b-c098208f5722",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "path": "ccdf707d-2c79-4fce-9826-a0834840e5db",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        500
+      ],
+      "id": "8fa660bf-234f-48c8-add8-65c3558607a8",
+      "name": "Webhook",
+      "webhookId": "ccdf707d-2c79-4fce-9826-a0834840e5db"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters",
+          "mode": "list",
+          "cachedResultName": "newsletters"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        100,
+        500
+      ],
+      "id": "1dfd6d2f-2163-4618-9c20-618382004051",
+      "name": "select newsletter1",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5e6c246a-7e88-4d4c-a517-6a4a79bcc0a8",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        680
+      ],
+      "id": "703e9b1e-ea2e-4933-91d5-34dbded7dbb5",
+      "name": "Webhook1",
+      "webhookId": "5e6c246a-7e88-4d4c-a517-6a4a79bcc0a8"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters_tons",
+          "mode": "list",
+          "cachedResultName": "newsletters_tons"
+        },
+        "returnAll": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        340,
+        500
+      ],
+      "id": "04d4e42d-c8bd-4277-a8b0-e75a441675f0",
+      "name": "select newsletter_ton1",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "bc13c373-9c06-40a7-8d57-ba7ff09c72d7",
+              "name": "id",
+              "value": "={{ $('select newsletter1').item.json.id }}",
+              "type": "number"
+            },
+            {
+              "id": "dd3a19e7-efa8-4de5-81d9-c19578d998da",
+              "name": "ton",
+              "value": "={{ $('select newsletter1').item.json.ton }}",
+              "type": "number"
+            },
+            {
+              "id": "20e3e27c-1712-424c-a36f-68f19360905a",
+              "name": "image",
+              "value": "={{ $('select newsletter1').item.json.image }}",
+              "type": "boolean"
+            },
+            {
+              "id": "7c289c86-263d-4b3f-8d05-1b5ba149c0d4",
+              "name": "n_lignes",
+              "value": "={{ $('select newsletter1').item.json.n_lignes }}",
+              "type": "number"
+            },
+            {
+              "id": "eb0db00c-f01a-4967-84a5-f3fed7b89731",
+              "name": "list_ton",
+              "value": "={{ JSON.stringify($items(\"select newsletter_ton1\").map(item => ({ description: item.json.description, id: item.json.id }))) }}\n",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        820,
+        500
+      ],
+      "id": "774cca7c-9f7a-4709-82df-cfcb44997024",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "destinationFieldName": "=data {{ $json.description }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        580,
+        500
+      ],
+      "id": "c00022a4-f06d-452d-8657-f7441106bd3b",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters",
+          "mode": "list",
+          "cachedResultName": "newsletters"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "image": "={{ $json.body.image }}",
+            "ton": "={{ $json.body.ton }}",
+            "n_lignes": "={{ $json.body.n_lignes }}",
+            "create_time": "={{ $now }}",
+            "id": 1
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "create_time",
+              "displayName": "create_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "ton",
+              "displayName": "ton",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "image",
+              "displayName": "image",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "boolean",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "n_lignes",
+              "displayName": "n_lignes",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        80,
+        680
+      ],
+      "id": "2621906e-4548-4454-9f82-47b5d9b8f90b",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "toRecipients": "festen78@hotmail.com",
+        "subject": "={{ \"Validation Newsletter\\n\" + $json.title }}",
+        "message": "={{ if $json.post }}",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1980,
+        -200
+      ],
+      "id": "0aaac603-8d8c-4d84-ac73-3a68411be221",
+      "name": "Microsoft Outlook",
+      "webhookId": "37bef2d0-12db-40a8-a5bd-70185db92435",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.body.comment }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Approuved",
+              "description": "Le post a été relu et accepté tel quel.\nL'humain exprime explicitement ou implicitement son approbation, indiquant qu'aucune modification n'est nécessaire.\n\n| Exemples de phrases courantes:\n\"Ok, ça me va\"\n\"Vas-y envoie\"\n\"C'est bon\"\n\"Pas besoin de changer\"\n\"oui\""
+            },
+            {
+              "category": "Declined",
+              "description": "Le post a été relu, mais l'humain demande des modifications avant l'envoi, comme des ajustements, des suppressions de passages, une reformulation, etc.\nCela peut inclure des suggestions de modifications, des reformulations ou des révisions plus importantes.\n\n| Exemples de phrases courantes:\n\"on peut ajuster cette partie\"\n\"il faudrait quelques changements\"\n\"Je voudrais reformuler ça\"\n\"Non, ce n'est pas tout à fait bon\"\n\"Tu peux modifier avant d'envoyer ?\"\n\"Ne dis pas qu'on ne peut pas le faire\"\n\"non\""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        2480,
+        -140
+      ],
+      "id": "960c6f7c-4d50-4011-8ecd-16f258e358a2",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Post: {{ $('Webhook3').item.json.body.verification }}\nFeedback from human: {{ $('Webhook3').item.json.body.comment }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Overview\nYou are an expert linkedin post writer. Your job is to take an incoming post and revise it based on the feedback the human submitted.\n\nWrite in French"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        2860,
+        -80
+      ],
+      "id": "2be9e2be-70a0-40e5-9abb-6486cbad3cd4",
+      "name": "Revision Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d609dd1f-79b4-4a99-b4a8-15ab4d537466",
+              "name": "title",
+              "value": "={{ $('Aggregate1').item.json.data[0].output.title }}",
+              "type": "string"
+            },
+            {
+              "id": "b3f782b3-1618-420c-835e-fff06f875cf9",
+              "name": "post",
+              "value": "={{ $('Aggregate1').item.json.data[0].output.post }}",
+              "type": "string"
+            },
+            {
+              "id": "2a9fdab6-121e-4c35-bc4d-33411a9d323c",
+              "name": "image",
+              "value": "={{ $('select newsletter2').item.json.image }}",
+              "type": "boolean"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1240,
+        -260
+      ],
+      "id": "f110d5d9-a6a0-4d91-a96f-1b09d2a1ff26",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"title\": {\n      \"type\": \"string\",\n      \"description\": \"The title of the post\"\n    },\n    \"post\": {\n      \"type\": \"string\",\n      \"description\": \"The body content of the post\"\n    }\n  },\n  \"required\": [\"title\", \"post\"]\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        1920,
+        320
+      ],
+      "id": "2f357d20-b55d-422b-9c60-01166550cbf2",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tu es un expert dans la création de post de qualité sur LinkedIn.\nCréé un post LinkedIn sur le thème: {{ $('Webhook2').item.json.body.keywords }}\n{{ $json.description }}\n\nLe post doit etre relatif à des données à jour. Fait des recherche approfondies pour le garantir.\n\nNe dépasse pas {{ $('select newsletter').item.json.n_lignes }} lignes.\n\nUtilise des emojis mais sans en abuser.\n\nVeilles à bien structurer le post en ne négligeant pas les retours à la ligne.\n\nLe but est de susciter l’intérêt du lecteur.",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        140,
+        -260
+      ],
+      "id": "0881c3a8-afae-4cf4-9461-b01dce4355cf",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "ec02246b-f08d-4148-8744-d76fdc28059d",
+              "leftValue": "={{ $('select newsletter').item.json.image }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2880,
+        -360
+      ],
+      "id": "5923023a-efb4-42cd-bd13-761721678e43",
+      "name": "If1"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "toRecipients": "festen78@hotmail.com",
+        "subject": "={{ \"Validation Newsletter\\n\" + $json.title }}",
+        "message": "={{ $('If').item.json.post }}",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2260,
+        -420
+      ],
+      "id": "bb80f43a-11c5-40ef-8637-07d2d3315bc1",
+      "name": "Microsoft Outlook1",
+      "webhookId": "37bef2d0-12db-40a8-a5bd-70185db92435",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "festen78@hotmail.com",
+        "subject": "verif",
+        "bodyContent": "=<img src=\"{{ $json.url }}\" />",
+        "additionalFields": {
+          "bodyContentType": "html"
+        }
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        2080,
+        -420
+      ],
+      "id": "aca1b97e-36d7-467a-ba7c-42a1b624c26b",
+      "name": "Microsoft Outlook3",
+      "webhookId": "9f9c1db2-971d-4646-90cb-b2ec347fe7e7",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $('OpenAI2').item.json.url }}",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        3180,
+        -480
+      ],
+      "id": "861a1fbd-546c-4be1-ace7-756386392a74",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b9b8cd44-b2db-45d9-8716-a39c583f44b2",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        -260
+      ],
+      "id": "9f979746-abb0-4955-9f7f-d580117141b5",
+      "name": "Webhook2",
+      "webhookId": "b9b8cd44-b2db-45d9-8716-a39c583f44b2"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "f0f35526-0a02-4046-84fb-bed72b1a67b4",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        2160,
+        -140
+      ],
+      "id": "e7c384aa-2838-4c76-8fb5-a6beeb1f2bc2",
+      "name": "Webhook3",
+      "webhookId": "f0f35526-0a02-4046-84fb-bed72b1a67b4"
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters",
+          "mode": "list",
+          "cachedResultName": "newsletters"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        840,
+        -260
+      ],
+      "id": "0e003999-d749-427a-923e-71588ae5e5d2",
+      "name": "select newsletter2",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "select",
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "newsletters_tons",
+          "mode": "list",
+          "cachedResultName": "newsletters_tons"
+        },
+        "where": {
+          "values": [
+            {
+              "column": "id",
+              "value": "={{ $json.ton }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        1020,
+        -260
+      ],
+      "id": "95519cd3-8334-4fc7-bfcb-5beeaf915a66",
+      "name": "select newsletter_ton2",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -260
+      ],
+      "id": "8f848723-614b-4b94-b4db-2b297c65dc0e",
+      "name": "Aggregate1"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        2700,
+        -680
+      ],
+      "id": "b594dfc8-59f9-4c05-8512-7178497348bc",
+      "name": "image to base64"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        1740,
+        -240
+      ],
+      "id": "f9b4a8e4-44dc-4d6f-b142-cde9f8f3d1cd",
+      "name": "Respond to Webhook sans image"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        3220,
+        -680
+      ],
+      "id": "5cbb9715-798a-4dfb-a2a4-172722d3d561",
+      "name": "Respond to Webhookavec image"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d609dd1f-79b4-4a99-b4a8-15ab4d537466",
+              "name": "title",
+              "value": "={{ $('Aggregate1').item.json.data[0].output.title }}",
+              "type": "string"
+            },
+            {
+              "id": "b3f782b3-1618-420c-835e-fff06f875cf9",
+              "name": "post",
+              "value": "={{ $('Aggregate1').item.json.data[0].output.post }}",
+              "type": "string"
+            },
+            {
+              "id": "2a9fdab6-121e-4c35-bc4d-33411a9d323c",
+              "name": "image",
+              "value": "=data:image/png;base64,{{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2960,
+        -680
+      ],
+      "id": "b759a6ef-bca3-4c1b-b320-d48a83e7b9ac",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=tu est un expert dans la formulation de prompt pour générer une image via DALL·E 3.\nTon but est de créer le meilleur prompt, le plus optimisé et le plus efficace en respectant les contraintes suivantes:\n\n---\n\n<contraintes>\n\n<sujet>{{ $json.post }}</sujet>\n\n---\n\nContexte et ambiance : Lumière naturelle douce\n\n---\n\n{{ $('select newsletter_ton2').item.json.description }}\n\nStyle et qualité : Photographie professionnelle, haute résolution.\n\n---\n\nFormat : 16:9, adapté aux posts LinkedIn.\n\n---\n\nContrainte: Ne pas inclure de mots écrits\n\n</contraintes>\n\nvoici une URL expliquant comment bien prompter: https://www.jedha.co/formation-ia/prompts-pour-dall-e-le-guide-complet\n\n---\n\nImportant: Ne commente pas le résulat. Le résultat doit etre utilisé tel quel.",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        1640,
+        -600
+      ],
+      "id": "07731abc-22cd-41c2-9b0f-6da7bf10f09f",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-sonnet-4-20250514",
+          "cachedResultName": "Claude 4 Sonnet"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1600,
+        320
+      ],
+      "id": "8e2465d0-be6c-476f-a1aa-64120e555209",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 5,
+  "updatedAt": "2025-06-05T05:31:22.000Z",
+  "versionId": "25d1c4e4-76ed-4cfd-b594-2ee86d07288f"
+}
