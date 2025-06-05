@@ -1,0 +1,428 @@
+{
+  "active": false,
+  "connections": {
+    "Email Trigger": {
+      "main": [
+        [
+          {
+            "node": "Extract Email Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Email Data": {
+      "main": [
+        [
+          {
+            "node": "Define Categories",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Define Categories": {
+      "main": [
+        [
+          {
+            "node": "AI Email Categorizer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Email Categorizer": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Response": {
+      "main": [
+        [
+          {
+            "node": "Route by Category",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Route by Category": {
+      "main": [
+        [
+          {
+            "node": "Action Required Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Move Junk to Spam",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "High Priority Notification",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Database",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-31T09:20:58.241Z",
+  "id": "3qXvoy21dIY980vx",
+  "isArchived": false,
+  "meta": null,
+  "name": "Email Categorization Workflow",
+  "nodes": [
+    {
+      "id": "8f4a2d1b-3c5e-4f7a-9b8c-1d2e3f4a5b6c",
+      "name": "Email Trigger",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        280,
+        300
+      ],
+      "parameters": {
+        "mailbox": "INBOX",
+        "postProcessAction": "read",
+        "options": {
+          "criteria": "UNSEEN"
+        }
+      },
+      "credentials": {
+        "imap": {
+          "id": "email-credentials",
+          "name": "Email IMAP"
+        }
+      }
+    },
+    {
+      "id": "7e3b9c2d-4f5a-6b7c-8d9e-0f1a2b3c4d5e",
+      "name": "Extract Email Data",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        500,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "email_subject",
+              "name": "subject",
+              "value": "={{ $json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "email_from",
+              "name": "from",
+              "value": "={{ $json.from.value[0].address }}",
+              "type": "string"
+            },
+            {
+              "id": "email_body",
+              "name": "body",
+              "value": "={{ $json.text || $json.html }}",
+              "type": "string"
+            },
+            {
+              "id": "email_date",
+              "name": "date",
+              "value": "={{ $json.date }}",
+              "type": "string"
+            },
+            {
+              "id": "message_id",
+              "name": "messageId",
+              "value": "={{ $json.uid }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "6d2c8a1b-3e4f-5a6b-7c8d-9e0f1a2b3c4d",
+      "name": "Define Categories",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        720,
+        300
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "categories",
+              "name": "availableCategories",
+              "value": "[\"Action\", \"Business\", \"SaaS\", \"Junk\", \"Receipt\", \"Community\", \"Newsletter\", \"Personal\", \"Other\"]",
+              "type": "string"
+            },
+            {
+              "id": "subcategories",
+              "name": "availableSubCategories",
+              "value": "[\"urgent\", \"important\", \"newsletter\", \"promotion\", \"security\", \"invoice\", \"notification\"]",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "id": "5c1b7a9d-2e3f-4a5b-6c7d-8e9f0a1b2c3d",
+      "name": "AI Email Categorizer",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.6,
+      "position": [
+        940,
+        300
+      ],
+      "parameters": {
+        "text": "=Analyze and categorize the following email:\n\n**Subject:** {{ $('Extract Email Data').item.json.subject }}\n**From:** {{ $('Extract Email Data').item.json.from }}\n**Body:** {{ $('Extract Email Data').item.json.body }}\n\nProvide your analysis in the following JSON format:\n\n{\n  \"subject\": \"{{ $('Extract Email Data').item.json.subject }}\",\n  \"category\": \"PRIMARY_CATEGORY\",\n  \"subCategory\": \"SUBCATEGORY\",\n  \"priority\": \"high|medium|low\",\n  \"analysis\": \"Brief explanation of categorization reasoning\",\n  \"keywords\": [\"key\", \"words\", \"found\"],\n  \"actionRequired\": true/false\n}",
+        "options": {
+          "systemMessage": "=You are an intelligent email categorization assistant. Your task is to analyze emails and categorize them accurately.\n\n**Available Categories:** {{ $('Define Categories').item.json.availableCategories }}\n**Available SubCategories:** {{ $('Define Categories').item.json.availableSubCategories }}\n\n**Categorization Rules:**\n\n1. **Action** - Emails requiring response or immediate action (meeting requests, project updates, client inquiries)\n2. **Business** - Work-related communications, proposals, contracts, professional correspondence\n3. **SaaS** - Software service notifications, account updates, security alerts, billing\n4. **Junk** - Spam, unsolicited marketing, promotional emails, irrelevant content\n5. **Receipt** - Purchase confirmations, invoices, payment notifications\n6. **Community** - Forum updates, social groups, events, community announcements\n7. **Newsletter** - Subscribed content, regular updates, informational emails\n8. **Personal** - Friends, family, personal correspondence\n9. **Other** - Anything that doesn't fit the above categories\n\n**Priority Assessment:**\n- High: Urgent action required, time-sensitive\n- Medium: Important but not urgent, requires attention\n- Low: Informational, can be processed later\n\n**Analysis Guidelines:**\n- Look for keywords indicating urgency or action requirements\n- Check sender domain and email patterns\n- Analyze subject line for category indicators\n- Consider email content context and tone\n\nReturn ONLY valid JSON with no additional text."
+        },
+        "promptType": "define",
+        "hasOutputParser": true
+      },
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credentials",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "id": "4b0a6c8e-1d2f-3a4b-5c6d-7e8f9a0b1c2d",
+      "name": "Parse AI Response",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1160,
+        300
+      ],
+      "parameters": {
+        "jsCode": "try {\n  const aiResponse = items[0].json.output || items[0].json.text || items[0].json.result;\n  \n  let parsedResult;\n  if (typeof aiResponse === 'string') {\n    // Extract JSON from response if it's wrapped in text\n    const jsonMatch = aiResponse.match(/\\{[\\s\\S]*\\}/);\n    if (jsonMatch) {\n      parsedResult = JSON.parse(jsonMatch[0]);\n    } else {\n      throw new Error('No JSON found in response');\n    }\n  } else {\n    parsedResult = aiResponse;\n  }\n\n  // Add original email data\n  const emailData = $('Extract Email Data').item.json;\n  \n  return [{\n    json: {\n      ...parsedResult,\n      originalEmail: {\n        subject: emailData.subject,\n        from: emailData.from,\n        date: emailData.date,\n        messageId: emailData.messageId\n      },\n      processedAt: new Date().toISOString()\n    }\n  }];\n\n} catch (error) {\n  // Fallback categorization if AI fails\n  const emailData = $('Extract Email Data').item.json;\n  const subject = emailData.subject.toLowerCase();\n  const from = emailData.from.toLowerCase();\n  \n  let category = 'Other';\n  let priority = 'low';\n  \n  if (subject.includes('urgent') || subject.includes('asap')) {\n    category = 'Action';\n    priority = 'high';\n  } else if (subject.includes('receipt') || subject.includes('invoice')) {\n    category = 'Receipt';\n  } else if (from.includes('noreply') || subject.includes('newsletter')) {\n    category = 'Newsletter';\n  } else if (subject.includes('security') || subject.includes('account')) {\n    category = 'SaaS';\n  }\n  \n  return [{\n    json: {\n      subject: emailData.subject,\n      category: category,\n      subCategory: 'auto-detected',\n      priority: priority,\n      analysis: 'Fallback categorization due to AI parsing error',\n      keywords: [],\n      actionRequired: category === 'Action',\n      originalEmail: emailData,\n      processedAt: new Date().toISOString(),\n      error: error.message\n    }\n  }];\n}"
+      }
+    },
+    {
+      "id": "3a9b5c7d-0e1f-2a3b-4c5d-6e7f8a9b0c1d",
+      "name": "Route by Category",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        1380,
+        300
+      ],
+      "parameters": {
+        "options": {
+          "fallbackOutput": 3
+        },
+        "conditions": {
+          "conditions": [
+            {
+              "id": "action_category",
+              "leftValue": "={{ $json.category }}",
+              "rightValue": "Action",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "junk_category",
+              "leftValue": "={{ $json.category }}",
+              "rightValue": "Junk",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "high_priority",
+              "leftValue": "={{ $json.priority }}",
+              "rightValue": "high",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "2a8b4c6d-9e0f-1a2b-3c4d-5e6f7a8b9c0d",
+      "name": "Action Required Alert",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        180
+      ],
+      "parameters": {
+        "resource": "message",
+        "operation": "post",
+        "channel": "#urgent-emails",
+        "text": "🚨 *Action Required Email*\n\n*Subject:* {{ $json.subject }}\n*From:* {{ $json.originalEmail.from }}\n*Category:* {{ $json.category }}\n*Priority:* {{ $json.priority }}\n*Analysis:* {{ $json.analysis }}\n\n*Action Required:* {{ $json.actionRequired ? 'Yes' : 'No' }}"
+      },
+      "credentials": {
+        "slackApi": {
+          "id": "slack-credentials",
+          "name": "Slack API"
+        }
+      }
+    },
+    {
+      "id": "1a7b3c5d-8e9f-0a1b-2c3d-4e5f6a7b8c9d",
+      "name": "Move Junk to Spam",
+      "type": "n8n-nodes-base.emailReadImap",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        300
+      ],
+      "parameters": {
+        "operation": "move",
+        "messageId": "={{ $json.originalEmail.messageId }}",
+        "folder": "Junk"
+      },
+      "credentials": {
+        "imap": {
+          "id": "email-credentials",
+          "name": "Email IMAP"
+        }
+      }
+    },
+    {
+      "id": "0a6b2c4d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
+      "name": "High Priority Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1600,
+        420
+      ],
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "@your_telegram_username",
+        "text": "⚡ *High Priority Email*\n\n📧 *Subject:* {{ $json.subject }}\n👤 *From:* {{ $json.originalEmail.from }}\n🏷️ *Category:* {{ $json.category }}\n📝 *Analysis:* {{ $json.analysis }}\n\n*Keywords:* {{ $json.keywords.join(', ') }}",
+        "additionalFields": {
+          "parseMode": "Markdown"
+        }
+      },
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-credentials",
+          "name": "Telegram Bot API"
+        }
+      }
+    },
+    {
+      "id": "9f5b1c3d-6e7f-8a9b-0c1d-2e3f4a5b6c7d",
+      "name": "Save to Database",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4,
+      "position": [
+        1820,
+        300
+      ],
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "mode": "list",
+          "value": "your-google-sheet-id"
+        },
+        "sheetName": "Email_Categories",
+        "dataMode": "autoMap",
+        "valueInputMode": "USER_ENTERED"
+      },
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-credentials",
+          "name": "Google Sheets OAuth2"
+        }
+      }
+    },
+    {
+      "id": "8e4b0c2d-5f6a-7b8c-9d0e-1f2a3b4c5d6e",
+      "name": "Documentation",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        280,
+        120
+      ],
+      "parameters": {
+        "content": "## Email Categorization Workflow\n\n**Purpose:** Automatically categorize incoming emails using AI\n\n**Categories:**\n- Action: Requires response/action\n- Business: Work-related emails\n- SaaS: Service notifications\n- Junk: Spam/promotional\n- Receipt: Purchase confirmations\n- Community: Forum/group updates\n- Newsletter: Subscribed content\n- Personal: Friends/family\n- Other: Miscellaneous\n\n**Actions:**\n- Action emails → Slack alert\n- Junk emails → Move to spam folder\n- High priority → Telegram notification\n- All emails → Save to Google Sheets",
+        "height": 280,
+        "width": 350
+      }
+    },
+    {
+      "id": "7d3a9c1b-4e5f-6a7b-8c9d-0e1f2a3b4c5d",
+      "name": "Error Handler",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        940,
+        120
+      ],
+      "parameters": {
+        "content": "## Error Handling\n\nIf AI categorization fails, fallback logic:\n- Check for urgent keywords\n- Analyze sender domain\n- Use basic pattern matching\n- Default to 'Other' category\n\nEnsures workflow continues even if AI service is unavailable.",
+        "height": 150,
+        "width": 300
+      }
+    }
+  ],
+  "pinData": null,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-31T09:20:58.241Z",
+  "versionId": "ca20e9a8-9c37-4235-ac92-17ab43416e5d"
+}
