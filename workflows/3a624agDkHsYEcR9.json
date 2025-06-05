@@ -1,0 +1,505 @@
+{
+  "active": false,
+  "connections": {
+    "Airtable Trigger": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Project": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Revision Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          },
+          {
+            "node": "Revision Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Slack",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Text Classifier": {
+      "main": [
+        [
+          {
+            "node": "Slack1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Revision Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Revision Agent": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "main": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "Gmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-03T11:37:04.228Z",
+  "id": "3a624agDkHsYEcR9",
+  "isArchived": false,
+  "meta": null,
+  "name": "Human in the loop",
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "authentication": "airtableOAuth2Api",
+        "baseId": {
+          "__rl": true,
+          "value": "https://airtable.com/appRZHbnEtrde6ZIi/tblXDuklHPLhzStGo/viwqLTOal1Lvs285c?blocks=hide",
+          "mode": "url"
+        },
+        "tableId": {
+          "__rl": true,
+          "value": "tblXDuklHPLhzStGo",
+          "mode": "id"
+        },
+        "triggerField": "Created",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.airtableTrigger",
+      "typeVersion": 1,
+      "position": [
+        -740,
+        280
+      ],
+      "id": "a06395b0-c7df-4d9a-aa38-c4e41c6fc3d3",
+      "name": "Airtable Trigger"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Here is a new lead : \n\nName : {{ $json.fields.name }}\n\nCompany name : {{ $json.fields.companyName }}\n\nTimeline : {{ $json.fields.timeline }}\n\nProject description : {{ $json.fields.projectDescription }}\n\nBudget : {{ $json.fields.budget }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Overview\nYou are an expert sales person for an TWO PIZZA CLUB that delivers AI solutions. Your job is to respond to incoming leads by addressing their needs in a professional manner. You will receive information like the lead's project description and timeline, and your goal is to convince them that we are the best AI Agency on the market.\n\n## Tools\nUse \"Project\" : use this tool to search throught previous project we have done\n\n## Rules \n1) Keep the email concise and professional \n2) Your main objective is to convince the lead to book in a call \n3) Retrieve information about previous projects to share with the lead to prove that our team is capable of handling their project. Find a similar project we have done to share with the lead. Share the result of how we helped the client.\n4) Write in French. \n\n## Final Notes\nSign off emails as Paname, CEO @ TWO PIZZA CLUB\nHere is the current date/time: {{ $now }}\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -520,
+        280
+      ],
+      "id": "95c44a7b-8f89-455a-a48c-f85718f928e4",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatMistralCloud",
+      "typeVersion": 1,
+      "position": [
+        1600,
+        920
+      ],
+      "id": "580d40e5-ed9c-43a0-a953-dd12d43bc63a",
+      "name": "Mistral Cloud Chat Model"
+    },
+    {
+      "parameters": {
+        "authentication": "airtableOAuth2Api",
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appRZHbnEtrde6ZIi",
+          "mode": "list",
+          "cachedResultName": "N8N",
+          "cachedResultUrl": "https://airtable.com/appRZHbnEtrde6ZIi"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblQDnxA7KQuzFRt4",
+          "mode": "list",
+          "cachedResultName": "Projects",
+          "cachedResultUrl": "https://airtable.com/appRZHbnEtrde6ZIi/tblQDnxA7KQuzFRt4"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtableTool",
+      "typeVersion": 2.1,
+      "position": [
+        -340,
+        540
+      ],
+      "id": "2c637d63-952a-4839-85ed-82efa69a82a8",
+      "name": "Project"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        300,
+        720
+      ],
+      "id": "2d184196-8722-4dbb-9fa4-e618cd54309e",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "7fc77ca1-a096-4770-8a99-fc480362e81b",
+              "name": "email",
+              "value": "={{ $json.output.email }}",
+              "type": "string"
+            },
+            {
+              "id": "69dd2aa6-a57f-4b18-8360-5899268ed062",
+              "name": "executionId",
+              "value": "={{ $json.context.executionId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        140,
+        280
+      ],
+      "id": "5825d453-15bf-49a9-b8c2-979a34583a11",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"object\",\n  \"properties\": {\n    \"subject\": {\n      \"type\": \"string\",\n      \"description\": \"The subject line of the email\"\n    },\n    \"email\": {\n      \"type\": \"string\",\n      \"description\": \"The body content of the email\"\n    }\n  },\n  \"required\": [\"subject\", \"email\"]\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        660,
+        700
+      ],
+      "id": "72a30265-74f9-44ab-8913-d6cf8977997b",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.data.text }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Approved",
+              "description": "=L’e-mail a été relu et accepté tel quel.\nL’humain exprime explicitement ou implicitement son approbation, indiquant qu’aucune modification n’est nécessaire.\n\n| Exemples de phrases courantes :\n« Ça me va. »\n« Vas-y, envoie. »\n« C’est bon pour moi. »\n« Approuvé. »\n« Pas besoin de changer. »"
+            },
+            {
+              "category": "Declined",
+              "description": "=L’e-mail a été relu, mais l’humain demande des modifications avant l’envoi, comme des ajustements, des suppressions de passages, une reformulation, etc.\nCela peut inclure des suggestions de modifications, de reformulations ou des révisions plus importantes.\n\n| Exemples de phrases courantes :\n« On peut ajuster cette partie ? »\n« Il faut quelques changements. »\n« Je voudrais reformuler ça. »\n« Pas tout à fait bon — retravaillons-le. »\n« Tu peux modifier ça avant d’envoyer ? »\n« Ne dis pas qu’on ne peut pas le faire. »"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        640,
+        280
+      ],
+      "id": "b6d6d0f8-8366-469c-905d-d662c6fc7419",
+      "name": "Text Classifier"
+    },
+    {
+      "parameters": {
+        "sendTo": "parispierre2@gmail.com",
+        "subject": "=New lead :  {{ $('Airtable Trigger').item.json.fields.name }} with a budget of {{ $('Airtable Trigger').item.json.fields.budget }}",
+        "message": "=Hi man, \n\nWe have a new lead and we want to send this email : \n\n{{ $('AI Agent').item.json.output.email }}\n\n",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1160,
+        0
+      ],
+      "id": "7b162848-594f-4ac7-906c-2745af47dfbc",
+      "name": "Gmail1",
+      "webhookId": "70ac94f4-5d6b-4a67-ace2-6282eae75298",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Email: {{ $('Edit Fields').item.json.email }}\nFeedback from human: {{ $json.data.text }}",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=# Overview\nYou are an expert email writer. Your job is to take an incoming email and revise it based on the feedback the human submitted.\n\n## Final Notes\nSign off emails as Paname, CEO @ TWO PIZZA CLUB\nHere is the current date/time: {{ $now }}\nWrite in French"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        1060,
+        400
+      ],
+      "id": "5c7accb5-4c55-487a-a354-b9de41e453f4",
+      "name": "Revision Agent"
+    },
+    {
+      "parameters": {
+        "content": "## Attended"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "917756c6-b543-4aad-80cd-21e600646639",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "## UnAttended"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        360,
+        0
+      ],
+      "typeVersion": 1,
+      "id": "45b8cab3-4797-451e-8332-8d9cd80e16bf",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "operation": "sendAndWait",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C08ETMGFBLM",
+          "mode": "list",
+          "cachedResultName": "paname_bot_n8n"
+        },
+        "message": "=Action required: New lead\n\nHi man, \n\nWe have a new lead and we want to send this email : \n\n{{ $('AI Agent').item.json.output.email }}\n\nClick to approve:\n{{ $('Code').item.json.context.webhookBase + '/' + 'webhook-waiting/' + $('Code').item.json.context.executionId + '/' + $('Code').item.json.context.workflowId + '/' + 'approved=true'}}\n\n<{{ $('Code').item.json.context.webhookBase + '/' + 'webhook-waiting/' + $('Code').item.json.context.executionId + '/' + 'b3a50abb-c25f-4596-ae73-ca1f27b19a50' + '?' + 'approved=true' }}|Click to approve>\n",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        400,
+        280
+      ],
+      "id": "6643d766-bc4e-47fa-9c5c-57e296ec6b3b",
+      "name": "Slack",
+      "webhookId": "0176408c-92e9-4527-8355-b14d30c8deb0"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nfor (const item of items) {\n  item.json.context = {\n    webhookBase: $env.BASE_URL,  // 🔁 prend la valeur dynamiquement depuis ton environnement\n    executionId: $execution.id,\n    workflowId: $workflow.id\n  };\n}\n\nreturn items;\n\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        280
+      ],
+      "id": "1b9f666f-cfef-46f9-9bc9-36c5a33c37a0",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "authentication": "oAuth2",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C08ETMGFBLM",
+          "mode": "list",
+          "cachedResultName": "paname_bot_n8n"
+        },
+        "text": "=Hi man,   We have a new lead and we want to send this email :   {{ $('AI Agent').item.json.output.email }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.3,
+      "position": [
+        1160,
+        220
+      ],
+      "id": "532d84ba-02b4-4335-8a01-ba1a20d8cf8b",
+      "name": "Slack1",
+      "webhookId": "cdaf757e-b2a3-4225-ab7a-76fa8bc4274b"
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "responseType": "freeText",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1380,
+        0
+      ],
+      "id": "c44848cd-61c9-46e1-bd30-f59a5d439a3c",
+      "name": "Gmail",
+      "webhookId": "a8202295-3420-4bdf-b59f-45bb38e9ce25"
+    }
+  ],
+  "pinData": {
+    "Airtable Trigger": [
+      {
+        "json": {
+          "id": "recNX7oDQxmFQ7mFW",
+          "createdTime": "2025-02-20T13:31:58.000Z",
+          "fields": {
+            "name": "Michel ",
+            "email": "parispierre2@gmail.com",
+            "companyName": "Apple",
+            "intent": "Custom AI solution",
+            "budget": "500€ - 5 000€",
+            "projectDescription": "Automatic Sales reports creation",
+            "timeline": "Immediate (1-2 week)",
+            "Created": "2025-02-20T13:31:58.000Z"
+          }
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-03T11:37:04.228Z",
+  "versionId": "f9e9d599-3cb2-4441-9123-49fccd683173"
+}
