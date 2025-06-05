@@ -1,0 +1,224 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Process Transcription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Transcription": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "IF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Code1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-21T05:59:35.708Z",
+  "id": "FsYxUXqBB3gfrPzh",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "whipserx",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "whisperx-transcription",
+        "options": {
+          "binaryData": true
+        }
+      },
+      "id": "d7029d76-ae11-4361-bdb9-43fa87068d51",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -660
+      ],
+      "webhookId": "d8d9f2c7-55d2-4106-94b6-c9a28bd7aedb"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=http://festen.ddns.net:9000/asr",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "=audio_file\n",
+              "value": "={{ $binary.data }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "98865cc4-2760-4485-96ee-be9b05653192",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1080,
+        -680
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extraire les données importantes\nconst rawResponse = $input.item.json;\n\n// Vérifier si la réponse est valide\nif (!rawResponse || typeof rawResponse !== 'object') {\n  return {\n    json: {\n      success: false,\n      error: \"Invalid response from transcription service\",\n    }\n  };\n}\n\n// Structurer les données\nreturn {\n  json: {\n    success: true,\n    transcription: rawResponse.text || \"\",\n    language: rawResponse.language || \"fr\",\n    duration: rawResponse.duration || 0,\n    segments: rawResponse.segments || [],\n    original: rawResponse\n  }\n};"
+      },
+      "id": "121b5604-4b8a-4aa2-8bbe-d2ee74ff6992",
+      "name": "Process Transcription",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -680
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "0d8c61a4-bb58-4cf7-b0cb-7ded4fd2d510",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        -680
+      ]
+    },
+    {
+      "parameters": {
+        "options": {},
+        "requestOptions": {}
+      },
+      "id": "46dc6025-ab12-49b2-a7bf-8b1b69bbb5cb",
+      "name": "OpenAI",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        1300,
+        -460
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.success }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "id": "a128c407-6b7c-46f3-8a44-dd4e87405a45",
+      "name": "IF",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1520,
+        -460
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer les données binaires\nconst binaryData = $input.item.binary.data;\n\n// Créer un nouveau format de données qui sera compatible avec la requête HTTP\nreturn {\n  json: {\n    // Conserver les informations sur le fichier pour le nœud HTTP Request\n    fileInfo: {\n      fileName: binaryData.fileName || 'audio.mp3',\n      mimeType: binaryData.mimeType,\n      data: binaryData\n    }\n  },\n  // Conserver les données binaires intactes\n  binary: $input.item.binary\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        700,
+        -660
+      ],
+      "id": "9d57ac9a-bae6-4a98-ad57-a967e6a9b7bc",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Utiliser l'API HTTP standard de Node.js\nconst http = require('http');\nconst querystring = require('querystring');\n\n// Récupérer les données binaires\nconst item = $input.item;\nconst binaryData = item.binary?.data;\n\nif (!binaryData) {\n  return { json: { error: 'No binary data found' } };\n}\n\ntry {\n  // Créer un boundary pour le multipart/form-data\n  const boundary = '----WebKitFormBoundary' + Math.random().toString(16).substr(2);\n  \n  // Convertir les données base64 en buffer\n  const fileBuffer = Buffer.from(binaryData.data, 'base64');\n  \n  // Construire le corps de la requête multipart/form-data\n  const requestBody = Buffer.concat([\n    Buffer.from(`--${boundary}\\r\\n`),\n    Buffer.from('Content-Disposition: form-data; name=\"audio_file\"; filename=\"audio.mp3\"\\r\\n'),\n    Buffer.from('Content-Type: audio/mpeg\\r\\n\\r\\n'),\n    fileBuffer,\n    Buffer.from(`\\r\\n--${boundary}--\\r\\n`)\n  ]);\n  \n  // Options de la requête\n  const options = {\n    hostname: 'festen.ddns.net',\n    port: 9000,\n    path: '/asr',\n    method: 'POST',\n    headers: {\n      'Content-Type': `multipart/form-data; boundary=${boundary}`,\n      'Content-Length': requestBody.length\n    }\n  };\n  \n  // Exécuter la requête HTTP\n  const responseData = await new Promise((resolve, reject) => {\n    const req = http.request(options, (res) => {\n      let data = '';\n      res.on('data', (chunk) => {\n        data += chunk;\n      });\n      res.on('end', () => {\n        resolve(data);\n      });\n    });\n    \n    req.on('error', (error) => {\n      reject(error);\n    });\n    \n    req.write(requestBody);\n    req.end();\n  });\n  \n  // Essayer de parser la réponse comme JSON\n  try {\n    return { json: JSON.parse(responseData) };\n  } catch (e) {\n    return { json: { result: responseData } };\n  }\n} catch (error) {\n  return { json: { error: error.message } };\n}\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        920,
+        -820
+      ],
+      "id": "1ca4db70-2792-4c30-8640-7b9f96e5570d",
+      "name": "Code1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-21T11:14:55.000Z",
+  "versionId": "e6bfe353-7867-4d7d-80a2-b9131f1930e2"
+}
