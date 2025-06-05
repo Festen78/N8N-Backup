@@ -1,0 +1,1766 @@
+{
+  "active": false,
+  "connections": {
+    "Documents - Vérification Périodique": {
+      "main": [
+        [
+          {
+            "node": "Récupérer Documents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparer Dossier Audit": {
+      "main": [
+        [
+          {
+            "node": "Créer Dossier Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer Dossier Audit": {
+      "main": [
+        [
+          {
+            "node": "Créer Synthèse Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer Synthèse Audit": {
+      "main": [
+        [
+          {
+            "node": "Enregistrer Préparation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrer Préparation": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Préparation Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer NCs Ouvertes": {
+      "main": [
+        [
+          {
+            "node": "Analyser Non-Conformités",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyser Non-Conformités": {
+      "main": [
+        [
+          {
+            "node": "NC Critiques?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NC Critiques?": {
+      "main": [
+        [
+          {
+            "node": "Email Alerte NC Critiques",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Traiter NC en Retard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculer KPIs": {
+      "main": [
+        [
+          {
+            "node": "Mettre à Jour Dashboard KPI",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Enregistrer KPIs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Enregistrer KPIs": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Rapport KPI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Veille Quotidienne": {
+      "main": [
+        [
+          {
+            "node": "Scraper Légifrance",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Scraper France Compétences",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Récupérer Indicateurs": {
+      "main": [
+        [
+          {
+            "node": "Préparer Dossier Audit",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Dashboard Central": {
+      "main": [
+        [
+          {
+            "node": "Initialiser Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Initialiser Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Récupérer État Documents",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Récupérer État Conformité",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Récupérer NCs Actives",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Récupérer KPIs Récents",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Générer Dashboard Consolidé": {
+      "main": [
+        [
+          {
+            "node": "Préparer Réponse Dashboard",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Alertes Présentes?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alertes Présentes?": {
+      "main": [
+        [
+          {
+            "node": "Envoyer Email Alertes",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Aucune Action",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Envoyer Email Alertes": {
+      "main": [
+        [
+          {
+            "node": "Démo n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aucune Action": {
+      "main": [
+        [
+          {
+            "node": "Démo n8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-22T12:51:06.767Z",
+  "id": "gRp1tzIYdADO7bSy",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "qualiopi2",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "name": "Documents - Vérification Périodique",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        -180
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "ccc3b8fa-7679-4b50-a48a-bc1d501ebe12",
+      "notes": "# 1. GESTIONNAIRE AUTOMATISÉ DE LA DOCUMENTATION"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Documents",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Documents",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        -180
+      ],
+      "id": "977fe620-ddfd-4804-932e-9315da873d5a"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Vérifier les documents manquants ou périmés\nconst documents = $input.all()[0].json.records;\nconst today = new Date();\n\nconst docsPérimés = [];\nconst docsManquants = [];\n\n// Liste de documents obligatoires\nconst docsRequis = [\n  \"Organigramme\",\n  \"Livret d'accueil\",\n  \"Règlement intérieur\",\n  \"Procédure de traitement des plaintes\",\n  \"Manuel qualité\",\n  \"Registre des actions de formation\"\n];\n\n// Vérifier les documents présents\nconst docsExistants = documents.map(doc => doc.fields.Nom);\n\n// Identifier les documents manquants\ndocsRequis.forEach(doc => {\n  if (!docsExistants.includes(doc)) {\n    docsManquants.push(doc);\n  }\n});\n\n// Vérifier les dates d'expiration\ndocuments.forEach(doc => {\n  if (doc.fields.Date_Expiration) {\n    const dateExpiration = new Date(doc.fields.Date_Expiration);\n    const differenceEnJours = Math.floor((dateExpiration - today) / (1000 * 60 * 60 * 24));\n    \n    if (differenceEnJours <= 30) {\n      docsPérimés.push({\n        nom: doc.fields.Nom,\n        expires_dans: differenceEnJours,\n        id: doc.id\n      });\n    }\n  }\n});\n\nreturn {\n  docsManquants,\n  docsPérimés,\n  needsAlert: docsManquants.length > 0 || docsPérimés.length > 0\n};"
+      },
+      "name": "Vérifier Documents",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        -180
+      ],
+      "id": "69c24c40-a69c-48db-9553-2d4194f0dd64"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.needsAlert }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "Alerte Nécessaire?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        -180
+      ],
+      "id": "4193f2ee-a44e-49c9-8ac8-f798b7903e98"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=system@monof.fr",
+        "toEmail": "=responsable.qualite@monof.fr",
+        "subject": "Alerte Qualiopi - Documents manquants ou à renouveler",
+        "options": {}
+      },
+      "name": "Envoyer Alerte Documents",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        -240
+      ],
+      "id": "4dba9bca-d75c-463a-8f3e-e831050b67bf",
+      "webhookId": "a0d7da52-49d1-4f9f-9e39-a60810cc9db9"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks"
+            }
+          ]
+        }
+      },
+      "name": "Audit Conformité - Weekly",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        20
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "17dc35f0-7e50-4b48-94d9-40a79fefdea1",
+      "notes": "# 2. AUDITEUR AUTOMATISÉ DE CONFORMITÉ"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Indicateurs_Qualiopi",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Indicateurs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        2040
+      ],
+      "id": "5cd569dc-6b3c-46d0-b912-bbe5a846b8b6"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyser les indicateurs Qualiopi\nconst indicateurs = $input.all()[0].json.records;\n\n// Statistiques globales\nconst total = indicateurs.length;\nlet conformes = 0;\nlet nonConformes = 0;\nlet partiels = 0;\n\n// Liste des non-conformités\nconst listeNonConformites = [];\n\nindicateurs.forEach(ind => {\n  switch(ind.fields.Statut) {\n    case \"Conforme\":\n      conformes++;\n      break;\n    case \"Non conforme\":\n      nonConformes++;\n      listeNonConformites.push({\n        id: ind.id,\n        critere: ind.fields.Critere,\n        indicateur: ind.fields.Indicateur,\n        probleme: ind.fields.Probleme || \"Non précisé\"\n      });\n      break;\n    case \"Partiellement conforme\":\n      partiels++;\n      listeNonConformites.push({\n        id: ind.id,\n        critere: ind.fields.Critere,\n        indicateur: ind.fields.Indicateur,\n        probleme: ind.fields.Probleme || \"Conformité partielle seulement\"\n      });\n      break;\n  }\n});\n\n// Calculer les taux de conformité\nconst tauxConformité = (conformes / total) * 100;\nconst tauxNonConformité = (nonConformes / total) * 100;\nconst tauxPartiel = (partiels / total) * 100;\n\n// Définir le statut global\nlet statutGlobal = \"Conforme\";\nif (nonConformes > 0) {\n  statutGlobal = \"Non conforme\";\n} else if (partiels > 0) {\n  statutGlobal = \"Partiellement conforme\";\n}\n\n// Nécessite une alerte si non conforme ou trop d'indicateurs partiels\nconst needsAlert = nonConformes > 0 || partiels > 3;\n\nreturn {\n  statutGlobal,\n  tauxConformité,\n  tauxNonConformité,\n  tauxPartiel,\n  conformes,\n  nonConformes,\n  partiels,\n  listeNonConformites,\n  needsAlert,\n  dateAnalyse: new Date().toISOString().split('T')[0]\n};"
+      },
+      "name": "Analyser Conformité",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        20
+      ],
+      "id": "598d35fd-4b49-4827-8ca8-ea38955867d6"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.needsAlert }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "Alerte Conformité?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        20
+      ],
+      "id": "e182a07c-e1c4-41f9-9eca-11f965ce4703"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=system@monof.fr",
+        "toEmail": "=responsable.qualite@monof.fr",
+        "subject": "=Alerte Qualiopi - Taux de conformité: {{ $json.tauxConformité.toFixed(2) }}%",
+        "options": {}
+      },
+      "name": "Alerter Non-Conformités",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        -40
+      ],
+      "id": "bf0291ca-4040-4e05-a96c-e25e3e45cf33",
+      "webhookId": "a199cb37-b3d9-4895-928d-e9bb19b51691"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "operation": "appendOrUpdate"
+      },
+      "name": "Mettre à jour Dashboard",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -200,
+        100
+      ],
+      "id": "83648363-195c-4099-9493-719e514951b3"
+    },
+    {
+      "parameters": {
+        "path": "qualiopi-doc-generator",
+        "options": {}
+      },
+      "name": "Doc Generator Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        240
+      ],
+      "webhookId": "qualiopi-doc-generator",
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "e4500b13-d94b-455c-ac0f-392577ab95ac",
+      "notes": "# 3. GÉNÉRATEUR AUTOMATISÉ DE DOCUMENTS QUALIOPI"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Préparer les données pour la génération de document\nconst payload = $input.all()[0].json;\n\n// Valider que tous les champs nécessaires sont présents\nconst champsRequis = ['documentType', 'recipientName', 'formationTitle'];\nconst champsManquants = champsRequis.filter(champ => !payload[champ]);\n\nif (champsManquants.length > 0) {\n  throw new Error(`Champs manquants: ${champsManquants.join(', ')}`);\n}\n\n// Déterminer le template à utiliser\nlet templateId = '';\nswitch(payload.documentType) {\n  case 'attestation':\n    templateId = 'tpl_attestation_123';\n    break;\n  case 'convention':\n    templateId = 'tpl_convention_456';\n    break;\n  case 'programme':\n    templateId = 'tpl_programme_789';\n    break;\n  default:\n    throw new Error(`Type de document inconnu: ${payload.documentType}`);\n}\n\n// Préparer la date et autres variables dynamiques\nconst dateGeneration = new Date().toLocaleDateString('fr-FR', { year: 'numeric', month: 'long', day: 'numeric' });\n\n// Préparer les données pour le template\nreturn {\n  ...payload,\n  templateId,\n  dateGeneration,\n  anneeEnCours: new Date().getFullYear(),\n  reference: `DOC-${new Date().getFullYear()}-${Math.floor(Math.random() * 10000)}`\n};"
+      },
+      "name": "Préparer Données Document",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        240
+      ],
+      "id": "1e597e2e-b591-4b38-ab30-6434cf1a908f"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.documint.net/generate",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "template_id",
+              "value": "={{ $json.templateId }}"
+            },
+            {
+              "name": "output_format",
+              "value": "pdf"
+            },
+            {
+              "name": "data",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Générer Document",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        240
+      ],
+      "id": "e12017e6-c7ac-498c-9c4f-aacb1bd97aaf",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "0P4UB4gNzUPEifVb",
+          "name": "Mistral API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Traiter la réponse de la génération de document\nconst response = $input.all()[0].json;\n\n// Récupérer le document précédent\nconst taskData = $input.all()[0].json.data || {};\n\n// Vérifier si la génération a réussi\nif (!response.document_url) {\n  throw new Error('Échec de génération du document: URL manquante dans la réponse');\n}\n\n// Construire les données complètes\nreturn {\n  ...taskData,\n  document_url: response.document_url,\n  document_id: response.document_id,\n  date_generation: new Date().toISOString(),\n  message: `Le document ${taskData.documentType} a été généré avec succès`,\n  emailSubject: `Document Qualiopi: ${taskData.documentType} - ${taskData.formationTitle}`,\n  emailBody: `Bonjour ${taskData.recipientName},\\n\\nVeuillez trouver ci-joint le document \"${taskData.documentType}\" relatif à la formation \"${taskData.formationTitle}\".\\n\\nCordialement,\\nService Qualité`\n};"
+      },
+      "name": "Traiter Document Généré",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        240
+      ],
+      "id": "7eb05dc4-81c9-458a-a266-8910b5c4c789"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "={{ $json.recipientEmail }}",
+        "subject": "={{ $json.emailSubject }}",
+        "options": {}
+      },
+      "name": "Envoyer Document",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        240
+      ],
+      "id": "d7ad8085-da7e-4c1b-aabf-3052327b1256",
+      "webhookId": "7ae63681-a30a-48d9-8730-f2333f5ed3b7"
+    },
+    {
+      "parameters": {
+        "path": "inscription-apprenant",
+        "options": {}
+      },
+      "name": "Inscription Apprenant",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        460
+      ],
+      "webhookId": "inscription-apprenant",
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "3ca7a628-4c51-47b3-893c-ffe58d35130e",
+      "notes": "# 4. SYSTÈME DE GESTION DES APPRENANTS"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Valider les données de l'apprenant\nconst data = $input.all()[0].json;\n\n// Vérifier la présence des champs obligatoires\nconst champsObligatoires = ['nom', 'prenom', 'email', 'formation_id', 'session_id'];\nconst champsManquants = champsObligatoires.filter(champ => !data[champ]);\n\nif (champsManquants.length > 0) {\n  return {\n    valid: false,\n    erreur: `Champs obligatoires manquants: ${champsManquants.join(', ')}`,\n    candidatData: data\n  };\n}\n\n// Valider le format de l'email\nconst emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;\nif (!emailRegex.test(data.email)) {\n  return {\n    valid: false,\n    erreur: \"Format d'email invalide\",\n    candidatData: data\n  };\n}\n\n// Valider les prérequis si présents\nlet prerequisValides = true;\nlet messagePreRequis = \"\";\n\nif (data.niveau && data.niveau_requis && data.niveau < data.niveau_requis) {\n  prerequisValides = false;\n  messagePreRequis = `Niveau insuffisant: ${data.niveau}/${data.niveau_requis} requis`;\n}\n\n// Préparer les données pour Airtable\nreturn {\n  valid: prerequisValides,\n  erreur: prerequisValides ? \"\" : messagePreRequis,\n  candidatData: data,\n  airtableData: {\n    \"fields\": {\n      \"Nom\": data.nom,\n      \"Prénom\": data.prenom,\n      \"Email\": data.email,\n      \"Téléphone\": data.telephone || \"\",\n      \"Formation\": [data.formation_id],\n      \"Session\": [data.session_id],\n      \"Date d'inscription\": new Date().toISOString(),\n      \"Statut\": prerequisValides ? \"Inscrit\" : \"Prérequis non validés\",\n      \"Commentaire\": prerequisValides ? \"\" : messagePreRequis\n    }\n  }\n};"
+      },
+      "name": "Valider Candidature",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        460
+      ],
+      "id": "cea8bc16-3c78-4cba-bb31-21ba31caf4f8"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.valid }}",
+              "value2": true
+            }
+          ]
+        }
+      },
+      "name": "Candidature Valide?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        460
+      ],
+      "id": "9e0fe332-de0c-4c7c-8b4c-d5af4184cefc"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Apprenants",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "json",
+              "value": "={{ $json.airtableData }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Enregistrer Apprenant",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        400
+      ],
+      "id": "f3157709-cde5-4d1e-82f0-d340dbb8b3ba"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=formation@monof.fr",
+        "toEmail": "={{ $json.candidatData.email }}",
+        "subject": "Confirmation d'inscription à la formation",
+        "options": {}
+      },
+      "name": "Email Confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        400
+      ],
+      "id": "441710fa-dbe9-4378-91d1-b2a4349a06f7",
+      "webhookId": "336fa697-4253-48a9-9fa8-389c7320ee17"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=formation@monof.fr",
+        "toEmail": "={{ $json.candidatData.email }}",
+        "subject": "Candidature non retenue - Prérequis insuffisants",
+        "options": {}
+      },
+      "name": "Email Refus",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        540
+      ],
+      "id": "9058bb2a-482e-41bc-857e-f9a376a749ba",
+      "webhookId": "5a11502a-5e87-4d89-80dd-2be4be10012f"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 3
+            }
+          ]
+        }
+      },
+      "name": "Programmation Évaluations",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        700
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "19c1ce83-b261-4d5c-a165-5706bd3b5f3f",
+      "notes": "# 5. GESTIONNAIRE AUTOMATISÉ DES ÉVALUATIONS"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Formations_Sessions",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Sessions Terminées",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        700
+      ],
+      "id": "cf76274e-2198-4d8e-ae4b-c8a1c1b96ddc"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Split Sessions",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -600,
+        700
+      ],
+      "id": "e525b06e-a4c7-4820-85ae-6272fd77e6a3"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Apprenants",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Apprenants",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        700
+      ],
+      "id": "65fb1515-2ca8-4a9b-a42b-a64e4ad93fa1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.typeform.com/forms/{{$node[\"Variables Globales\"].json[\"formEvaluationId\"]}}/responses",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "respondents",
+              "value": "={{ $node[\"Transformer Données\"].json.apprenants }}"
+            },
+            {
+              "name": "custom_variables",
+              "value": "={{ $node[\"Transformer Données\"].json.customVars }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Envoyer Formulaires",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        0,
+        700
+      ],
+      "id": "6f83602b-a5d4-4fd5-aee0-d3be026871d6"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Préparer les données pour l'envoi des questionnaires\nconst session = $input.all()[0].json;\nconst apprenants = $input.all()[1].json.records;\n\n// Format pour Typeform\nconst apprenantsFormatted = apprenants.map(a => {\n  return {\n    email: a.fields.Email\n  };\n});\n\n// Variables personnalisées pour le questionnaire\nconst customVars = {\n  formation_titre: session.fields.Formation_Titre,\n  formation_date: session.fields.Date_Debut + \" au \" + session.fields.Date_Fin,\n  formateur: session.fields.Formateur\n};\n\nreturn {\n  session_id: session.id,\n  apprenants: apprenantsFormatted,\n  customVars: customVars\n};"
+      },
+      "name": "Transformer Données",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -200,
+        700
+      ],
+      "id": "ae93319a-62f4-42ff-a353-a62dd1e8bc30"
+    },
+    {
+      "parameters": {
+        "method": "PATCH",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Formations_Sessions/{{ $node[\"Transformer Données\"].json.session_id }}",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "{\n  \"Evaluations_Envoyees\": true,\n  \"Date_Envoi_Evaluations\": \"{{ $today }}\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Marquer Évaluations Envoyées",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        200,
+        700
+      ],
+      "id": "c253ae48-b2f7-4583-a6bd-62ddcca06617"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "name": "Veille Quotidienne",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        900
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "96f90908-6e08-4115-80af-e79615fa9f4d",
+      "notes": "# 6. MOTEUR DE VEILLE RÉGLEMENTAIRE"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.legifrance.gouv.fr/search/cetat?tab_selection=cetat&searchField=ALL&query=formation+professionnelle&searchType=ALL&dateDecision=now-30d/now",
+        "options": {}
+      },
+      "name": "Scraper Légifrance",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -860,
+        900
+      ],
+      "id": "82376f80-413a-4ec7-8610-c44cfcb45060"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.francecompetences.fr/fiche/tag/certification-professionnelle/",
+        "options": {}
+      },
+      "name": "Scraper France Compétences",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -860,
+        1000
+      ],
+      "id": "b68a6fb8-36e2-43e2-889b-1ca42a6b2c96"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extraire et structurer les informations de veille\nconst legifrance = $input.all()[0].json;\nconst franceCompetences = $input.all()[1].json;\n\n// Fonction pour extraire le contenu pertinent avec une regex simple\nfunction extraireContenu(html, pattern) {\n  const regex = new RegExp(pattern, 'g');\n  const matches = [];\n  let match;\n  \n  while ((match = regex.exec(html)) !== null) {\n    matches.push(match[1].trim());\n  }\n  \n  return matches;\n}\n\n// Extraire les informations de Légifrance\nconst textes = extraireContenu(legifrance.data, '<h2 class=\"title-result\">([^<]+)<\\/h2>');\nconst dates = extraireContenu(legifrance.data, '<em class=\"date\">([^<]+)<\\/em>');\n\n// Extraire les informations de France Compétences\nconst actualites = extraireContenu(franceCompetences.data, '<h2 class=\"entry-title\">([^<]+)<\\/h2>');\nconst datesActualites = extraireContenu(franceCompetences.data, '<time class=\"entry-date published\" datetime=\"[^\"]+\">([^<]+)<\\/time>');\n\n// Structurer les résultats\nconst resultsLegifrance = textes.map((texte, index) => ({\n  titre: texte,\n  date: dates[index] || 'Date non précisée',\n  source: 'Légifrance',\n  type: 'Texte réglementaire'\n}));\n\nconst resultsFranceCompetences = actualites.map((actu, index) => ({\n  titre: actu,\n  date: datesActualites[index] || 'Date non précisée',\n  source: 'France Compétences',\n  type: 'Actualité certification'\n}));\n\n// Fusionner les résultats\nconst allResults = [...resultsLegifrance, ...resultsFranceCompetences];\n\n// Filter pour ne garder que les entrées pertinentes pour Qualiopi (mots-clés)\nconst keywordsQualiopi = ['qualiopi', 'certification', 'qualité', 'formation professionnelle', 'organisme de formation'];\nconst filteredResults = allResults.filter(item => {\n  return keywordsQualiopi.some(keyword => \n    item.titre.toLowerCase().includes(keyword.toLowerCase())\n  );\n});\n\nreturn {\n  date_veille: new Date().toISOString(),\n  resultats_complets: allResults,\n  resultats_qualiopi: filteredResults,\n  nb_resultats_total: allResults.length,\n  nb_resultats_pertinents: filteredResults.length\n};"
+      },
+      "name": "Extraire Informations Veille",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -660,
+        940
+      ],
+      "id": "8ee3274e-674f-4c07-b5aa-b8b3cf87bd76"
+    },
+    {
+      "parameters": {},
+      "name": "Analyse IA Veille",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 2,
+      "position": [
+        -460,
+        940
+      ],
+      "id": "c27522cb-41ba-4c0f-83f7-5bf11dfc881c",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Veille_Reglementaire",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={\n  \"Date\": \"{{ $now.toISOString() }}\",\n  \"Nb_Resultats\": {{ $node[\"Extraire Informations Veille\"].json.nb_resultats_pertinents }},\n  \"Synthese\": {{ JSON.stringify($node[\"Analyse IA Veille\"].json.text) }},\n  \"Donnees_Brutes\": {{ JSON.stringify($node[\"Extraire Informations Veille\"].json.resultats_qualiopi) }}\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Enregistrer Veille",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -260,
+        940
+      ],
+      "id": "82fbca4d-bc0c-467d-a9c2-8c6fa004558a"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $node[\"Extraire Informations Veille\"].json.nb_resultats_pertinents }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "name": "Infos Pertinentes?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        940
+      ],
+      "id": "872aed5a-680a-4c56-aa90-7d82eb1e0dac"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=veille@monof.fr",
+        "toEmail": "=responsable.qualite@monof.fr",
+        "subject": "Veille Réglementaire Qualiopi - {{ $node[\"Extraire Informations Veille\"].json.nb_resultats_pertinents }} nouvelles informations",
+        "options": {}
+      },
+      "name": "Envoyer Alerte Veille",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        860
+      ],
+      "id": "342b422f-fbf5-4b08-a071-be4d2baa5f27",
+      "webhookId": "5ec48f73-7c9a-45b6-a052-84c5072f68ed"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months"
+            }
+          ]
+        }
+      },
+      "name": "Révision Formateurs",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1160
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "24408533-5d50-4768-b3d5-27c67e1dba75",
+      "notes": "# 7. SYSTÈME DE GESTION DES FORMATEURS"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Formateurs",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Formateurs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        1160
+      ],
+      "id": "666d22de-6d83-4dcb-9621-631ff5a8f892"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyser le statut des formateurs\nconst formateurs = $input.all()[0].json.records;\n\n// Date actuelle\nconst today = new Date();\n\n// Variables pour les résultats\nconst formateursAJour = [];\nconst formateursDocumentsManquants = [];\nconst formateursCompetencesExpiration = [];\nconst formateursFormationObligatoire = [];\n\n// Analyse de chaque formateur\nformateurs.forEach(formateur => {\n  const fields = formateur.fields;\n  let issueFound = false;\n  \n  // Vérifier les documents manquants\n  if (fields.Documents_Manquants === true) {\n    formateursDocumentsManquants.push({\n      id: formateur.id,\n      nom: `${fields.Prenom} ${fields.Nom}`,\n      email: fields.Email,\n      documentsManquants: fields.Liste_Documents_Manquants || \"Documentation incomplète\"\n    });\n    issueFound = true;\n  }\n  \n  // Vérifier l'expiration des compétences\n  if (fields.Date_Expiration_Competences) {\n    const expirationDate = new Date(fields.Date_Expiration_Competences);\n    const differenceJours = Math.floor((expirationDate - today) / (1000 * 60 * 60 * 24));\n    \n    if (differenceJours < 90) { // Alerte 3 mois avant\n      formateursCompetencesExpiration.push({\n        id: formateur.id,\n        nom: `${fields.Prenom} ${fields.Nom}`,\n        email: fields.Email,\n        joursRestants: differenceJours,\n        dateExpiration: fields.Date_Expiration_Competences\n      });\n      issueFound = true;\n    }\n  }\n  \n  // Vérifier la formation pédagogique\n  if (fields.Formation_Pedagogique_Valide === false) {\n    formateursFormationObligatoire.push({\n      id: formateur.id,\n      nom: `${fields.Prenom} ${fields.Nom}`,\n      email: fields.Email,\n      message: \"Formation pédagogique obligatoire à effectuer\"\n    });\n    issueFound = true;\n  }\n  \n  // Formateurs à jour\n  if (!issueFound) {\n    formateursAJour.push({\n      id: formateur.id,\n      nom: `${fields.Prenom} ${fields.Nom}`\n    });\n  }\n});\n\nreturn {\n  date_analyse: today.toISOString(),\n  formateurs_total: formateurs.length,\n  formateurs_a_jour: formateursAJour.length,\n  formateurs_a_regulariser: formateurs.length - formateursAJour.length,\n  liste_documents_manquants: formateursDocumentsManquants,\n  liste_competences_expiration: formateursCompetencesExpiration,\n  liste_formation_obligatoire: formateursFormationObligatoire,\n  rapport_complet: {\n    a_jour: formateursAJour,\n    documents_manquants: formateursDocumentsManquants,\n    competences_expiration: formateursCompetencesExpiration,\n    formation_obligatoire: formateursFormationObligatoire\n  }\n};"
+      },
+      "name": "Analyser Statut Formateurs",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        1160
+      ],
+      "id": "43b84c65-7bec-47cd-b714-efdaf3d815c5"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Formateurs Documents",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        1080
+      ],
+      "inputName": "Documents Manquants",
+      "inputsLength": 3,
+      "id": "e725e19d-4f5b-4d70-9d1b-0852521eb13f"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Formateurs Compétences",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        1160
+      ],
+      "inputName": "Compétences Expirant",
+      "id": "c0e20dee-959a-444d-a9d3-a469232da2e7"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Formateurs Formation",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        1240
+      ],
+      "inputName": "Formation Obligatoire",
+      "id": "126fd8bb-87b1-4aa6-a19c-9f2209199acd"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Documents manquants - Mise en conformité Qualiopi",
+        "options": {}
+      },
+      "name": "Email Documents Manquants",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        1080
+      ],
+      "id": "f11b3e17-3fc3-4e0e-8b14-2c7653023768",
+      "webhookId": "eee273a9-9439-4c37-85a9-6cd12192f8ab"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Alerte - Expiration prochaine de vos certifications",
+        "options": {}
+      },
+      "name": "Email Compétences Expirant",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        1160
+      ],
+      "id": "78e8115a-4683-43f2-9171-42f43392fb78",
+      "webhookId": "701e4d44-201b-4395-9698-8f7d158d355f"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "={{ $json.email }}",
+        "subject": "Formation pédagogique obligatoire - Certification Qualiopi",
+        "options": {}
+      },
+      "name": "Email Formation Obligatoire",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        1240
+      ],
+      "id": "d3c2187f-0c2b-48b7-af35-7ef1a86640d3",
+      "webhookId": "040f3ba0-c1a3-4c7f-9b25-e4c66f6d7f42"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Rapport_Formateurs",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={\n  \"Date_Analyse\": \"{{ $node[\"Analyser Statut Formateurs\"].json.date_analyse }}\",\n  \"Total_Formateurs\": {{ $node[\"Analyser Statut Formateurs\"].json.formateurs_total }},\n  \"Formateurs_Conformes\": {{ $node[\"Analyser Statut Formateurs\"].json.formateurs_a_jour }},\n  \"Formateurs_Non_Conformes\": {{ $node[\"Analyser Statut Formateurs\"].json.formateurs_a_regulariser }},\n  \"Rapport_Complet\": {{ JSON.stringify($node[\"Analyser Statut Formateurs\"].json.rapport_complet) }}\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Enregistrer Rapport Formateurs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        0,
+        1160
+      ],
+      "id": "b89b0622-011a-4562-91cc-473f336e9383"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months"
+            }
+          ]
+        }
+      },
+      "name": "Analyse KPIs Mensuelle",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1400
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "bb19ef75-3a35-4d08-9d51-5278ec158c8a",
+      "notes": "# 8. ANALYSEUR DES INDICATEURS DE PERFORMANCE"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Formations_Sessions",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Sessions Passées",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        1400
+      ],
+      "id": "d24a491c-f403-44f7-945c-20e7e0764bb0"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Evaluations",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Evaluations",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        1500
+      ],
+      "id": "b9afa636-bf35-4a90-b0a4-f355dcec427e"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyser les KPIs des formations\nconst sessions = $input.all()[0].json.records;\nconst evaluations = $input.all()[1].json.records;\n\n// Créer un mapping des évaluations par session\nconst evalParSession = {};\nevaluations.forEach(eval => {\n  const sessionId = eval.fields.Session[0];\n  if (!evalParSession[sessionId]) {\n    evalParSession[sessionId] = [];\n  }\n  evalParSession[sessionId].push(eval);\n});\n\n// Période d'analyse: dernier mois\nconst dateFinPeriode = new Date();\nconst dateDebutPeriode = new Date();\ndateDebutPeriode.setMonth(dateDebutPeriode.getMonth() - 1);\n\n// Filtrer les sessions du dernier mois\nconst sessionsAnalysees = sessions.filter(session => {\n  const dateFinSession = new Date(session.fields.Date_Fin);\n  return dateFinSession >= dateDebutPeriode && dateFinSession <= dateFinPeriode;\n});\n\n// Calculer les KPIs\nlet totalSessionsMois = sessionsAnalysees.length;\nlet totalApprenantsMois = 0;\nlet totalSatisfactionMois = 0;\nlet nbEvaluationsMois = 0;\n\nconst resultatsParFormation = {};\n\n// Analyser chaque session\nsessionsAnalysees.forEach(session => {\n  const nbApprenants = session.fields.Nombre_Apprenants || 0;\n  totalApprenantsMois += nbApprenants;\n  \n  // Ajouter la formation au résultat\n  const idFormation = session.fields.Formation[0];\n  const nomFormation = session.fields.Formation_Titre || \"Inconnu\";\n  \n  if (!resultatsParFormation[idFormation]) {\n    resultatsParFormation[idFormation] = {\n      nom: nomFormation,\n      sessions: 0,\n      apprenants: 0,\n      satisfaction: 0,\n      nbEvaluations: 0\n    };\n  }\n  \n  resultatsParFormation[idFormation].sessions++;\n  resultatsParFormation[idFormation].apprenants += nbApprenants;\n  \n  // Ajouter les évaluations\n  if (evalParSession[session.id]) {\n    evalParSession[session.id].forEach(eval => {\n      const satisfaction = eval.fields.Satisfaction || 0;\n      totalSatisfactionMois += satisfaction;\n      nbEvaluationsMois++;\n      \n      resultatsParFormation[idFormation].satisfaction += satisfaction;\n      resultatsParFormation[idFormation].nbEvaluations++;\n    });\n  }\n});\n\n// Calculer les moyennes\nconst satisfactionMoyenne = nbEvaluationsMois > 0 ? totalSatisfactionMois / nbEvaluationsMois : 0;\n\n// Calculer les moyennes par formation\nObject.keys(resultatsParFormation).forEach(idFormation => {\n  const formation = resultatsParFormation[idFormation];\n  formation.satisfactionMoyenne = formation.nbEvaluations > 0 ? \n    formation.satisfaction / formation.nbEvaluations : 0;\n});\n\n// Convertir l'objet en tableau pour le tri\nconst formationsTriees = Object.values(resultatsParFormation).sort((a, b) => \n  b.satisfactionMoyenne - a.satisfactionMoyenne\n);\n\nreturn {\n  periode: {\n    debut: dateDebutPeriode.toISOString().split('T')[0],\n    fin: dateFinPeriode.toISOString().split('T')[0]\n  },\n  kpi_global: {\n    nb_sessions: totalSessionsMois,\n    nb_apprenants: totalApprenantsMois,\n    satisfaction_moyenne: satisfactionMoyenne.toFixed(2),\n    taux_evaluation: totalApprenantsMois > 0 ? \n      ((nbEvaluationsMois / totalApprenantsMois) * 100).toFixed(2) : 0\n  },\n  kpi_formations: formationsTriees,\n  formations_excellentes: formationsTriees.filter(f => f.satisfactionMoyenne >= 4.5),\n  formations_problematiques: formationsTriees.filter(f => f.satisfactionMoyenne < 3.5 && f.nbEvaluations > 0)\n};"
+      },
+      "name": "Calculer KPIs",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        1440
+      ],
+      "id": "f307e4a3-ac2c-4983-8c51-082e34100de7"
+    },
+    {
+      "parameters": {
+        "resource": "spreadsheet",
+        "operation": "appendOrUpdate"
+      },
+      "name": "Mettre à Jour Dashboard KPI",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        1400
+      ],
+      "id": "9ce92286-ab3d-4c26-b0e6-a8cbac9869f1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/KPI_Mensuel",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={\n  \"Periode\": \"{{ $node[\"Calculer KPIs\"].json.periode.debut }} à {{ $node[\"Calculer KPIs\"].json.periode.fin }}\",\n  \"Nb_Sessions\": {{ $node[\"Calculer KPIs\"].json.kpi_global.nb_sessions }},\n  \"Nb_Apprenants\": {{ $node[\"Calculer KPIs\"].json.kpi_global.nb_apprenants }},\n  \"Satisfaction_Moyenne\": {{ $node[\"Calculer KPIs\"].json.kpi_global.satisfaction_moyenne }},\n  \"Taux_Evaluation\": {{ $node[\"Calculer KPIs\"].json.kpi_global.taux_evaluation }},\n  \"Rapport_Complet\": {{ JSON.stringify($node[\"Calculer KPIs\"].json) }}\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Enregistrer KPIs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -400,
+        1500
+      ],
+      "id": "028626dd-0ad6-4107-8bad-001b89754a8e"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=systeme@monof.fr",
+        "toEmail": "=direction@monof.fr",
+        "subject": "Rapport mensuel KPI Qualiopi - {{ $node[\"Calculer KPIs\"].json.periode.debut }} à {{ $node[\"Calculer KPIs\"].json.periode.fin }}",
+        "options": {}
+      },
+      "name": "Envoyer Rapport KPI",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        1440
+      ],
+      "id": "249a8cc1-d234-4d43-9570-691324f1674d",
+      "webhookId": "bbe7b100-adcf-4532-9d7d-0d455197ba4e"
+    },
+    {
+      "parameters": {
+        "path": "nonconformite",
+        "options": {}
+      },
+      "name": "Webhook Non-Conformité",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1720
+      ],
+      "webhookId": "nonconformite",
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "964a53d9-f74f-4d8b-8aa7-cef92fd9a6e2",
+      "notes": "# 9. GESTIONNAIRE DES NON-CONFORMITÉS"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Traiter les données de non-conformité reçues via webhook\nconst data = $input.all()[0].json;\n\n// Vérifier les champs requis\nif (!data.description || !data.type || !data.detectee_par) {\n  throw new Error('Données de non-conformité incomplètes');\n}\n\n// Ajouter des métadonnées\ndata.date_enregistrement = new Date().toISOString();\ndata.status = 'Ouverte';\n\n// Déterminer la criticité (si non fournie)\nif (!data.criticite) {\n  if (data.type.toLowerCase().includes('audit') || \n      data.type.toLowerCase().includes('certification')) {\n    data.criticite = 'Majeure';\n  } else {\n    data.criticite = 'Mineure';\n  }\n}\n\n// Déterminer le responsable de traitement\nif (!data.responsable) {\n  switch (data.type.toLowerCase()) {\n    case 'pédagogique':\n      data.responsable = 'responsable.pedagogique@monof.fr';\n      break;\n    case 'administratif':\n      data.responsable = 'responsable.administratif@monof.fr';\n      break;\n    case 'certification':\n    case 'audit':\n      data.responsable = 'responsable.qualite@monof.fr';\n      break;\n    default:\n      data.responsable = 'responsable.qualite@monof.fr';\n  }\n}\n\n// Calculer la date limite de traitement (basée sur criticité)\nconst dateBase = new Date();\nif (data.criticite === 'Majeure') {\n  dateBase.setDate(dateBase.getDate() + 7); // 7 jours\n} else if (data.criticite === 'Modérée') {\n  dateBase.setDate(dateBase.getDate() + 14); // 14 jours\n} else {\n  dateBase.setDate(dateBase.getDate() + 30); // 30 jours\n}\n\ndata.date_limite_traitement = dateBase.toISOString();\n\nreturn data;"
+      },
+      "name": "Préparer Non-Conformité",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        1720
+      ],
+      "id": "28852d69-9f67-41b2-9a5a-c87b12bf102a"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Non_Conformites",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={\n  \"Description\": \"{{ $node[\"Préparer Non-Conformité\"].json.description }}\",\n  \"Type\": \"{{ $node[\"Préparer Non-Conformité\"].json.type }}\",\n  \"Criticite\": \"{{ $node[\"Préparer Non-Conformité\"].json.criticite }}\",\n  \"Detectee_Par\": \"{{ $node[\"Préparer Non-Conformité\"].json.detectee_par }}\",\n  \"Responsable\": \"{{ $node[\"Préparer Non-Conformité\"].json.responsable }}\",\n  \"Date_Enregistrement\": \"{{ $node[\"Préparer Non-Conformité\"].json.date_enregistrement }}\",\n  \"Date_Limite\": \"{{ $node[\"Préparer Non-Conformité\"].json.date_limite_traitement }}\",\n  \"Status\": \"{{ $node[\"Préparer Non-Conformité\"].json.status }}\"\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Enregistrer Non-Conformité",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        1720
+      ],
+      "id": "8330b682-a133-463f-b2d6-f2dde90e1773"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "={{ $node[\"Préparer Non-Conformité\"].json.responsable }}",
+        "subject": "ACTION REQUISE - Non-conformité {{ $node[\"Préparer Non-Conformité\"].json.criticite }} détectée",
+        "options": {}
+      },
+      "name": "Email Notification NC",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -400,
+        1720
+      ],
+      "id": "f4800767-1385-4d43-8ddf-8373bbafdaae",
+      "webhookId": "de710229-71fe-43d2-8ac5-d60bb4b295c3"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "name": "Suivi Daily Non-Conformités",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        1860
+      ],
+      "id": "d18f8613-f340-44ad-a66b-4653dfbad103"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Non_Conformites",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer NCs Ouvertes",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        1860
+      ],
+      "id": "025319ee-523c-4d17-a468-0d25139178da"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Analyser les non-conformités ouvertes\nconst nonConformites = $input.all()[0].json.records;\nconst today = new Date();\n\n// Catégoriser par statut et urgence\nconst ncEnRetard = [];\nconst ncUrgentes = [];\nconst ncEnCours = [];\n\nnonConformites.forEach(nc => {\n  const dateLimite = new Date(nc.fields.Date_Limite);\n  const joursRestants = Math.ceil((dateLimite - today) / (1000 * 60 * 60 * 24));\n  \n  // Ajouter les infos utiles\n  nc.fields.jours_restants = joursRestants;\n  \n  if (joursRestants < 0) {\n    // En retard\n    ncEnRetard.push(nc);\n  } else if (joursRestants <= 2) {\n    // Urgentes (≤ 2 jours)\n    ncUrgentes.push(nc);\n  } else {\n    // En cours normal\n    ncEnCours.push(nc);\n  }\n});\n\nreturn {\n  date_analyse: today.toISOString(),\n  nb_total_ouvertes: nonConformites.length,\n  nb_en_retard: ncEnRetard.length,\n  nb_urgentes: ncUrgentes.length,\n  nb_en_cours: ncEnCours.length,\n  en_retard: ncEnRetard,\n  urgentes: ncUrgentes,\n  en_cours: ncEnCours\n};"
+      },
+      "name": "Analyser Non-Conformités",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        1860
+      ],
+      "id": "d55e29ce-654a-4f76-9976-b889f2eb07f5"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $node[\"Analyser Non-Conformités\"].json.nb_en_retard + $node[\"Analyser Non-Conformités\"].json.nb_urgentes }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "name": "NC Critiques?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        1860
+      ],
+      "id": "78af31ef-8c0e-419b-9d72-494011964807"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "=responsable.qualite@monof.fr",
+        "subject": "ALERTE - Non-conformités critiques ({{ $node[\"Analyser Non-Conformités\"].json.nb_en_retard }} en retard, {{ $node[\"Analyser Non-Conformités\"].json.nb_urgentes }} urgentes)",
+        "options": {}
+      },
+      "name": "Email Alerte NC Critiques",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        -200,
+        1800
+      ],
+      "id": "8534e9a4-ab77-4618-bf6e-4c69585b0817",
+      "webhookId": "edd43882-3d1d-4e05-9a7c-6ed83e8b3015"
+    },
+    {
+      "parameters": {
+        "batchSize": 1,
+        "options": {}
+      },
+      "name": "Traiter NC en Retard",
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        1900
+      ],
+      "id": "df3b2351-78e0-43cf-9039-cbd4fa2c6607"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "={{ $json.fields.Responsable }}",
+        "subject": "URGENT - Relance non-conformité en retard de {{ $json.fields.jours_restants|abs }} jour(s)",
+        "options": {}
+      },
+      "name": "Relance Individuelle",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        1900
+      ],
+      "id": "5e787a02-7cb5-40e4-9b4e-1ff1b674216c",
+      "webhookId": "f5913a4f-849e-4ea4-9c1b-77dd9313cd33"
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "months",
+              "monthsInterval": 3
+            }
+          ]
+        }
+      },
+      "name": "Préparation Audit Trimestrielle",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        2040
+      ],
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "33582196-07fb-489a-9764-444e7dde18e9",
+      "notes": "# 10. SYSTÈME DE PRÉPARATION AUX AUDITS"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Documents",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer Preuves",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        2140
+      ],
+      "id": "9d481589-f9f9-4aa6-8e92-12f05817670d"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Non_Conformites",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer NCs Pour Audit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -800,
+        2240
+      ],
+      "id": "48314454-a409-4999-b697-ae1957d053b6"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Préparer le dossier d'audit\nconst indicateurs = $input.all()[0].json.records;\nconst preuves = $input.all()[1].json.records;\nconst nonConformites = $input.all()[2].json.records;\n\n// Date d'audit\nconst datePreparation = new Date();\nconst auditNom = `Préparation Audit ${datePreparation.toISOString().split('T')[0]}`;\n\n// Analyser la conformité\nlet indicateursConformes = 0;\nlet indicateursNonConformes = 0;\nlet indicateursPartiellementConformes = 0;\n\nconst indicateursAnalyses = indicateurs.map(indic => {\n  const status = indic.fields.Status || \"Non vérifié\";\n  \n  // Compter les statuts\n  if (status === \"Conforme\") {\n    indicateursConformes++;\n  } else if (status === \"Non conforme\") {\n    indicateursNonConformes++;\n  } else if (status === \"Partiellement conforme\") {\n    indicateursPartiellementConformes++;\n  }\n  \n  // Trouver les preuves associées\n  const preuvesAssociees = preuves.filter(preuve => \n    preuve.fields.Indicateurs && \n    preuve.fields.Indicateurs.includes(indic.id)\n  );\n  \n  // Déterminer si les preuves sont suffisantes\n  const preuvesSuffisantes = preuvesAssociees.length > 0;\n  \n  return {\n    id: indic.id,\n    numero: indic.fields.Numero,\n    critere: indic.fields.Critere,\n    description: indic.fields.Description,\n    status,\n    preuves: preuvesAssociees.map(p => ({\n      nom: p.fields.Nom,\n      url: p.fields.URL,\n      date: p.fields.Date_Mise_A_Jour\n    })),\n    preuvesSuffisantes\n  };\n});\n\n// Calculer le score de préparation\nconst nbTotal = indicateurs.length;\nconst scoreConformite = (indicateursConformes + (indicateursPartiellementConformes * 0.5)) / nbTotal * 100;\n\n// Organiser par critère\nconst criteresMap = {};\nindicateursAnalyses.forEach(indic => {\n  if (!criteresMap[indic.critere]) {\n    criteresMap[indic.critere] = [];\n  }\n  criteresMap[indic.critere].push(indic);\n});\n\n// Analyser les risques\nconst indicateursASuivre = indicateursAnalyses.filter(indic => \n  indic.status !== \"Conforme\" || !indic.preuvesSuffisantes\n);\n\nreturn {\n  nom_audit: auditNom,\n  date_preparation: datePreparation.toISOString(),\n  indicateurs_total: nbTotal,\n  conformes: indicateursConformes,\n  partiellement_conformes: indicateursPartiellementConformes,\n  non_conformes: indicateursNonConformes,\n  score_preparation: scoreConformite.toFixed(2),\n  criteres: criteresMap,\n  points_attention: indicateursASuivre,\n  non_conformites_ouvertes: nonConformites.length,\n  statut_general: scoreConformite >= 85 ? \"Prêt pour audit\" : \"Préparation nécessaire\",\n  recommandations: scoreConformite < 85 ? \n    \"Travailler en priorité sur les indicateurs non-conformes et compléter les preuves manquantes\" : \n    \"Maintenir le niveau de conformité et finaliser les derniers points d'amélioration\"\n};"
+      },
+      "name": "Préparer Dossier Audit",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -600,
+        2140
+      ],
+      "id": "417fe978-706a-48ff-ba1f-b16021a9701e"
+    },
+    {
+      "parameters": {
+        "resource": "drive",
+        "operation": "folder:create"
+      },
+      "name": "Créer Dossier Audit",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        2040
+      ],
+      "id": "d953ec3e-da09-4160-a65c-a9fabc5f3eb6"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "options": {}
+      },
+      "name": "Créer Synthèse Audit",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        2040
+      ],
+      "id": "869d0007-98a6-4ded-b8a2-4c463f4ac1fd"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Audit_Preparation",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "fields",
+              "value": "={\n  \"Nom\": \"{{ $node[\"Préparer Dossier Audit\"].json.nom_audit }}\",\n  \"Date\": \"{{ $node[\"Préparer Dossier Audit\"].json.date_preparation }}\",\n  \"Score\": {{ $node[\"Préparer Dossier Audit\"].json.score_preparation }},\n  \"Statut\": \"{{ $node[\"Préparer Dossier Audit\"].json.statut_general }}\", \n  \"URL_Dossier\": \"{{ $node[\"Créer Dossier Audit\"].json.webViewLink }}\",\n  \"Indicateurs_Conformes\": {{ $node[\"Préparer Dossier Audit\"].json.conformes }},\n  \"Indicateurs_Partiellement_Conformes\": {{ $node[\"Préparer Dossier Audit\"].json.partiellement_conformes }},\n  \"Indicateurs_Non_Conformes\": {{ $node[\"Préparer Dossier Audit\"].json.non_conformes }},\n  \"Recommandations\": \"{{ $node[\"Préparer Dossier Audit\"].json.recommandations }}\",\n  \"Rapport_Complet\": {{ JSON.stringify($node[\"Préparer Dossier Audit\"].json) }}\n}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Enregistrer Préparation",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -200,
+        2140
+      ],
+      "id": "ca946edd-d708-49c2-9b8f-a33b3a3e35d2"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=qualite@monof.fr",
+        "toEmail": "=direction@monof.fr,responsable.qualite@monof.fr",
+        "subject": "Préparation Audit Qualiopi - Score {{ $node[\"Préparer Dossier Audit\"].json.score_preparation }}%",
+        "options": {}
+      },
+      "name": "Envoyer Préparation Audit",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        2140
+      ],
+      "id": "da17ba1a-2f20-404f-8901-940eb189eb65",
+      "webhookId": "56997a36-1b70-4d39-9922-0cac51076474"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Variables globales pour le workflow\nreturn {\n  // Clés API\n  \"airtableApiKey\": \"key123456789\",\n  \"airtableBase\": \"app123456789\",\n  \"googleSheetKPI\": \"1xYz_AbCdEfGhIjKlMnOpQrStUvWxYz\",\n  \"googleSheetKPIUrl\": \"https://docs.google.com/spreadsheets/d/1xYz_AbCdEfGhIjKlMnOpQrStUvWxYz\",\n\n  // Dossiers\n  \"dossierDocumentsQualiopi\": \"1234567890\",\n  \"dossierFormations\": \"0987654321\",\n\n  // Emails\n  \"emailDirection\": \"direction@monof.fr\",\n  \"emailQualite\": \"qualite@monof.fr\",\n  \"emailPedagogie\": \"pedagogie@monof.fr\",\n  \"emailAdmin\": \"admin@monof.fr\",\n\n  // Paramètres Qualiopi\n  \"nbIndicateurs\": 32,\n  \"dateProchainAudit\": \"2023-12-15\"\n};"
+      },
+      "name": "Variables Globales",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -880,
+        320
+      ],
+      "id": "b07e834a-ba00-4ec8-b427-cab25553ff15"
+    },
+    {
+      "parameters": {},
+      "name": "Merge Données Globales",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        -200,
+        2280
+      ],
+      "id": "f571e116-db7d-47e7-a643-8e1a2c88ee43"
+    },
+    {
+      "parameters": {
+        "path": "dashboard",
+        "options": {}
+      },
+      "name": "Webhook Dashboard Central",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -1000,
+        2320
+      ],
+      "webhookId": "dashboard",
+      "notesInFlow": true,
+      "notePosition": "above",
+      "id": "1706abb9-2ddd-4dd6-a25d-94f9367c1658",
+      "notes": "# 11. SUPERVISEUR DU PROCESSUS"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Récupérer les données de tous les systèmes pour le tableau de bord central\nconst today = new Date();\n\nreturn {\n  date_generation: today.toISOString(),\n  nom_organisme: \"Mon Organisme de Formation\",\n  statut_qualiopi: \"Certifié\",\n  donnees_requises: [\n    \"documents\",\n    \"conformite\",\n    \"apprenants\",\n    \"formateurs\",\n    \"non_conformites\",\n    \"kpi_performance\",\n    \"audit_preparation\"\n  ]\n};"
+      },
+      "name": "Initialiser Dashboard",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -800,
+        2320
+      ],
+      "id": "c6eb2633-f5f4-426e-821e-5d6a92c04378"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Documents",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer État Documents",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        2220
+      ],
+      "id": "f09111d3-033e-4059-a322-1556848faa9c"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Indicateurs_Qualiopi",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer État Conformité",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        2320
+      ],
+      "id": "f3aee612-1f96-4fde-8cab-95de28ba4dc5"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/Non_Conformites",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer NCs Actives",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        2420
+      ],
+      "id": "5c58decf-e644-4d10-bdc2-a26911012b7b"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.airtable.com/v0/{{$node[\"Variables Globales\"].json[\"airtableBase\"]}}/KPI_Mensuel",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "name": "Récupérer KPIs Récents",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        -600,
+        2520
+      ],
+      "id": "fccef040-197e-4b65-b9e7-44c7ade56285"
+    },
+    {
+      "parameters": {
+        "functionCode": "// Consolider les données de toutes les sources\nconst baseData = $input.all()[0].json;\nconst documents = $input.all()[1].json.records;\nconst indicateurs = $input.all()[2].json.records;\nconst nonConformites = $input.all()[3].json.records;\nconst kpis = $input.all()[4].json.records;\n\n// Analyser les documents\nconst totalDocuments = documents.length;\nconst documentsValides = documents.filter(doc => {\n  const expirationDate = doc.fields.Date_Expiration ? new Date(doc.fields.Date_Expiration) : null;\n  const today = new Date();\n  return expirationDate === null || expirationDate > today;\n}).length;\n\n// Analyser la conformité\nconst totalIndicateurs = indicateurs.length;\nconst indicateursConformes = indicateurs.filter(i => i.fields.Status === \"Conforme\").length;\nconst indicateursPartConformes = indicateurs.filter(i => i.fields.Status === \"Partiellement conforme\").length;\nconst indicateursNonConformes = indicateurs.filter(i => i.fields.Status === \"Non conforme\").length;\n\n// Calculer le score Qualiopi\nconst scoreQualiopi = ((indicateursConformes + (indicateursPartConformes * 0.5)) / totalIndicateurs * 100).toFixed(2);\n\n// Analyser les non-conformités\nconst ncMajeures = nonConformites.filter(nc => nc.fields.Criticite === \"Majeure\").length;\nconst ncMineures = nonConformites.filter(nc => nc.fields.Criticite === \"Mineure\").length;\nconst ncModerées = nonConformites.filter(nc => nc.fields.Criticite !== \"Majeure\" && nc.fields.Criticite !== \"Mineure\").length;\n\n// Extraire les KPIs récents\nlet kpiTendance = \"stable\";\nif (kpis.length >= 2) {\n  const dernierKPI = parseFloat(kpis[0].fields.Satisfaction_Moyenne);\n  const avantDernierKPI = parseFloat(kpis[1].fields.Satisfaction_Moyenne);\n  \n  if (dernierKPI > avantDernierKPI) {\n    kpiTendance = \"hausse\";\n  } else if (dernierKPI < avantDernierKPI) {\n    kpiTendance = \"baisse\";\n  }\n}\n\n// Déterminer les alertes\nconst alerts = [];\n\nif (documentsValides < totalDocuments * 0.9) {\n  alerts.push({\n    type: \"documents\",\n    severite: \"warning\",\n    message: `${totalDocuments - documentsValides} documents à renouveler`\n  });\n}\n\nif (ncMajeures > 0) {\n  alerts.push({\n    type: \"non_conformite\",\n    severite: \"critical\",\n    message: `${ncMajeures} non-conformité(s) majeure(s) à traiter`\n  });\n}\n\nif (scoreQualiopi < 80) {\n  alerts.push({\n    type: \"conformite\",\n    severite: \"high\",\n    message: \"Score Qualiopi inférieur à 80%\"\n  });\n}\n\n// Créer le dashboard consolidé\nreturn {\n  ...baseData,\n  dashboard: {\n    score_qualiopi: parseFloat(scoreQualiopi),\n    statut_qualiopi: scoreQualiopi >= 85 ? \"Conforme\" : (scoreQualiopi >= 70 ? \"Partiellement conforme\" : \"Non conforme\"),\n    documents: {\n      total: totalDocuments,\n      valides: documentsValides,\n      pourcentage: ((documentsValides / totalDocuments) * 100).toFixed(2)\n    },\n    conformite: {\n      total_indicateurs: totalIndicateurs,\n      indicateurs_conformes: indicateursConformes,\n      indicateurs_partiellement_conformes: indicateursPartConformes,\n      indicateurs_non_conformes: indicateursNonConformes,\n      pourcentage: scoreQualiopi\n    },\n    non_conformites: {\n      total: nonConformites.length,\n      majeures: ncMajeures,\n      mineures: ncMineures,\n      moderees: ncModerées\n    },\n    kpi_performance: {\n      satisfaction_recente: kpis.length > 0 ? parseFloat(kpis[0].fields.Satisfaction_Moyenne) : \"N/A\",\n      tendance: kpiTendance\n    },\n    alerts: alerts\n  }\n};"
+      },
+      "name": "Générer Dashboard Consolidé",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        -400,
+        2320
+      ],
+      "id": "5cfc2300-39d2-4e19-8022-7d7692b0c43e"
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "boolean": [],
+          "number": [],
+          "string": [
+            {
+              "name": "html",
+              "value": "=<!DOCTYPE html>\n<html lang=\"fr\">\n<head>\n  <meta charset=\"UTF-8\">\n  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n  <title>Dashboard Qualiopi - {{ $node[\"Générer Dashboard Consolidé\"].json.nom_organisme }}</title>\n  <style>\n    body {\n      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;\n      background-color: #f5f7fa;\n      margin: 0;\n      padding: 0;\n    }\n    .container {\n      max-width: 1200px;\n      margin: 0 auto;\n      padding: 20px;\n    }\n    .header {\n      background-color: #2c3e50;\n      color: white;\n      padding: 20px;\n      border-radius: 8px;\n      margin-bottom: 20px;\n      display: flex;\n      justify-content: space-between;\n      align-items: center;\n    }\n    .score-box {\n      background-color: white;\n      border-radius: 50%;\n      width: 120px;\n      height: 120px;\n      display: flex;\n      align-items: center;\n      justify-content: center;\n      flex-direction: column;\n      box-shadow: 0 4px 6px rgba(0,0,0,0.1);\n    }\n    .score-value {\n      font-size: 32px;\n      font-weight: bold;\n      color: \n        {% if $node[\"Générer Dashboard Consolidé\"].json.dashboard.score_qualiopi >= 85 %}\n          #27ae60\n        {% elif $node[\"Générer Dashboard Consolidé\"].json.dashboard.score_qualiopi >= 70 %}\n          #f39c12\n        {% else %}\n          #c0392b\n        {% endif %};\n    }\n    .score-label {\n      font-size: 12px;\n      color: #7f8c8d;\n    }\n    .alert-container {\n      background-color: #f8d7da;\n      border: 1px solid #f5c6cb;\n      border-radius: 8px;\n      padding: 15px;\n      margin-bottom: 20px;\n      color: #721c24;\n    }\n    .cards-container {\n      display: grid;\n      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));\n      gap: 20px;\n    }\n    .card {\n      background-color: white;\n      border-radius: 8px;\n      box-shadow: 0 4px 6px rgba(0,0,0,0.1);\n      padding: 20px;\n    }\n    .card h2 {\n      margin-top: 0;\n      color: #2c3e50;\n      font-size: 18px;\n      border-bottom: 1px solid #eee;\n      padding-bottom: 10px;\n    }\n    .progress-bar {\n      background-color: #ecf0f1;\n      border-radius: 4px;\n      height: 10px;\n      margin: 10px 0;\n    }\n    .progress-value {\n      height: 100%;\n      border-radius: 4px;\n      background-color: \n        {% if $node[\"Générer Dashboard Consolidé\"].json.dashboard.score_qualiopi >= 85 %}\n          #27ae60\n        {% elif $node[\"Générer Dashboard Consolidé\"].json.dashboard.score_qualiopi >= 70 %}\n          #f39c12\n        {% else %}\n          #c0392b\n        {% endif %};\n      width: {{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.score_qualiopi }}%;\n    }\n    .stat {\n      display: flex;\n      justify-content: space-between;\n      margin-bottom: 5px;\n    }\n    .footer {\n      text-align: center;\n      margin-top: 40px;\n      color: #7f8c8d;\n      font-size: 12px;\n    }\n    .alert-badge {\n      display: inline-block;\n      padding: 3px 8px;\n      border-radius: 4px;\n      font-size: 12px;\n      font-weight: bold;\n      margin-right: 5px;\n    }\n    .alert-critical {\n      background-color: #c0392b;\n      color: white;\n    }\n    .alert-high {\n      background-color: #e74c3c;\n      color: white;\n    }\n    .alert-warning {\n      background-color: #f39c12;\n      color: white;\n    }\n    .trend-up {\n      color: #27ae60;\n    }\n    .trend-down {\n      color: #c0392b;\n    }\n    .trend-stable {\n      color: #7f8c8d;\n    }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <div>\n        <h1>{{ $node[\"Générer Dashboard Consolidé\"].json.nom_organisme }}</h1>\n        <p>Dashboard Qualiopi - {{ new Date($node[\"Générer Dashboard Consolidé\"].json.date_generation).toLocaleDateString() }}</p>\n      </div>\n      <div class=\"score-box\">\n        <div class=\"score-value\">{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.score_qualiopi }}%</div>\n        <div class=\"score-label\">Score Qualiopi</div>\n      </div>\n    </div>\n    \n    {% if $node[\"Générer Dashboard Consolidé\"].json.dashboard.alerts.length > 0 %}\n    <div class=\"alert-container\">\n      <strong>⚠️ Alertes à traiter ({{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.alerts.length }}):</strong>\n      <ul>\n        {% for alert in $node[\"Générer Dashboard Consolidé\"].json.dashboard.alerts %}\n        <li>\n          <span class=\"alert-badge alert-{{ alert.severite }}\">{{ alert.severite }}</span>\n          {{ alert.message }}\n        </li>\n        {% endfor %}\n      </ul>\n    </div>\n    {% endif %}\n    \n    <div class=\"cards-container\">\n      <div class=\"card\">\n        <h2>Conformité Indicateurs</h2>\n        <div class=\"progress-bar\">\n          <div class=\"progress-value\"></div>\n        </div>\n        <div class=\"stat\">\n          <span>Conformes:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.conformite.indicateurs_conformes }} / {{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.conformite.total_indicateurs }}</span>\n        </div>\n        <div class=\"stat\">\n          <span>Partiellement:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.conformite.indicateurs_partiellement_conformes }} / {{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.conformite.total_indicateurs }}</span>\n        </div>\n        <div class=\"stat\">\n          <span>Non conformes:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.conformite.indicateurs_non_conformes }} / {{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.conformite.total_indicateurs }}</span>\n        </div>\n      </div>\n      \n      <div class=\"card\">\n        <h2>Documents</h2>\n        <div class=\"stat\">\n          <span>Valides:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.documents.valides }} / {{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.documents.total }}</span>\n        </div>\n        <div class=\"stat\">\n          <span>Taux de validité:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.documents.pourcentage }}%</span>\n        </div>\n      </div>\n      \n      <div class=\"card\">\n        <h2>Non-Conformités</h2>\n        <div class=\"stat\">\n          <span>Total ouvertes:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.non_conformites.total }}</span>\n        </div>\n        <div class=\"stat\">\n          <span>Majeures:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.non_conformites.majeures }}</span>\n        </div>\n        <div class=\"stat\">\n          <span>Mineures:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.non_conformites.mineures }}</span>\n        </div>\n        <div class=\"stat\">\n          <span>Modérées:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.non_conformites.moderees }}</span>\n        </div>\n      </div>\n      \n      <div class=\"card\">\n        <h2>Performance</h2>\n        <div class=\"stat\">\n          <span>Satisfaction récente:</span>\n          <span>{{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.kpi_performance.satisfaction_recente }} / 5</span>\n        </div>\n        <div class=\"stat\">\n          <span>Tendance:</span>\n          <span class=\"\n            {% if $node[\"Générer Dashboard Consolidé\"].json.dashboard.kpi_performance.tendance == 'hausse' %}\n              trend-up\n            {% elif $node[\"Générer Dashboard Consolidé\"].json.dashboard.kpi_performance.tendance == 'baisse' %}\n              trend-down\n            {% else %}\n              trend-stable\n            {% endif %}\n          \">\n            {% if $node[\"Générer Dashboard Consolidé\"].json.dashboard.kpi_performance.tendance == 'hausse' %}\n              ↑ En hausse\n            {% elif $node[\"Générer Dashboard Consolidé\"].json.dashboard.kpi_performance.tendance == 'baisse' %}\n              ↓ En baisse\n            {% else %}\n              → Stable\n            {% endif %}\n          </span>\n        </div>\n      </div>\n    </div>\n    \n    <div class=\"footer\">\n      <p>Généré automatiquement par le Système d'Automatisation Qualiopi le {{ new Date($node[\"Générer Dashboard Consolidé\"].json.date_generation).toLocaleString() }}</p>\n    </div>\n  </div>\n</body>\n</html>"
+            },
+            {
+              "name": "dashboard_data",
+              "value": "={{ JSON.stringify($node[\"Générer Dashboard Consolidé\"].json) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Préparer Réponse Dashboard",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        -160,
+        2360
+      ],
+      "id": "47afec67-8c04-4d57-94df-1e5bd262d0e4"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.alerts.length }}",
+              "operation": "larger"
+            }
+          ]
+        }
+      },
+      "name": "Alertes Présentes?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        0,
+        2320
+      ],
+      "id": "99ae79a7-5e60-4a8a-9661-d7639ef2074c"
+    },
+    {
+      "parameters": {
+        "fromEmail": "=systeme@monof.fr",
+        "toEmail": "=direction@monof.fr,responsable.qualite@monof.fr",
+        "subject": "ALERTE - {{ $node[\"Générer Dashboard Consolidé\"].json.dashboard.alerts.length }} points d'attention Qualiopi",
+        "options": {}
+      },
+      "name": "Envoyer Email Alertes",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        200,
+        2280
+      ],
+      "id": "7f1d5065-37fa-40e4-8f1a-6b7e6ebc8db0",
+      "webhookId": "163abccb-91c6-462f-90ac-195dd9798ef0"
+    },
+    {
+      "parameters": {},
+      "name": "Aucune Action",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        200,
+        2360
+      ],
+      "id": "8f60f153-0516-4891-acc9-91f50dd53b9e"
+    },
+    {
+      "parameters": {},
+      "name": "Démo n8n",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        2320
+      ],
+      "id": "9e29b074-74f1-4bca-a836-8a5ae7e3b454"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-23T07:23:39.989Z",
+      "updatedAt": "2025-05-23T07:23:39.989Z",
+      "id": "BSLtAcmKd52ihHKt",
+      "name": "Qualiopi"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-23T07:24:26.000Z",
+  "versionId": "dfc067eb-30c0-48f1-85b7-173a9becfa2d"
+}
