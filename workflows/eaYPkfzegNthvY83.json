@@ -1,0 +1,546 @@
+{
+  "active": false,
+  "connections": {
+    "Trigger Every 30s": {
+      "main": [
+        [
+          {
+            "node": "Fetch Twitter",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Reddit",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Discord",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch GitHub",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Binance Listings",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch Forums RSS",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Fetch News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Twitter": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Reddit": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Discord": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch GitHub": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Binance Listings": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Forums RSS": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch News": {
+      "main": [
+        [
+          {
+            "node": "Merge Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge Data": {
+      "main": [
+        [
+          {
+            "node": "Normalize Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Compute Score": {
+      "main": [
+        [
+          {
+            "node": "Score > 0.7?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Score > 0.7?": {
+      "main": [
+        [
+          {
+            "node": "Prepare Order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Order": {
+      "main": [
+        [
+          {
+            "node": "Place Binance Order",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Place Binance Order": {
+      "main": [
+        [
+          {
+            "node": "Telegram Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email Report",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update KB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-20T06:47:38.756Z",
+  "id": "eaYPkfzegNthvY83",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "plan B claude",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Trigger Every 30s",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -120
+      ],
+      "id": "1db79d01-1ff5-4dc1-b2c5-273c595f5718"
+    },
+    {
+      "parameters": {
+        "url": "https://api.twitter.com/2/tweets/search/recent?query=(#newcoin OR #ico OR #ido OR launch) -is:retweet",
+        "options": {}
+      },
+      "name": "Fetch Twitter",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -160
+      ],
+      "id": "975cc9f0-300e-471b-9720-60216a0570d4"
+    },
+    {
+      "parameters": {
+        "url": "https://oauth.reddit.com/r/CryptoCurrency/new?limit=50",
+        "options": {}
+      },
+      "name": "Fetch Reddit",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        -60
+      ],
+      "id": "6a49bd2f-7f60-4af9-90fd-2c8183d0c1c6"
+    },
+    {
+      "parameters": {
+        "url": "https://discord.com/api/channels/{{$credentials.discordBot.channelId}}/messages?limit=50",
+        "options": {}
+      },
+      "name": "Fetch Discord",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        40
+      ],
+      "id": "e5abe4af-1696-416d-bc8d-333fa129e11e"
+    },
+    {
+      "parameters": {
+        "additionalFields": {}
+      },
+      "name": "Telegram Trigger",
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1,
+      "position": [
+        400,
+        140
+      ],
+      "id": "5081eb48-996b-48b1-b3f5-2b0c5edb0c76",
+      "webhookId": "9fb763f8-6a57-4abb-894f-0f9da59d8c5d",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "url": "https://api.github.com/repos/{{$parameters.githubRepo}}/commits",
+        "options": {}
+      },
+      "name": "Fetch GitHub",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        240
+      ],
+      "id": "84eabe06-a5e8-47c4-a830-28510cd6de1d"
+    },
+    {
+      "parameters": {
+        "url": "https://api.binance.com/api/v3/exchangeInfo",
+        "options": {}
+      },
+      "name": "Fetch Binance Listings",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        340
+      ],
+      "id": "323cf115-b834-4650-80ed-c9c4a48e4ed4"
+    },
+    {
+      "parameters": {
+        "url": "https://bitcointalk.org/index.php?board=159.0;rss",
+        "options": {}
+      },
+      "name": "Fetch Forums RSS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        440
+      ],
+      "id": "9919e027-1f0b-4c37-b806-8a490bbcc286"
+    },
+    {
+      "parameters": {
+        "url": "https://api.coindesk.com/v2/cryptocurrency/news/latest",
+        "options": {}
+      },
+      "name": "Fetch News",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        400,
+        540
+      ],
+      "id": "fc340103-4e85-4c10-90b8-8707df7e96e7"
+    },
+    {
+      "parameters": {
+        "functionCode": "/* Merge all incoming data streams into a single array of { source, text, metadata } */\nreturn items.map(item => {\n  const meta = item.json;\n  return { json: { source: item.executionNode, content: JSON.stringify(meta), metadata: meta } };\n});"
+      },
+      "name": "Merge Data",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        660,
+        100
+      ],
+      "id": "ba38d3b6-91cf-4ba6-a2c1-3879f54c7318"
+    },
+    {
+      "parameters": {
+        "functionCode": "/* Normalize text: lowercase, strip punctuation */\nconst output = items.map(i => {\n  let text = i.json.content.toLowerCase().replace(/[^a-z0-9 #]/g, ' ');\n  return { json: { ...i.json, normalized: text } };\n});\nreturn output;"
+      },
+      "name": "Normalize Data",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        860,
+        100
+      ],
+      "id": "6d831195-aac3-4bc4-8d63-adbf37ca37cf"
+    },
+    {
+      "parameters": {},
+      "name": "FAISS Vector Index",
+      "type": "n8n-nodes-base.executePython",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        100
+      ],
+      "id": "ecd86ecd-2956-4bcb-b6b4-10ef367b2d40"
+    },
+    {
+      "parameters": {
+        "url": "http://YOUR_WEAVIATE_HOST/v1/objects",
+        "jsonParameters": true,
+        "options": {}
+      },
+      "name": "Weaviate Index",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        100
+      ],
+      "id": "cd8bc81a-9de3-4a58-9a9f-e8f09b2a37ca"
+    },
+    {
+      "parameters": {},
+      "name": "RAG + LangChain",
+      "type": "n8n-nodes-base.executePython",
+      "typeVersion": 1,
+      "position": [
+        1460,
+        100
+      ],
+      "id": "df4a6239-792f-4cad-af8b-a1d2f3e81374",
+      "credentials": {}
+    },
+    {
+      "parameters": {},
+      "name": "Neo4j Relations",
+      "type": "n8n-nodes-base.neo4j",
+      "typeVersion": 1,
+      "position": [
+        1660,
+        100
+      ],
+      "id": "5ff88ee4-cc69-4c38-8755-19583f31726e",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "functionCode": "/* Score each candidate: multi-source hits, social volume spikes */\nreturn items.map(i => {\n  const count = i.json.candidates.length;\n  const score = Math.min(1, count * 0.3);\n  return { json: { ...i.json, score } };\n});"
+      },
+      "name": "Compute Score",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1860,
+        100
+      ],
+      "id": "99793881-34ad-46a6-8b7a-01f22b53b808"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.score }}",
+              "operation": "largerThan",
+              "value2": 0.7
+            }
+          ]
+        }
+      },
+      "name": "Score > 0.7?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        2060,
+        100
+      ],
+      "id": "973ad6c7-be0d-495a-bb70-551bb77c34a4"
+    },
+    {
+      "parameters": {
+        "functionCode": "/* Build order payload */\nconst sym = $json.candidates[0];\nreturn [{ json: {\n  symbol: sym,\n  side: 'BUY',\n  type: 'MARKET',\n  quantity: 100  // placeholder, adjust via UI\n}}];"
+      },
+      "name": "Prepare Order",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        2260,
+        -20
+      ],
+      "id": "78813fd6-c596-41ad-b40e-1d739c6cc07e"
+    },
+    {
+      "parameters": {
+        "url": "https://api.binance.com/api/v3/order",
+        "jsonParameters": true,
+        "options": {}
+      },
+      "name": "Place Binance Order",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        2460,
+        -20
+      ],
+      "id": "4c494a86-a042-4945-b54c-65e67ec190d4"
+    },
+    {
+      "parameters": {
+        "chatId": "{{$credentials.telegramApi.chatId}}",
+        "text": "New order placed: {{$node['Prepare Order'].json.symbol}} at score {{$node['Compute Score'].json.score}}",
+        "additionalFields": {}
+      },
+      "name": "Telegram Alert",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        -60
+      ],
+      "id": "2cce80f0-c1aa-435a-b001-078f40ebaf90",
+      "webhookId": "3a5e3c39-fc32-49a5-a09d-0a3c358b80db",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "fromEmail": "n8n@yourdomain.com",
+        "toEmail": "alerts@yourdomain.com",
+        "subject": "Crypto Sniper Order Executed",
+        "text": "Order for {{$node['Prepare Order'].json.symbol}} executed. Score: {{$node['Compute Score'].json.score}}",
+        "options": {}
+      },
+      "name": "Email Report",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        2660,
+        40
+      ],
+      "id": "2b5f2864-4c47-49d9-aab9-fb84654eefe4",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "functionCode": "/* Final KB update: could re-index in Weaviate/Neo4j or log in DB */\nreturn items;"
+      },
+      "name": "Update KB",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        2860,
+        100
+      ],
+      "id": "2143e344-8292-45cc-a391-5f53a6e83d61"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T07:07:46.376Z",
+      "updatedAt": "2025-05-20T07:07:46.376Z",
+      "id": "NMVeSwi3WnGyrgMd",
+      "name": "trading"
+    },
+    {
+      "createdAt": "2025-05-20T07:07:46.369Z",
+      "updatedAt": "2025-05-20T07:07:46.369Z",
+      "id": "pZnJjBvs8NJTWMSy",
+      "name": "crypto"
+    }
+  ],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-20T07:46:35.000Z",
+  "versionId": "79d9b62b-1e85-409b-aa0e-3e32c1eb8fac"
+}
