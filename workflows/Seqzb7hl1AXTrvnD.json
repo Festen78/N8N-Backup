@@ -1,0 +1,894 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook Fireflies": {
+      "main": [
+        [
+          {
+            "node": "API_KEY",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Otter": {
+      "main": [
+        [
+          {
+            "node": "Merge Webhooks",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge Webhooks": {
+      "main": [
+        [
+          {
+            "node": "Extraction de la Transcription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraction de la Transcription": {
+      "main": [
+        [
+          {
+            "node": "Vérification Transcription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérification Transcription": {
+      "main": [
+        [
+          {
+            "node": "Analyse GPT",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Erreur Transcription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyse GPT": {
+      "main": [
+        [
+          {
+            "node": "Structuration Finale",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structuration Finale": {
+      "main": [
+        [
+          {
+            "node": "Stockage Document",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Stockage Document": {
+      "main": [
+        [
+          {
+            "node": "Email de Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook de Reprise": {
+      "main": [
+        [
+          {
+            "node": "Préparation Reprise",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparation Reprise": {
+      "main": [
+        [
+          {
+            "node": "Vérification Max Tentatives",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vérification Max Tentatives": {
+      "main": [
+        [
+          {
+            "node": "Logique de Réparation",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Journal des Erreurs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Logique de Réparation": {
+      "main": [
+        [
+          {
+            "node": "Type d'Erreur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Type d'Erreur": {
+      "main": [
+        [
+          {
+            "node": "Extraction de la Transcription",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Analyse GPT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Journal des Erreurs": {
+      "main": [
+        [
+          {
+            "node": "Email d'Erreur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Id": {
+      "main": [
+        [
+          {
+            "node": "Get Transcipts ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "API_KEY": {
+      "main": [
+        [
+          {
+            "node": "Get User Id",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Transcipts ID": {
+      "main": [
+        [
+          {
+            "node": "Get Transcipts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "API_KEY",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Transcipts": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Airtable",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-20T11:27:41.792Z",
+  "id": "Seqzb7hl1AXTrvnD",
+  "isArchived": false,
+  "meta": null,
+  "name": "fireflies",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "fireflies-webhook",
+        "options": {}
+      },
+      "name": "Webhook Fireflies",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -40,
+        -240
+      ],
+      "webhookId": "fdee9df1-42c3-4a9e-9f5a-c8e30dfcde49",
+      "id": "ecc81d34-c68f-45a1-b45d-ff2f01916f00"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "otter-webhook",
+        "options": {}
+      },
+      "name": "Webhook Otter",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        0,
+        160
+      ],
+      "webhookId": "75983c71-e9f3-4b24-b60f-30f5b94c1edb",
+      "id": "aa0f7663-9e3c-4329-aa87-3cb7badf80ed",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "mergeByIndex",
+        "options": {}
+      },
+      "name": "Merge Webhooks",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 2,
+      "position": [
+        220,
+        80
+      ],
+      "id": "699a2bc7-e000-4850-ae3a-00912001281a",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "functionCode": "// Déterminer la source et extraire la transcription\nconst data = items[0].json;\nlet transcription = '';\nlet meetingTitle = '';\nlet meetingDate = new Date().toISOString();\nlet source = '';\n\nif (data.hasOwnProperty('transcript_text')) {\n  // Format Fireflies\n  source = 'Fireflies';\n  transcription = data.transcript_text;\n  meetingTitle = data.meeting_name || 'Réunion sans titre';\n  if (data.meeting_start_time) {\n    meetingDate = new Date(data.meeting_start_time).toISOString();\n  }\n} else if (data.hasOwnProperty('transcription')) {\n  // Format Otter\n  source = 'Otter';\n  transcription = data.transcription;\n  meetingTitle = data.title || 'Réunion sans titre';\n  if (data.created_at) {\n    meetingDate = new Date(data.created_at).toISOString();\n  }\n} else {\n  // Format inconnu, essayer de trouver une transcription\n  source = 'Inconnu';\n  if (typeof data === 'string') {\n    transcription = data;\n  } else if (data.text) {\n    transcription = data.text;\n  } else if (data.content) {\n    transcription = data.content;\n  } else {\n    transcription = JSON.stringify(data);\n  }\n  meetingTitle = 'Réunion sans titre';\n}\n\nreturn [\n  {\n    json: {\n      source,\n      meetingTitle,\n      meetingDate,\n      transcription,\n      rawData: data\n    }\n  }\n];"
+      },
+      "name": "Extraction de la Transcription",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        440,
+        80
+      ],
+      "id": "d45da9bf-da52-4fd8-8c7b-9f838ce103ef",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.transcription }}",
+              "operation": "isNotEmpty"
+            }
+          ]
+        }
+      },
+      "name": "Vérification Transcription",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        660,
+        80
+      ],
+      "id": "6b997713-3568-4b22-b9f4-ec08aab70002",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "resource": "__CUSTOM_API_CALL__",
+        "requestOptions": {}
+      },
+      "name": "Analyse GPT",
+      "type": "n8n-nodes-base.openAi",
+      "typeVersion": 1,
+      "position": [
+        860,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 5000,
+      "id": "fdf373c3-08d1-4c5d-a31f-0ed3c064d499",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "functionCode": "const apiResponse = JSON.parse(items[0].json.response);\nconst originalData = items[0].json;\n\n// Format du résultat final\nconst structuredNote = {\n  title: originalData.meetingTitle,\n  date: new Date(originalData.meetingDate).toLocaleDateString(),\n  source: originalData.source,\n  structured_content: apiResponse,\n  raw_transcription: originalData.transcription,\n  timestamp: new Date().toISOString(),\n  note_id: `note-${Date.now()}`\n};\n\nreturn [\n  {\n    json: structuredNote\n  }\n];"
+      },
+      "name": "Structuration Finale",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1060,
+        0
+      ],
+      "id": "c9f02f30-380f-488f-b3fe-9dc8eed5a1b9",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.STORAGE_API_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "note",
+              "value": "={{ $json }}"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "name": "Stockage Document",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        1260,
+        0
+      ],
+      "retryOnFail": true,
+      "maxTries": 3,
+      "waitBetweenTries": 10000,
+      "id": "e9462ccc-c7da-4257-8c1e-de8a447ac916",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "sendWithAttachments"
+      },
+      "name": "Email de Notification",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        0
+      ],
+      "id": "619583ab-3433-4bc3-8b43-891ae216ebdd",
+      "webhookId": "3925442d-ebd6-443d-993a-72df01736af2",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "name": "Erreur Transcription",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        860,
+        160
+      ],
+      "id": "41bb6223-3151-4820-9a86-50ccd4aca4a9",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "retry-failed",
+        "options": {}
+      },
+      "name": "Webhook de Reprise",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        220,
+        300
+      ],
+      "webhookId": "d89a2f61-b2c9-4a14-8c72-1a2b3c4d5e6f",
+      "id": "e54f4768-f79c-45d8-bc6c-d24f4da67153",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "values": {
+          "string": [
+            {
+              "name": "errorType",
+              "value": "={{ $json.error_type || 'unknown' }}"
+            },
+            {
+              "name": "originalData",
+              "value": "={{ $json.original_data }}"
+            },
+            {
+              "name": "retryCount",
+              "value": "={{ $json.retry_count || 0 }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Préparation Reprise",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        440,
+        300
+      ],
+      "id": "edd4da7d-3722-420a-8f5f-303c92a22c63",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ $json.retryCount }}",
+              "operation": "smallerThan",
+              "value2": 3
+            }
+          ]
+        }
+      },
+      "name": "Vérification Max Tentatives",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        660,
+        300
+      ],
+      "id": "de10233d-3c8a-4dd3-acf9-4d572bdb24ca",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "functionCode": "// Incrémenter le compteur de tentatives\nconst data = items[0].json;\ndata.retryCount = (parseInt(data.retryCount) || 0) + 1;\n\n// Selon le type d'erreur, ajuster le traitement\nif (data.errorType === 'transcription') {\n  // Tentative de correction de la transcription\n  if (data.originalData) {\n    // Tentative d'extraction alternative\n    try {\n      const originalData = JSON.parse(data.originalData);\n      let transcription = '';\n      \n      // Recherche plus agressive de la transcription\n      if (typeof originalData === 'object') {\n        // Chercher récursivement des clés qui pourraient contenir une transcription\n        const potentialKeys = ['text', 'content', 'transcript', 'transcription', 'body', 'message'];\n        for (const key of potentialKeys) {\n          if (originalData[key] && typeof originalData[key] === 'string' && originalData[key].length > 100) {\n            transcription = originalData[key];\n            break;\n          }\n        }\n        \n        // Si toujours pas trouvé, prendre le plus long string\n        if (!transcription) {\n          let longestText = '';\n          const findLongestString = (obj) => {\n            for (const key in obj) {\n              if (typeof obj[key] === 'string' && obj[key].length > longestText.length) {\n                longestText = obj[key];\n              } else if (typeof obj[key] === 'object' && obj[key] !== null) {\n                findLongestString(obj[key]);\n              }\n            }\n          };\n          findLongestString(originalData);\n          transcription = longestText;\n        }\n      }\n      \n      data.transcription = transcription;\n    } catch (e) {\n      // Échec de parsing, garder les données originales\n    }\n  }\n} else if (data.errorType === 'gpt') {\n  // Simplifier la requête GPT\n  if (data.transcription && data.transcription.length > 10000) {\n    // Réduire la taille si trop grande\n    data.transcription = data.transcription.substring(0, 10000) + \"... (transcription tronquée)\";\n  }\n}\n\nreturn [{ json: data }];"
+      },
+      "name": "Logique de Réparation",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        280
+      ],
+      "id": "55f80c83-5115-4d05-ad63-df59fc65b76d",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json.errorType }}",
+              "operation": "equals",
+              "value2": "transcription"
+            }
+          ]
+        }
+      },
+      "name": "Type d'Erreur",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1340,
+        280
+      ],
+      "id": "2f234479-e6b1-4f09-990d-c32f88211e24",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $env.ERROR_LOGGING_URL }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "error_type",
+              "value": "={{ $json.errorType }}"
+            },
+            {
+              "name": "retry_count",
+              "value": "={{ $json.retryCount }}"
+            },
+            {
+              "name": "error_message",
+              "value": "Nombre maximum de tentatives atteint"
+            },
+            {
+              "name": "original_data",
+              "value": "={{ $json.originalData }}"
+            },
+            {
+              "name": "timestamp",
+              "value": "={{ $now }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Journal des Erreurs",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4,
+      "position": [
+        900,
+        560
+      ],
+      "id": "04b22138-0241-4e70-b091-ed8d5bd21a19",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "sendWithAttachments"
+      },
+      "name": "Email d'Erreur",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2,
+      "position": [
+        1260,
+        560
+      ],
+      "id": "61b067b6-007b-4b15-a7e7-38d962909de2",
+      "webhookId": "db2f5b8e-d5f2-4cdc-9952-bca75475e346",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.fireflies.ai/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json.FIREFLIES_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{ \"query\": \"{ users { user_id } }\" }",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        380,
+        -240
+      ],
+      "id": "006a811f-65ca-423f-a53d-255b4fd25ef9",
+      "name": "Get User Id"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a78d0413-784e-4a05-9556-a2bec5a88485",
+              "name": "FIREFLIES_API_KEY",
+              "value": "2f8ffdde-8333-45ee-9bb0-3a979a421038",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        -240
+      ],
+      "id": "d43654c2-69d6-4a2f-a2c5-7fb2c0343484",
+      "name": "API_KEY"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.fireflies.ai/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('API_KEY').first().json.FIREFLIES_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"query\": \"query Transcripts($userId: String, $fromDate: DateTime) { transcripts(user_id: $userId, fromDate: $fromDate) { title id dateString } }\",\n\"variables\": {\n\"userId\": \"{{ $('Get User Id').item.json.data.users.first().user_id }}\",\n\"fromDate\": \"{{ $now.minus(7, 'days').toISO() }}\"\n}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        640,
+        -240
+      ],
+      "id": "31a9b8b9-8aec-4f77-87cc-df9c9c6bf105",
+      "name": "Get Transcipts ID"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.fireflies.ai/graphql",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('API_KEY').first().json.FIREFLIES_API_KEY }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n\"query\": \"query Transcript($transcriptId: String!) { transcript(id: $transcriptId) { title id date meeting_attendees { email } sentences {speaker_name text } } }\",\n\"variables\": {\n\"transcriptId\": \"{{ $json.data.transcripts.first().id }}\"\n}\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        900,
+        -240
+      ],
+      "id": "84ea7cc3-5300-4be2-8fd0-c797be6611af",
+      "name": "Get Transcipts"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        -60
+      ],
+      "id": "321b5a96-b178-40d9-bcff-84b90e3c411f",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Génère un résumé, utilise le format suivant:\n\n- un résumé de moins de 5 lignes\n- une liste d'actions à mener si necessaire.\n\n<transcript>\n{{ $json.data.transcript.sentences.map(x => x.speaker_name + \": \" + x.text).join('\\n') }}\n</transcript>"
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.6,
+      "position": [
+        1240,
+        -360
+      ],
+      "id": "8bddca04-7a7e-4c35-a0d9-9321d1874a94",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-3.5-turbo",
+          "mode": "list",
+          "cachedResultName": "gpt-3.5-turbo"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1260,
+        -180
+      ],
+      "id": "dc6f4d51-729e-4d87-a502-d09c3a452e16",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appCTznPGPRV0zuE1",
+          "mode": "id"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblLJYzO0CrIp27lU",
+          "mode": "list",
+          "cachedResultName": "CR",
+          "cachedResultUrl": "https://airtable.com/appCTznPGPRV0zuE1/tblLJYzO0CrIp27lU"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Compte Rendu": "={{ $json.text }}",
+            "Liste des Participants": "={{ $('Get Transcipts').item.json.data.transcript.meeting_attendees }}",
+            "Date de la Réunion": "=2025-05-20T14:39:07"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Compte Rendu",
+              "displayName": "Compte Rendu",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Liste des Participants",
+              "displayName": "Liste des Participants",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Date de la Réunion",
+              "displayName": "Date de la Réunion",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "dateTime",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Actions à Mener",
+              "displayName": "Actions à Mener",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Corresponding Personal Info",
+              "displayName": "Corresponding Personal Info",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "array",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        1760,
+        -340
+      ],
+      "id": "c41c3077-a425-45b6-9647-a186a3be2e0f",
+      "name": "Airtable",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "gf1ZgQWH7bI6wnPg",
+          "name": "Airtable Personal Access Token account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [
+    {
+      "createdAt": "2025-05-20T11:04:13.761Z",
+      "updatedAt": "2025-05-20T11:04:13.761Z",
+      "id": "J0YJ3bYYqIC7jofy",
+      "name": "transcription"
+    },
+    {
+      "createdAt": "2025-05-20T11:04:13.749Z",
+      "updatedAt": "2025-05-20T11:04:13.749Z",
+      "id": "NKYbpYBNM5MrdLyG",
+      "name": "prise-de-notes"
+    },
+    {
+      "createdAt": "2025-05-20T11:04:13.753Z",
+      "updatedAt": "2025-05-20T11:04:13.753Z",
+      "id": "rSlZuxw5RaSVoWaT",
+      "name": "automatisation"
+    }
+  ],
+  "triggerCount": 1,
+  "updatedAt": "2025-05-20T16:48:13.000Z",
+  "versionId": "2fd60879-d965-48b0-9f62-60de7eec242b"
+}
