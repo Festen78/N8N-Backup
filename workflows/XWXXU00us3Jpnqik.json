@@ -1,0 +1,114 @@
+{
+  "active": false,
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Tesseract",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-23T08:33:05.487Z",
+  "id": "XWXXU00us3Jpnqik",
+  "isArchived": false,
+  "meta": null,
+  "name": "ocr tesseract png",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Intégrer le PDF ici !",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        -340,
+        -120
+      ],
+      "id": "b2239e18-8416-4066-a00c-7b7d91c5c5d1",
+      "name": "On form submission",
+      "webhookId": "7a0a2766-8675-4da7-8853-3dd3d33c7851"
+    },
+    {
+      "parameters": {
+        "inputDataFieldName": "=pdf",
+        "options": {}
+      },
+      "type": "n8n-nodes-tesseractjs.tesseractNode",
+      "typeVersion": 1,
+      "position": [
+        200,
+        -80
+      ],
+      "id": "05253853-f8d4-47ba-adc3-34e7d2ab7a23",
+      "name": "Tesseract"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "99302270-d994-4e4c-a0f3-f2322c5933b1",
+              "leftValue": "={{ $json.data.mimetype }}",
+              "rightValue": "image",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -120,
+        -80
+      ],
+      "id": "0acfedf4-fbf3-4386-b023-183aaa9d49c1",
+      "name": "If"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-23T08:58:45.000Z",
+  "versionId": "ccace332-a334-4db4-8249-ee8fc371ce5e"
+}
