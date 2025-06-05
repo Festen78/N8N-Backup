@@ -1,0 +1,19 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-05-20T10:35:25.350Z",
+  "id": "Ih7vIvLDH3AcCPX2",
+  "isArchived": false,
+  "meta": null,
+  "name": "test rag fusion",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-20T10:35:25.350Z",
+  "versionId": "f3baa1a4-a65d-4778-8e36-d4844acfbecf"
+}
