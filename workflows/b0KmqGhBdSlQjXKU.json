@@ -1,0 +1,410 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get File List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get File List": {
+      "main": [
+        [
+          {
+            "node": "DL File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DL File": {
+      "main": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Supabase Vector Store",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Vector Store Retriever": {
+      "ai_retriever": [
+        [
+          {
+            "node": "Question and Answer Chain",
+            "type": "ai_retriever",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Supabase Vector Store1": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Vector Store Retriever",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Supabase Vector Store1",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-05-31T07:34:34.237Z",
+  "id": "b0KmqGhBdSlQjXKU",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 10",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        160,
+        640
+      ],
+      "id": "037b7adb-a147-4f32-bd61-b67cc886dc7b",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "embeddingBatchSize": 3,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.1,
+      "position": [
+        820,
+        640
+      ],
+      "id": "9572e295-a30c-40c1-bf9f-ff30b6d911c4",
+      "name": "Supabase Vector Store",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Gwb8iC1PWXUy3MNd",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "fileFolder",
+        "filter": {
+          "folderId": {
+            "__rl": true,
+            "value": "https://drive.google.com/drive/folders/1kSTRF4x29TNNTDCys3eHbCej-C7ytlEK",
+            "mode": "url"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        380,
+        640
+      ],
+      "id": "28ec78be-3328-42f7-87b7-b6a0247986a9",
+      "name": "Get File List",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "d6mqwqTr0JZCSSqB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "download",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $json.id }}",
+          "mode": "id"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        600,
+        640
+      ],
+      "id": "424da881-9f83-4636-9753-c08841223303",
+      "name": "DL File",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "d6mqwqTr0JZCSSqB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        820,
+        860
+      ],
+      "id": "79292cd4-a4f2-491f-8985-e9be08695ef2",
+      "name": "Embeddings OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "dataType": "binary",
+        "loader": "textLoader",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "typeVersion": 1,
+      "position": [
+        940,
+        860
+      ],
+      "id": "45fc97d9-326b-4cb9-9f5d-0ad90e168bd6",
+      "name": "Default Data Loader"
+    },
+    {
+      "parameters": {
+        "chunkSize": 4000,
+        "chunkOverlap": 200,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "typeVersion": 1,
+      "position": [
+        1020,
+        1060
+      ],
+      "id": "2f39efc2-92e3-4ca7-aa25-9936c7a85d35",
+      "name": "Recursive Character Text Splitter"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemPromptTemplate": "=### ACTION\nGénère un fichier JSON de workflow n8n prêt à être importé, à partir d’une description en langage naturel d’une tâche d’automatisation. Le fichier doit contenir tous les nœuds nécessaires, correctement configurés, connectés, documentés et valides pour n8n.\n\n### ÉTAPES\n1. Analyser la tâche décrite en langage naturel et identifier :\n - Le déclencheur\n - Les applications utilisées\n - La logique métier\n - Les résultats attendus\n2. Associer chaque composant à un nœud n8n approprié.\n3. Configurer chaque nœud :\n - Utiliser des données factices réalistes comme placeholders\n - Référencer les données en amont via des expressions comme {{$json[\"champ\"]}}\n - Ajouter une gestion des erreurs via des nœuds IF ou Try/Catch\n4. Ajouter des nœuds Sticky Note pour documenter la logique ou clarifier des configurations si nécessaire.\n5. Veiller à ce qu’un nœud final indique explicitement la fin du processus.\n6. Valider la structure du fichier JSON pour garantir sa compatibilité avec n8n.\n7. Retourner uniquement le fichier JSON, sans texte supplémentaire.\n\n### PERSONA\nAgis en tant que développeur d’automatisation expert en n8n, capable de transformer n’importe quelle demande utilisateur en workflow fonctionnel, robuste, bien structuré et auto-documenté.\n\n### EXEMPLES\nEntrée : \"Quand une feuille Google Sheet est mise à jour, envoyer les données à Discord et les enregistrer dans Airtable.\"\nSortie :\n - Nœud déclencheur : Google Sheets (on update)\n - Nœuds actions : Discord, Airtable\n - Sticky Note : précisant les colonnes attendues\n - Références aux champs : {{$json[\"row\"][\"nom\"]}}\n\n\n### CONTEXTE\nLes utilisateurs fourniront des descriptions textuelles informelles de scénarios d’automatisation. Ces descriptions couvriront des cas d’usage variés (intégration, notification, transformation de données).\nLes workflows doivent être générés en JSON n8n prêt à l'import, avec toutes les connexions, paramètres et références correctement définis.\nLes identifiants doivent être simulés par des valeurs fictives, jamais codés en dur.\nChaque workflow doit être lisible, clair, et documenté par des Sticky Notes explicatives. Aucune intégration externe réelle n’est utilisée.\n\n### CONTRAINTES\n * S'assurer que le workflow respecte les recommandations concernant :\n    - La structure des nœuds\n    - Les connexions entre nœuds\n    - La gestion de la mémoire et des données intermédiaires\n    - La gestion des erreurs (ex. IF / Try-Catch)\n * Adapter systématiquement la logique de génération en se conformant à ces références pour garantir des workflows optimaux et robustes.\n\n\n### MODÈLE\nFormat de sortie : objet JSON valide, structuré selon le schéma n8n.\nModèle IA recommandé : gpt-4o (précision élevée)\nFallback : gpt-3.5\nTempérature : 0.1 pour les tâches précises ; 0.7 si créativité nécessaire dans la logique.\n\n\nVoici quelques infos utiles sur les WorkFlow n8n : \n\nContext: {context}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainRetrievalQa",
+      "typeVersion": 1.5,
+      "position": [
+        380,
+        -420
+      ],
+      "id": "e534e8e6-428c-4cfe-93eb-00067e92ebdf",
+      "name": "Question and Answer Chain"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        0,
+        -420
+      ],
+      "id": "d7c631f7-0fd0-4562-a180-587f08049b80",
+      "name": "When chat message received",
+      "webhookId": "99f700e5-8053-4f34-b7d5-b4ce88354fb4"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-sonnet-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 4"
+        },
+        "options": {
+          "maxTokensToSample": 10000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        380,
+        -200
+      ],
+      "id": "f3bf8ff2-e3f4-4fee-bb18-d4f6bf66a13b",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.retrieverVectorStore",
+      "typeVersion": 1,
+      "position": [
+        500,
+        -200
+      ],
+      "id": "7399d855-75fe-42a4-b2d7-5112f30fcf2b",
+      "name": "Vector Store Retriever"
+    },
+    {
+      "parameters": {
+        "tableName": {
+          "__rl": true,
+          "value": "documents",
+          "mode": "list",
+          "cachedResultName": "documents"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
+      "typeVersion": 1.1,
+      "position": [
+        500,
+        0
+      ],
+      "id": "707c89e6-6b86-4f34-b2fd-b7427a72a841",
+      "name": "Supabase Vector Store1",
+      "credentials": {
+        "supabaseApi": {
+          "id": "Gwb8iC1PWXUy3MNd",
+          "name": "Supabase account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        580,
+        200
+      ],
+      "id": "ed5097cf-fdd6-4309-8523-2fffa6f93975",
+      "name": "Embeddings OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## 👋 Salut c'est Thomas !\n\nMerci pour votre intérêt ! J'espère vous revoir bientôt sur [Ma chaîne YouTube](https://www.youtube.com/@thomasbssh?sub_confirmation=1) ! \n\n### 🚀 Travaillons ensemble !\n\n**Développons vos solutions IA sur mesure :**\n👉 [Contactez mon agence Azuro AI](https://azuro-ai.com/contact)\n\n**Maîtrisez l'IA avec mon guide expert :**\n👉 [Guide Complet du Prompt Engineering](https://ressources.thomas-berton.com/package/guide-complet-du-prompt-engineering-maitrisez-l-art-de-communiquer-avec-l-ia)\n\n**Questions ? Rejoignez ma communauté :**\n👉 [Mon Discord](https://discord.gg/MnjwnVV5sn)\n\n### 📱 Retrouvez-moi sur :\n- [Ma chaîne YouTube](https://www.youtube.com/@thomasbssh?sub_confirmation=1)\n- [Mon Instagram](https://instagram.com/thomasbssh)\n- 📧 contact@thomas-berton.com",
+        "height": 500,
+        "width": 640,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -380,
+        100
+      ],
+      "typeVersion": 1,
+      "id": "0bd3b5aa-47c3-4df0-96a2-513380d8bd62",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-05-31T07:34:34.237Z",
+  "versionId": "ec24063c-a6bf-4cba-8283-060ccb04d991"
+}
