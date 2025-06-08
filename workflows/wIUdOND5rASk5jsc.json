@@ -55,17 +55,6 @@
         ]
       ]
     },
-    "On form submission1": {
-      "main": [
-        [
-          {
-            "node": "Switch",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "Switch": {
       "main": [
         [
@@ -85,6 +74,17 @@
       ]
     },
     "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission1": {
       "main": [
         [
           {
@@ -121,7 +121,7 @@
             {
               "parameterType": "formBinaryData",
               "name": "file",
-              "inputDataFieldName": "photo"
+              "inputDataFieldName": "data"
             }
           ]
         },
@@ -279,41 +279,17 @@
     },
     {
       "parameters": {
-        "inputDataFieldName": "=photo",
+        "inputDataFieldName": "=data",
         "options": {}
       },
       "type": "n8n-nodes-tesseractjs.tesseractNode",
       "typeVersion": 1,
       "position": [
         1280,
-        -1160
+        -1200
       ],
       "id": "289a934e-d8b3-4336-9953-444941779530",
       "name": "Tesseract"
-    },
-    {
-      "parameters": {
-        "formTitle": "Intégrer le PDF ici !",
-        "formFields": {
-          "values": [
-            {
-              "fieldLabel": "data",
-              "fieldType": "file",
-              "multipleFiles": false
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.formTrigger",
-      "typeVersion": 2.2,
-      "position": [
-        780,
-        -1040
-      ],
-      "id": "395796fe-9fb7-429e-8867-7ec775574302",
-      "name": "On form submission1",
-      "webhookId": "0201269b-8d13-448c-9577-70be92ea39b8"
     },
     {
       "parameters": {
@@ -329,13 +305,13 @@
                 },
                 "conditions": [
                   {
-                    "leftValue": "={{ $json.photo.mimetype }}",
-                    "rightValue": "image",
+                    "id": "9cd4f971-6640-4f90-bb3c-da73905d98eb",
+                    "leftValue": "={{ $json.data.mimetype }}",
+                    "rightValue": "pdf",
                     "operator": {
                       "type": "string",
-                      "operation": "contains"
-                    },
-                    "id": "c3c18b8a-986c-460e-9125-2a07e17dd46d"
+                      "operation": "notContains"
+                    }
                   }
                 ],
                 "combinator": "and"
@@ -353,9 +329,9 @@
                 },
                 "conditions": [
                   {
-                    "id": "0744dd52-4366-42fa-92e2-b1afededce3d",
-                    "leftValue": "={{ $json.photo.mimetype }}",
-                    "rightValue": "=pdf",
+                    "id": "aa559580-5ec9-4f75-81d9-52bc34d9279f",
+                    "leftValue": "={{ $json.data.mimetype }}",
+                    "rightValue": "pdf",
                     "operator": {
                       "type": "string",
                       "operation": "contains"
@@ -389,12 +365,37 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        740,
+        720,
         -840
       ],
       "id": "ee768942-6707-42f0-b322-48ce71df1249",
       "name": "Webhook",
       "webhookId": "37a374b9-2689-4c87-b132-0644e76a2cb0"
+    },
+    {
+      "parameters": {
+        "formTitle": "Intégrer le PDF ici !",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "data",
+              "fieldType": "file",
+              "multipleFiles": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        720,
+        -1040
+      ],
+      "id": "395796fe-9fb7-429e-8867-7ec775574302",
+      "name": "On form submission1",
+      "webhookId": "0201269b-8d13-448c-9577-70be92ea39b8",
+      "disabled": true
     }
   ],
   "pinData": {},
@@ -404,6 +405,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-05-23T10:08:46.000Z",
-  "versionId": "4094db6b-f49d-484d-9dbb-aa7334e2315d"
+  "updatedAt": "2025-06-05T11:44:19.000Z",
+  "versionId": "d3ba53a4-b90a-4538-8929-e9c6f26cc6cb"
 }
