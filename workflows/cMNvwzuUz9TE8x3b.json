@@ -27,7 +27,7 @@
       "main": [
         [
           {
-            "node": "AI Agent",
+            "node": "Web ?",
             "type": "main",
             "index": 0
           }
@@ -38,7 +38,7 @@
       "main": [
         [
           {
-            "node": "AI Agent1",
+            "node": "Respond to Webhook sans image",
             "type": "main",
             "index": 0
           }
@@ -50,77 +50,6 @@
             "index": 0
           }
         ]
-      ]
-    },
-    "Webhook": {
-      "main": [
-        [
-          {
-            "node": "select newsletter1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "select newsletter1": {
-      "main": [
-        [
-          {
-            "node": "select newsletter_ton1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "select newsletter_ton1": {
-      "main": [
-        [
-          {
-            "node": "Aggregate",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Edit Fields": {
-      "main": [
-        [
-          {
-            "node": "Respond to Webhook",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Aggregate": {
-      "main": [
-        [
-          {
-            "node": "Edit Fields",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook1": {
-      "main": [
-        [
-          {
-            "node": "Postgres",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Microsoft Outlook": {
-      "main": [
-        []
       ]
     },
     "Text Classifier": {
@@ -172,19 +101,13 @@
             "index": 0
           },
           {
-            "node": "AI Agent",
+            "node": "post_creator",
             "type": "ai_outputParser",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent": {
-      "main": [
-        [
+          },
           {
-            "node": "Aggregate1",
-            "type": "main",
+            "node": "optimized_creator",
+            "type": "ai_outputParser",
             "index": 0
           }
         ]
@@ -194,7 +117,7 @@
       "main": [
         [
           {
-            "node": "HTTP Request",
+            "node": "Edit Fields4",
             "type": "main",
             "index": 0
           }
@@ -202,28 +125,6 @@
         [
           {
             "node": "LinkedIn1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Microsoft Outlook1": {
-      "main": [
-        [
-          {
-            "node": "Text Classifier",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Microsoft Outlook3": {
-      "main": [
-        [
-          {
-            "node": "Microsoft Outlook1",
             "type": "main",
             "index": 0
           }
@@ -338,22 +239,325 @@
       "ai_languageModel": [
         [
           {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          },
-          {
             "node": "AI Agent1",
             "type": "ai_languageModel",
             "index": 0
           },
           {
-            "node": "Text Classifier",
+            "node": "Revision Agent",
             "type": "ai_languageModel",
             "index": 0
           },
           {
-            "node": "Revision Agent",
+            "node": "post_creator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "optimized_creator": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "web_search": {
+      "ai_tool": [
+        [
+          {
+            "node": "post_creator",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think": {
+      "ai_tool": [
+        [
+          {
+            "node": "post_creator",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Routing Agent": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sonnet 4 or Opus 4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sonnet 3.7": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Anthropic Routing Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser1": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "Anthropic Routing Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Think1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "web_search1": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        []
+      ]
+    },
+    "post_creator": {
+      "main": [
+        []
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Text Classifier",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model3": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Web ?",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model4": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "post_creator1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate3": {
+      "main": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent4",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent3": {
+      "main": [
+        []
+      ]
+    },
+    "post_creator1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhookavec image1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "image to base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "image to base": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Web ?": {
+      "main": [
+        [
+          {
+            "node": "Aggregate3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent4": {
+      "main": [
+        [
+          {
+            "node": "optimized_creator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "optimized_creator",
             "type": "ai_languageModel",
             "index": 0
           }
@@ -381,8 +585,8 @@
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
       "position": [
-        2380,
-        -680
+        1960,
+        -520
       ],
       "id": "af50740c-d5dd-45de-9034-0da215fcd486",
       "name": "OpenAI2",
@@ -407,8 +611,8 @@
       "type": "n8n-nodes-base.linkedIn",
       "typeVersion": 1,
       "position": [
-        3420,
-        -480
+        3960,
+        -460
       ],
       "id": "a972c0d9-5e74-446a-a70a-64b1cf4dc2a0",
       "name": "LinkedIn",
@@ -438,7 +642,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -240,
+        -1400,
         -260
       ],
       "id": "0ca60051-0a3c-4443-834e-04b8f4c26e17",
@@ -477,7 +681,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        -60,
+        -1180,
         -260
       ],
       "id": "233917ed-2934-41a6-bb4e-75c3116b392c",
@@ -517,7 +721,7 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        1440,
+        1340,
         -260
       ],
       "id": "e61d5319-3ff7-47e5-88f0-6e9ec4633418",
@@ -526,14 +730,14 @@
     {
       "parameters": {
         "person": "caAePooRDZ",
-        "text": "={{ $('Edit Fields1').item.json.post }}\n",
+        "text": "={{ $json.body.verification }}",
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.linkedIn",
       "typeVersion": 1,
       "position": [
-        3180,
-        -260
+        3420,
+        -100
       ],
       "id": "68d0014b-906b-4ae5-a149-9193817d5817",
       "name": "LinkedIn1",
@@ -547,305 +751,16 @@
     },
     {
       "parameters": {
-        "respondWith": "allIncomingItems",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.2,
-      "position": [
-        1040,
-        500
-      ],
-      "id": "92af14fd-16ea-4bb8-801b-c098208f5722",
-      "name": "Respond to Webhook"
-    },
-    {
-      "parameters": {
-        "path": "ccdf707d-2c79-4fce-9826-a0834840e5db",
-        "responseMode": "responseNode",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        -140,
-        500
-      ],
-      "id": "8fa660bf-234f-48c8-add8-65c3558607a8",
-      "name": "Webhook",
-      "webhookId": "ccdf707d-2c79-4fce-9826-a0834840e5db"
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "newsletters",
-          "mode": "list",
-          "cachedResultName": "newsletters"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.6,
-      "position": [
-        100,
-        500
-      ],
-      "id": "1dfd6d2f-2163-4618-9c20-618382004051",
-      "name": "select newsletter1",
-      "credentials": {
-        "postgres": {
-          "id": "vxAuTUizldBQluUp",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "5e6c246a-7e88-4d4c-a517-6a4a79bcc0a8",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2,
-      "position": [
-        -140,
-        680
-      ],
-      "id": "703e9b1e-ea2e-4933-91d5-34dbded7dbb5",
-      "name": "Webhook1",
-      "webhookId": "5e6c246a-7e88-4d4c-a517-6a4a79bcc0a8"
-    },
-    {
-      "parameters": {
-        "operation": "select",
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "newsletters_tons",
-          "mode": "list",
-          "cachedResultName": "newsletters_tons"
-        },
-        "returnAll": true,
-        "options": {}
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.6,
-      "position": [
-        340,
-        500
-      ],
-      "id": "04d4e42d-c8bd-4277-a8b0-e75a441675f0",
-      "name": "select newsletter_ton1",
-      "credentials": {
-        "postgres": {
-          "id": "vxAuTUizldBQluUp",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "assignments": {
-          "assignments": [
-            {
-              "id": "bc13c373-9c06-40a7-8d57-ba7ff09c72d7",
-              "name": "id",
-              "value": "={{ $('select newsletter1').item.json.id }}",
-              "type": "number"
-            },
-            {
-              "id": "dd3a19e7-efa8-4de5-81d9-c19578d998da",
-              "name": "ton",
-              "value": "={{ $('select newsletter1').item.json.ton }}",
-              "type": "number"
-            },
-            {
-              "id": "20e3e27c-1712-424c-a36f-68f19360905a",
-              "name": "image",
-              "value": "={{ $('select newsletter1').item.json.image }}",
-              "type": "boolean"
-            },
-            {
-              "id": "7c289c86-263d-4b3f-8d05-1b5ba149c0d4",
-              "name": "n_lignes",
-              "value": "={{ $('select newsletter1').item.json.n_lignes }}",
-              "type": "number"
-            },
-            {
-              "id": "eb0db00c-f01a-4967-84a5-f3fed7b89731",
-              "name": "list_ton",
-              "value": "={{ JSON.stringify($items(\"select newsletter_ton1\").map(item => ({ description: item.json.description, id: item.json.id }))) }}\n",
-              "type": "array"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.set",
-      "typeVersion": 3.4,
-      "position": [
-        820,
-        500
-      ],
-      "id": "774cca7c-9f7a-4709-82df-cfcb44997024",
-      "name": "Edit Fields"
-    },
-    {
-      "parameters": {
-        "aggregate": "aggregateAllItemData",
-        "destinationFieldName": "=data {{ $json.description }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.aggregate",
-      "typeVersion": 1,
-      "position": [
-        580,
-        500
-      ],
-      "id": "c00022a4-f06d-452d-8657-f7441106bd3b",
-      "name": "Aggregate"
-    },
-    {
-      "parameters": {
-        "operation": "update",
-        "schema": {
-          "__rl": true,
-          "mode": "list",
-          "value": "public"
-        },
-        "table": {
-          "__rl": true,
-          "value": "newsletters",
-          "mode": "list",
-          "cachedResultName": "newsletters"
-        },
-        "columns": {
-          "mappingMode": "defineBelow",
-          "value": {
-            "image": "={{ $json.body.image }}",
-            "ton": "={{ $json.body.ton }}",
-            "n_lignes": "={{ $json.body.n_lignes }}",
-            "create_time": "={{ $now }}",
-            "id": 1
-          },
-          "matchingColumns": [
-            "id"
-          ],
-          "schema": [
-            {
-              "id": "id",
-              "displayName": "id",
-              "required": false,
-              "defaultMatch": true,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "create_time",
-              "displayName": "create_time",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "dateTime",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "ton",
-              "displayName": "ton",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "image",
-              "displayName": "image",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "boolean",
-              "canBeUsedToMatch": true
-            },
-            {
-              "id": "n_lignes",
-              "displayName": "n_lignes",
-              "required": false,
-              "defaultMatch": false,
-              "display": true,
-              "type": "number",
-              "canBeUsedToMatch": true
-            }
-          ],
-          "attemptToConvertTypes": false,
-          "convertFieldsToString": false
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.postgres",
-      "typeVersion": 2.6,
-      "position": [
-        80,
-        680
-      ],
-      "id": "2621906e-4548-4454-9f82-47b5d9b8f90b",
-      "name": "Postgres",
-      "credentials": {
-        "postgres": {
-          "id": "vxAuTUizldBQluUp",
-          "name": "Postgres account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "operation": "sendAndWait",
-        "toRecipients": "festen78@hotmail.com",
-        "subject": "={{ \"Validation Newsletter\\n\" + $json.title }}",
-        "message": "={{ if $json.post }}",
-        "responseType": "freeText",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.microsoftOutlook",
-      "typeVersion": 2,
-      "position": [
-        1980,
-        -200
-      ],
-      "id": "0aaac603-8d8c-4d84-ac73-3a68411be221",
-      "name": "Microsoft Outlook",
-      "webhookId": "37bef2d0-12db-40a8-a5bd-70185db92435",
-      "credentials": {
-        "microsoftOutlookOAuth2Api": {
-          "id": "f0Al1lhrqDCxEOiA",
-          "name": "Microsoft Outlook account"
-        }
-      }
-    },
-    {
-      "parameters": {
         "inputText": "={{ $json.body.comment }}",
         "categories": {
           "categories": [
             {
               "category": "Approuved",
-              "description": "Le post a été relu et accepté tel quel.\nL'humain exprime explicitement ou implicitement son approbation, indiquant qu'aucune modification n'est nécessaire.\n\n| Exemples de phrases courantes:\n\"Ok, ça me va\"\n\"Vas-y envoie\"\n\"C'est bon\"\n\"Pas besoin de changer\"\n\"oui\""
+              "description": "Le post a été relu et accepté tel quel.\nL'humain exprime explicitement ou implicitement son approbation, indiquant qu'aucune modification n'est nécessaire.\n\n| Exemples de phrases courantes:\n\"Ok, ça me va\"\n\"Vas-y envoie\"\n\"C'est bon\"\n\"Pas besoin de changer\"\n\"oui\"\n\"ok\""
             },
             {
               "category": "Declined",
-              "description": "Le post a été relu, mais l'humain demande des modifications avant l'envoi, comme des ajustements, des suppressions de passages, une reformulation, etc.\nCela peut inclure des suggestions de modifications, des reformulations ou des révisions plus importantes.\n\n| Exemples de phrases courantes:\n\"on peut ajuster cette partie\"\n\"il faudrait quelques changements\"\n\"Je voudrais reformuler ça\"\n\"Non, ce n'est pas tout à fait bon\"\n\"Tu peux modifier avant d'envoyer ?\"\n\"Ne dis pas qu'on ne peut pas le faire\"\n\"non\""
+              "description": "Le post a été relu, mais l'humain demande des modifications avant l'envoi, comme des ajustements, des suppressions de passages, une reformulation, etc.\nCela peut inclure des suggestions de modifications, des reformulations ou des révisions plus importantes.\n\n| Exemples de phrases courantes:\n\"on peut ajuster cette partie\"\n\"il faudrait quelques changements\"\n\"Je voudrais reformuler ça\"\n\"Non, ce n'est pas tout à fait bon\"\n\"Tu peux modifier avant d'envoyer ?\"\n\"Ne dis pas qu'on ne peut pas le faire\"\n\"non\"\n\"essaye encore\""
             }
           ]
         },
@@ -854,8 +769,8 @@
       "type": "@n8n/n8n-nodes-langchain.textClassifier",
       "typeVersion": 1,
       "position": [
-        2480,
-        -140
+        2240,
+        -240
       ],
       "id": "960c6f7c-4d50-4011-8ecd-16f258e358a2",
       "name": "Text Classifier"
@@ -863,17 +778,17 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=Post: {{ $('Webhook3').item.json.body.verification }}\nFeedback from human: {{ $('Webhook3').item.json.body.comment }}",
+        "text": "=Post: {{ $json.body.newsletterContent }}\nFeedback from human: {{ $('Webhook3').item.json.body.comment }}",
         "hasOutputParser": true,
         "options": {
-          "systemMessage": "=# Overview\nYou are an expert linkedin post writer. Your job is to take an incoming post and revise it based on the feedback the human submitted.\n\nWrite in French"
+          "systemMessage": "=Tu es un expert en rédaction d'articles LinkedIn. Votre mission consiste à prendre en compte les commentaires reçus et à réviser l'article'.\n\nTa tache est d'analyser le brouillon d'un post et de le transformer en un post ultra pertinent en utilisant le framework AIDA (Attention, Intérêt, Désir, Action). Voici comment procéder:\n\n1. Lire attentivement le brouillon de post LinkedIn fourni:\n<linkedin_draft>\n{{ $json.output }}\n</linkedin_draft>\n\n2. Analyse le contenu en utilisant le framework AIDA:\n- Attention: Identifie ou créé un élément accrocheur pour capter l'attention du lecteur.\n- Intérêt: Repère les points qui suscitent l'intérêt et approfondit les.\n- Désir: Mets en avant les éléments qui créent un désir ou un besoin chez le lecteur.\n- Action: Assure-toi qu'il y a un appel à l'action clair et convaincant.\n\n3. Optimise le post en suivant ces directives :\n- Garde le message principal clair et concis.\n- Utilise un langage persuasif et engageant.\n- Intègre des mots-clés pertinents pour améliorer la visibilité du post.\n- Assure toi que le contenu est adapté à l’audience LinkedIn (professionnels, décideurs, entrepreneurs, etc)\n\n4. Formate le post pour qu’il soit digeste et bien aéré :\n- Utilise des paragraphes courts (2-3 lignes maximum)\n- Intègre des puces pour structurer l’information.\n- Ajoute des sauts de ligne entre les paragraphes pour améliorer la lisibilité.\n- Limite la longueur totale du post à environ 1200 caractères.\n\n** n'utilise pas d'emojis **"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
       "position": [
-        2860,
-        -80
+        2640,
+        -220
       ],
       "id": "2be9e2be-70a0-40e5-9abb-6486cbad3cd4",
       "name": "Revision Agent"
@@ -885,13 +800,13 @@
             {
               "id": "d609dd1f-79b4-4a99-b4a8-15ab4d537466",
               "name": "title",
-              "value": "={{ $('Aggregate1').item.json.data[0].output.title }}",
+              "value": "=titre",
               "type": "string"
             },
             {
               "id": "b3f782b3-1618-420c-835e-fff06f875cf9",
               "name": "post",
-              "value": "={{ $('Aggregate1').item.json.data[0].output.post }}",
+              "value": "={{ $('Aggregate1').item.json.data[0].output }}",
               "type": "string"
             },
             {
@@ -909,7 +824,7 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        1240,
+        1140,
         -260
       ],
       "id": "f110d5d9-a6a0-4d91-a96f-1b09d2a1ff26",
@@ -923,27 +838,11 @@
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
       "typeVersion": 1.2,
       "position": [
-        1920,
+        1820,
         320
       ],
       "id": "2f357d20-b55d-422b-9c60-01166550cbf2",
       "name": "Structured Output Parser"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=Tu es un expert dans la création de post de qualité sur LinkedIn.\nCréé un post LinkedIn sur le thème: {{ $('Webhook2').item.json.body.keywords }}\n{{ $json.description }}\n\nLe post doit etre relatif à des données à jour. Fait des recherche approfondies pour le garantir.\n\nNe dépasse pas {{ $('select newsletter').item.json.n_lignes }} lignes.\n\nUtilise des emojis mais sans en abuser.\n\nVeilles à bien structurer le post en ne négligeant pas les retours à la ligne.\n\nLe but est de susciter l’intérêt du lecteur.",
-        "hasOutputParser": true,
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 1.8,
-      "position": [
-        140,
-        -260
-      ],
-      "id": "0881c3a8-afae-4cf4-9461-b01dce4355cf",
-      "name": "AI Agent"
     },
     {
       "parameters": {
@@ -957,12 +856,11 @@
           "conditions": [
             {
               "id": "ec02246b-f08d-4148-8744-d76fdc28059d",
-              "leftValue": "={{ $('select newsletter').item.json.image }}",
-              "rightValue": "",
+              "leftValue": "={{ $json.body.image }}",
+              "rightValue": "image/png;base64",
               "operator": {
-                "type": "boolean",
-                "operation": "true",
-                "singleValue": true
+                "type": "string",
+                "operation": "contains"
               }
             }
           ],
@@ -973,61 +871,11 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
       "position": [
-        2880,
-        -360
+        2800,
+        -440
       ],
       "id": "5923023a-efb4-42cd-bd13-761721678e43",
       "name": "If1"
-    },
-    {
-      "parameters": {
-        "operation": "sendAndWait",
-        "toRecipients": "festen78@hotmail.com",
-        "subject": "={{ \"Validation Newsletter\\n\" + $json.title }}",
-        "message": "={{ $('If').item.json.post }}",
-        "responseType": "freeText",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.microsoftOutlook",
-      "typeVersion": 2,
-      "position": [
-        2260,
-        -420
-      ],
-      "id": "bb80f43a-11c5-40ef-8637-07d2d3315bc1",
-      "name": "Microsoft Outlook1",
-      "webhookId": "37bef2d0-12db-40a8-a5bd-70185db92435",
-      "credentials": {
-        "microsoftOutlookOAuth2Api": {
-          "id": "f0Al1lhrqDCxEOiA",
-          "name": "Microsoft Outlook account"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "toRecipients": "festen78@hotmail.com",
-        "subject": "verif",
-        "bodyContent": "=<img src=\"{{ $json.url }}\" />",
-        "additionalFields": {
-          "bodyContentType": "html"
-        }
-      },
-      "type": "n8n-nodes-base.microsoftOutlook",
-      "typeVersion": 2,
-      "position": [
-        2080,
-        -420
-      ],
-      "id": "aca1b97e-36d7-467a-ba7c-42a1b624c26b",
-      "name": "Microsoft Outlook3",
-      "webhookId": "9f9c1db2-971d-4646-90cb-b2ec347fe7e7",
-      "credentials": {
-        "microsoftOutlookOAuth2Api": {
-          "id": "f0Al1lhrqDCxEOiA",
-          "name": "Microsoft Outlook account"
-        }
-      }
     },
     {
       "parameters": {
@@ -1044,8 +892,8 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [
-        3180,
-        -480
+        3220,
+        -360
       ],
       "id": "861a1fbd-546c-4be1-ace7-756386392a74",
       "name": "HTTP Request"
@@ -1060,7 +908,7 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        -560,
+        -1660,
         -260
       ],
       "id": "9f979746-abb0-4955-9f7f-d580117141b5",
@@ -1077,8 +925,8 @@
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 2,
       "position": [
-        2160,
-        -140
+        1980,
+        -240
       ],
       "id": "e7c384aa-2838-4c76-8fb5-a6beeb1f2bc2",
       "name": "Webhook3",
@@ -1103,7 +951,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        840,
+        740,
         -260
       ],
       "id": "0e003999-d749-427a-923e-71588ae5e5d2",
@@ -1142,7 +990,7 @@
       "type": "n8n-nodes-base.postgres",
       "typeVersion": 2.6,
       "position": [
-        1020,
+        920,
         -260
       ],
       "id": "95519cd3-8334-4fc7-bfcb-5beeaf915a66",
@@ -1176,8 +1024,8 @@
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
       "position": [
-        2700,
-        -680
+        2140,
+        -520
       ],
       "id": "b594dfc8-59f9-4c05-8512-7178497348bc",
       "name": "image to base64"
@@ -1190,7 +1038,7 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.3,
       "position": [
-        1740,
+        1640,
         -240
       ],
       "id": "f9b4a8e4-44dc-4d6f-b142-cde9f8f3d1cd",
@@ -1204,8 +1052,8 @@
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.3,
       "position": [
-        3220,
-        -680
+        2560,
+        -520
       ],
       "id": "5cbb9715-798a-4dfb-a2a4-172722d3d561",
       "name": "Respond to Webhookavec image"
@@ -1241,8 +1089,8 @@
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
       "position": [
-        2960,
-        -680
+        2360,
+        -520
       ],
       "id": "b759a6ef-bca3-4c1b-b320-d48a83e7b9ac",
       "name": "Edit Fields2"
@@ -1256,8 +1104,8 @@
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2,
       "position": [
-        1640,
-        -600
+        1620,
+        -520
       ],
       "id": "07731abc-22cd-41c2-9b0f-6da7bf10f09f",
       "name": "AI Agent1"
@@ -1266,20 +1114,678 @@
       "parameters": {
         "model": {
           "__rl": true,
+          "value": "claude-3-7-sonnet-20250219",
           "mode": "list",
-          "value": "claude-sonnet-4-20250514",
-          "cachedResultName": "Claude 4 Sonnet"
+          "cachedResultName": "Claude Sonnet 3.7"
         },
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
       "position": [
-        1600,
+        1500,
         320
       ],
       "id": "8e2465d0-be6c-476f-a1aa-64120e555209",
       "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tu es un assistant IA spécialisé dans l'optimisation de posts LinkedIn.\n\nTa tache est d'analyser le brouillon d'un post et de le transformer en un post ultra pertinent en utilisant le framework AIDA (Attention, Intérêt, Désir, Action). Voici comment procéder:\n\n1. Lire attentivement le brouillon de post LinkedIn fourni:\n<linkedin_draft>\n{{ $json.output }}\n</linkedin_draft>\n\n2. Analyse le contenu en utilisant le framework AIDA:\n- Attention: Identifie ou créé un élément accrocheur pour capter l'attention du lecteur.\n- Intérêt: Repère les points qui suscitent l'intérêt et approfondit les.\n- Désir: Mets en avant les éléments qui créent un désir ou un besoin chez le lecteur.\n- Action: Assure-toi qu'il y a un appel à l'action clair et convaincant.\n\n3. Optimise le post en suivant ces directives :\n- Garde le message principal clair et concis.\n- Utilise un langage persuasif et engageant.\n- Intègre des mots-clés pertinents pour améliorer la visibilité du post.\n- Assure toi que le contenu est adapté à l’audience LinkedIn (professionnels, décideurs, entrepreneurs, etc)\n\n4. Formate le post pour qu’il soit digeste et bien aéré :\n- Utilise des paragraphes courts (2-3 lignes maximum)\n- Intègre des puces pour structurer l’information.\n- Ajoute des sauts de ligne entre les paragraphes pour améliorer la lisibilité.\n- Limite la longueur totale du post à environ 1200 caractères.\n\n** n'utilise pas d'emojis **",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        120,
+        -140
+      ],
+      "id": "40fa3cbb-54e8-4d2a-baec-204f91e73610",
+      "name": "optimized_creator"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use this tool to search on the web",
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "=2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', `{\n  \"model\": \"{model}\",\n  \"max_tokens\": 1024,\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{web_search_question}\"\n    }\n  ],\n  \"tools\": [\n    {\n      \"type\": \"web_search_20250305\",\n      \"name\": \"web_search\",\n      \"max_uses\": 5\n    }\n  ]\n}\n`, 'json') }}",
+        "options": {}
+      },
+      "id": "4086efa9-2042-4174-a40b-1984ef398c49",
+      "name": "web_search",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "position": [
+        -840,
+        300
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "4358d486-a51a-4c61-a879-48388a2b35a3",
+      "name": "Think",
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "position": [
+        -600,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.output.prompt }}",
+        "options": {
+          "systemMessage": "=You have access to a web_search tool that allows you to browse the internet for up-to-date information. Here's how you should operate:\n\n1. Website Information:\nFamiliarize yourself with this information about the website you're assisting. Use this as context for user interactions.\n\n2. Web Search Tool:\nYou have access to a web_search tool that can browse the internet. To use it, write the variable {web_search_question}. The tool will return relevant search results. Set the variable {model} to {{ $json.output.model }}.\n\n3. Handling User Queries:\nWhen a user asks a question, follow these steps:\na) Analyze the query to determine if it's related to the website or requires external information.\nb) If the query is about the website, use the provided website information to answer.\nc) If external information is needed, use the web_search tool to find relevant data.\n\n4. Using web_search:\n- Use web_search for factual, current information that isn't provided in the website info.\n- Formulate clear, concise search queries.\n- If the first search doesn't yield useful results, refine your query and search again.\n- Limit searches to a maximum of three per user query to maintain efficiency.\n\n5. Using Think:\n- Using Think tool to think about something. It will not obtain new information or change the database, but just append the thought to the log. Use it when complex reasoning or some cache memory is needed.\n\n6. Formulating Responses:\n- Begin with information from the website if relevant.\n- Incorporate web search results to provide up-to-date, accurate information.\n- Summarize findings concisely and coherently.\n- If you're unsure or can't find reliable information, be honest about limitations.\n\n7. Ethical Considerations:\n- Respect user privacy. Don't ask for or store personal information.\n- Provide factual information. Avoid speculation or unverified claims.\n- If asked about controversial topics, strive for a balanced, neutral response.\n- Don't engage in or encourage illegal activities.\n\n8. Output Format:\nDo not include your thought process, web searches, or any other tags in the final output.\n"
+        }
+      },
+      "id": "f09b003e-5ff8-4b6c-9b90-845c0138993b",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -820,
+        -920
+      ],
+      "typeVersion": 1.9
+    },
+    {
+      "parameters": {},
+      "id": "08f364d5-28f4-4a44-86c3-c15fb12bc898",
+      "name": "Calculator",
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "position": [
+        -520,
+        -700
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Tu es un assistant IA spécialisé dans l'optimisation de posts LinkedIn.\n\nTa tache est d'analyser le brouillon d'un post et de le transformer en un post ultra pertinent en utilisant le framework AIDA (Attention, Intérêt, Désir, Action). Voici comment procéder:\n\n1. Lire attentivement le brouillon de post LinkedIn fourni:\n<linkedin_draft>\n{{ $('Webhook2').item.json.body.keywords }}\n</linkedin_draft>\n\n2. Analyse le contenu en utilisant le framework AIDA:\n- Attention: Identifie ou créé un élément accrocheur pour capter l'attention du lecteur.\n- Intérêt: Repère les points qui suscitent l'intérêt et approfondit les.\n- Désir: Mets en avant les éléments qui créent un désir ou un besoin chez le lecteur.\n- Action: Assure-toi qu'il y a un appel à l'action clair et convaincant.\n\n3. Optimise le post en suivant ces directives :\n- Garde le message principal clair et concis.\n- Utilise un langage persuasif et engageant.\n- Intègre des mots-clés pertinents pour améliorer la visibilité du post.\n- Assure toi que le contenu est adapté à l’audience LinkedIn (professionnels, décideurs, entrepreneurs, etc)\n\n4. Formate le post pour qu’il soit digeste et bien aéré :\n- Utilise des paragraphes courts (2-3 lignes maximum)\n- Intègre des puces pour structurer l’information.\n- Ajoute des sauts de ligne entre les paragraphes pour améliorer la lisibilité.\n- Limite la longueur totale du post à environ 1200 caractères.\n\n5. {{ $json.description }}\n\n** n'utilise pas d'emojis **\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are a **Routing Agent**.\n\nYour task is to analyze user queries and determine the most appropriate model to handle each specific use case.\n\n## Available Models\n\nYou have access to the following models:\n\n1. **claude-sonnet-4-20250514**\n2. **claude-opus-4-20250514**\n\n## Model Strengths\n\n### 1. claude-sonnet-4-20250514\n- Standard decision-making tasks\n- Real-time workflow routing\n- Data validation and processing\n- Pattern recognition in structured data\n- Routine business logic evaluation\n\n### 2. claude-sonnet-4-20250514\n- Complex multi-factor decision scenarios\n- Advanced data analysis requiring deep reasoning\n- Critical business decisions with high impact\n- Complex pattern recognition in unstructured data\n- Strategic workflow optimization\n\n## Output Format\n\nYour output must always be a valid JSON object in the following format:\n\n```json\n{\n  \"prompt\": \"user query goes here\",\n  \"model\": \"selected-model-name\"\n}\n```\n\n- The **\"prompt\"** field should contain the exact query to be sent to the selected model.\n- The **\"model\"** field should contain the model name (one of: claude-sonnet-4-20250514, claude-opus-4-20250514).\n\n**Important:** Only return the JSON object. Do not include any explanations or additional text."
+        }
+      },
+      "id": "f804bc8f-9e5d-4f5b-be23-ecef156f82d7",
+      "name": "Anthropic Routing Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -1180,
+        -920
+      ],
+      "typeVersion": 1.9
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "id",
+          "value": "={{ $json.output.model }}"
+        },
+        "options": {}
+      },
+      "id": "64b36899-4e55-4a26-b01a-d44db551a45d",
+      "name": "Sonnet 4 or Opus 4",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "position": [
+        -820,
+        -700
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "claude-3-7-sonnet-20250219",
+          "cachedResultName": "Claude Sonnet 3.7"
+        },
+        "options": {
+          "maxTokensToSample": 1024
+        }
+      },
+      "id": "e9fadf7d-288a-4121-b49a-82c34818a17c",
+      "name": "Sonnet 3.7",
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "position": [
+        -1200,
+        -700
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n\t\"type\": \"object\",\n\t\"properties\": {\n\t\t\"prompt\": {\n\t\t\t\"type\": \"string\"\n\t\t},\n\t\t\"model\": {\n\t\t\t\"type\": \"string\"\n\t\t}\n\t}\n}"
+      },
+      "id": "bf8e1662-1d70-4442-9f0b-040a73d0c74e",
+      "name": "Structured Output Parser1",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        -1000,
+        -700
+      ],
+      "typeVersion": 1.2
+    },
+    {
+      "parameters": {},
+      "id": "30d837e2-7c3b-46d0-a749-380e40caf45a",
+      "name": "Think1",
+      "type": "@n8n/n8n-nodes-langchain.toolThink",
+      "position": [
+        -620,
+        -700
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "toolDescription": "Use this tool to search on the web",
+        "method": "POST",
+        "url": "https://api.anthropic.com/v1/messages",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "anthropicApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "anthropic-version",
+              "value": "=2023-06-01"
+            },
+            {
+              "name": "content-type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('JSON', `{\n  \"model\": \"{model}\",\n  \"max_tokens\": 1024,\n  \"messages\": [\n    {\n      \"role\": \"user\",\n      \"content\": \"{web_search_question}\"\n    }\n  ],\n  \"tools\": [\n    {\n      \"type\": \"web_search_20250305\",\n      \"name\": \"web_search\",\n      \"max_uses\": 5\n    }\n  ]\n}\n`, 'json') }}",
+        "options": {}
+      },
+      "id": "b64e72a8-3bb3-4b0c-a2ed-0bd6dbfcfef1",
+      "name": "web_search1",
+      "type": "n8n-nodes-base.httpRequestTool",
+      "position": [
+        -400,
+        -700
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You have access to a web_search tool that allows you to browse the internet for up-to-date information. Here's how you should operate:\n\n1. Using web_search if needed:\n- If needed, use web_search for factual, current information that isn't provided in the website info.\n- Formulate clear, concise search queries.\n\n2. Formulating Responses:\n- Incorporate web search results to provide up-to-date, accurate information.\n- Summarize findings concisely and coherently.\n- If you're unsure or can't find reliable information, be honest about limitations.\n\n3. Output Format:\nDo not include your thought process, web searches, or any other tags in the final output.\n\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=Tu es un assistant IA spécialisé dans la création de posts LinkedIn.\n\nTa tache est de créé un post ultra pertinent en utilisant le framework AIDA (Attention, Intérêt, Désir, Action). Voici comment procéder:\n\n1. Lire sujet fourni:\n<sujet>\n{{ $('Webhook2').item.json.body.keywords }}\n</sujet>\n\n2. Analyse le contenu en utilisant le framework AIDA:\n- Attention: Identifie ou créé un élément accrocheur pour capter l'attention du lecteur.\n- Intérêt: Repère les points qui suscitent l'intérêt et approfondit les.\n- Désir: Mets en avant les éléments qui créent un désir ou un besoin chez le lecteur.\n- Action: Assure-toi qu'il y a un appel à l'action clair et convaincant.\n\n3. Optimise le post en suivant ces directives :\n- Garde le message principal clair et concis.\n- Utilise un langage persuasif et engageant.\n- Intègre des mots-clés pertinents pour améliorer la visibilité du post.\n- Assure toi que le contenu est adapté à l’audience LinkedIn (professionnels, décideurs, entrepreneurs, etc)\n\n4. Formate le post pour qu’il soit digeste et bien aéré :\n- Utilise des paragraphes courts (2-3 lignes maximum)\n- Intègre des puces pour structurer l’information.\n- Ajoute des sauts de ligne entre les paragraphes pour améliorer la lisibilité.\n- Limite la longueur totale du post à environ 1200 caractères.\n\n5. {{ $json.description }}\n\n** n'utilise que très peu d'emojis **\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -600,
+        60
+      ],
+      "id": "0881c3a8-afae-4cf4-9461-b01dce4355cf",
+      "name": "post_creator"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-5-haiku-20241022",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 3.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        2120,
+        -40
+      ],
+      "id": "5b051585-a8a0-4162-be74-e4031e7289aa",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-5-haiku-20241022",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 3.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        -940,
+        40
+      ],
+      "id": "9aa9ab05-d085-421b-8f38-f1372ce8d07e",
+      "name": "Anthropic Chat Model3",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\nTu es un assistant IA spécialisé dans la création de posts LinkedIn.\n\nTa tache est de créé un post ultra pertinent en utilisant le framework AIDA (Attention, Intérêt, Désir, Action). Voici comment procéder:\n\n1. Lire sujet fourni:\n<sujet>\n{{ $('Webhook2').item.json.body.keywords }}\n</sujet>\n\n2. Analyse le contenu en utilisant le framework AIDA:\n- Attention: Identifie ou créé un élément accrocheur pour capter l'attention du lecteur.\n- Intérêt: Repère les points qui suscitent l'intérêt et approfondit les.\n- Désir: Mets en avant les éléments qui créent un désir ou un besoin chez le lecteur.\n- Action: Assure-toi qu'il y a un appel à l'action clair et convaincant.\n\n3. Optimise le post en suivant ces directives :\n- Garde le message principal clair et concis.\n- Utilise un langage persuasif et engageant.\n- Intègre des mots-clés pertinents pour améliorer la visibilité du post.\n- Assure toi que le contenu est adapté à l’audience LinkedIn (professionnels, décideurs, entrepreneurs, etc)\n\n4. Formate le post pour qu’il soit digeste et bien aéré :\n- Utilise des paragraphes courts (2-3 lignes maximum)\n- Intègre des puces pour structurer l’information.\n- Ajoute des sauts de ligne entre les paragraphes pour améliorer la lisibilité.\n- Limite la longueur totale du post à environ 1200 caractères.\n\n5. {{ $json.description }}\n\n** n'utilise que très peu d'emojis **\n",
+        "hasOutputParser": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        220,
+        -800
+      ],
+      "id": "fe7928c3-9754-40ec-88b1-03829a69a4ba",
+      "name": "post_creator1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-5-sonnet-20241022",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 3.5 (New)"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        220,
+        -560
+      ],
+      "id": "cec1d915-a319-4498-a7cf-3cc3904f3dae",
+      "name": "Anthropic Chat Model4",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "https://newsapi.org/v2/everything",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "q",
+              "value": "news n8n"
+            },
+            {
+              "name": "sortBy",
+              "value": "popularity"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "034fc4e8157d4d1ab80634f2388a4404"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -600,
+        -160
+      ],
+      "id": "6a7b6002-dce5-4d6c-9dfe-e763f603c5bd",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "articles",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -420,
+        -160
+      ],
+      "id": "3fc2f19e-f62f-4b35-9334-ecfc0fb1c01a",
+      "name": "Split Out1"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "title"
+            },
+            {
+              "fieldToAggregate": "description"
+            },
+            {
+              "fieldToAggregate": "url"
+            },
+            {
+              "fieldToAggregate": "urlToImage"
+            },
+            {
+              "fieldToAggregate": "content"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -260,
+        -260
+      ],
+      "id": "4b9e79eb-83db-49aa-beb5-fb464e828392",
+      "name": "Aggregate3"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Ecrit la meilleur newsletter basée sur l'article en langage simple, avec un naturel, comme un humain le ferait.\nNe dépasse pas 1200 caractères environ.\n** Commence par sélectionner l'image la plus pertinente, et écrit l'URL correspondante. **\n\n{{ $json.title }}\n{{ $json.description }}\n{{ $json.url }}\n{{ $json.urlToImage }}",
+        "options": {
+          "systemMessage": "tu es un expert en création de post de qualité LinkedIn.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        260,
+        320
+      ],
+      "id": "5bbb206d-f826-4fb8-8e1a-3326e0c6b2ce",
+      "name": "AI Agent3"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-7-sonnet-20250219",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 3.7"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        -80,
+        0
+      ],
+      "id": "e901e474-c214-44dd-97f9-702377137e13",
+      "name": "Anthropic Chat Model5",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "=https://www.geeky-gadgets.com/wp-content/uploads/2025/05/n8n-workflow-automation-tips_optimized.jpg",
+        "options": {
+          "response": {
+            "response": {
+              "neverError": true,
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1620,
+        -700
+      ],
+      "id": "8432f4fe-32e2-48ab-ae5e-af03678a2a9b",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "respondWith": "allIncomingItems",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.3,
+      "position": [
+        2220,
+        -700
+      ],
+      "id": "0bc1e04e-84c3-4c23-b3b7-a139f97eb550",
+      "name": "Respond to Webhookavec image1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d609dd1f-79b4-4a99-b4a8-15ab4d537466",
+              "name": "title",
+              "value": "=titre",
+              "type": "string"
+            },
+            {
+              "id": "b3f782b3-1618-420c-835e-fff06f875cf9",
+              "name": "post",
+              "value": "={{ $('Aggregate1').item.json.data[0].output }}",
+              "type": "string"
+            },
+            {
+              "id": "2a9fdab6-121e-4c35-bc4d-33411a9d323c",
+              "name": "image",
+              "value": "=data:image/png;base64,{{ $json.data }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {
+          "ignoreConversionErrors": false
+        }
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2020,
+        -700
+      ],
+      "id": "d573e777-cac7-430b-9474-b5b09fd22678",
+      "name": "Edit Fields3"
+    },
+    {
+      "parameters": {
+        "operation": "binaryToPropery",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1800,
+        -700
+      ],
+      "id": "e5523797-59f5-4506-96d6-2a899ef151b3",
+      "name": "image to base"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "img",
+        "options": {
+          "mimeType": "image/png"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        3520,
+        -580
+      ],
+      "id": "2158421d-3f6f-459b-956f-1775f7cb669e",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "71f81219-50e6-4578-bafd-8725dc622296",
+              "name": "img",
+              "value": "={{ $json.body.image.split(',')[1] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3220,
+        -580
+      ],
+      "id": "7eb7631c-d31d-481a-9625-a875a1b073f2",
+      "name": "Edit Fields4"
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $('Webhook2').item.json.body.keywords[0] }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "Sans Web",
+              "description": "La requête ne nécessite pas une recherche sur le web. Il n'y pas besoin de chercher ou de récupérer des données ou des informations à jour.\nL'utilisateur n'a pas clairement exprimé le besoin d'avoir des données à jour.\n\n| Exemples de phrases courantes que l'utilisateur n'a pas exprimé:\n\"cherche sur le web\"\n\"les dernières news ou données\"\n\"données à jour\"\n\"ces 2 dernières semaines\"\n\"ce mois ci\""
+            },
+            {
+              "category": "Avec Web",
+              "description": "La requête nécessite une recherche sur le web, afin de chercher et récupérer des données ou des informations à jour.\nL'utilisateur à clairement exprimé le besoin d'avoir des données à jour.\n\n| Exemples de phrases courantes:\n\"cherche sur le web\"\n\"les dernières news ou données\"\n\"données à jour\"\n\"ces 2 dernières semaines\"\n\"ce mois ci\""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "typeVersion": 1,
+      "position": [
+        -960,
+        -260
+      ],
+      "id": "8fd7a1ce-0d29-4070-b859-2acb113e72fa",
+      "name": "Web ?",
+      "alwaysOutputData": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=A partir des articles suivant, fait une synthese sur 1200 caracteres environ:\n\n{{ $json.title }}\n{{ $json.description }}\n{{ $json.url }}\n{{ $json.urlToImage }}",
+        "options": {
+          "systemMessage": "=tu es un expert en sélection d'article.\nLes articles sélèctionnés doivent obligatoirement etre en raltion directe avec le sujet de l'utilisateur: {{ $('Webhook2').item.json.body.keywords[0] }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        -120,
+        -440
+      ],
+      "id": "9ff2c315-81e9-4193-8da9-6a69cb3b8ebd",
+      "name": "AI Agent4"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-7-sonnet-20250219",
+          "mode": "list",
+          "cachedResultName": "Claude Sonnet 3.7"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        140,
+        80
+      ],
+      "id": "1bfc3a95-dd08-473f-803e-f8a6f60401bf",
+      "name": "Anthropic Chat Model2",
       "credentials": {
         "anthropicApi": {
           "id": "GfLb586wOGkPPztD",
@@ -1294,7 +1800,7 @@
   },
   "staticData": null,
   "tags": [],
-  "triggerCount": 5,
-  "updatedAt": "2025-06-05T05:31:22.000Z",
-  "versionId": "25d1c4e4-76ed-4cfd-b594-2ee86d07288f"
+  "triggerCount": 4,
+  "updatedAt": "2025-06-08T16:44:37.000Z",
+  "versionId": "2d154f48-d999-4769-b0c2-45a2dac65941"
 }
