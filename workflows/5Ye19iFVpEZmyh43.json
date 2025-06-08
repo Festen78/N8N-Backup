@@ -1,0 +1,702 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Set Prompt & message ID",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram": {
+      "main": [
+        [
+          {
+            "node": "Responce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to/from binary data": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set base64": {
+      "main": [
+        [
+          {
+            "node": "Convert to/from binary data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Together.ai - Generate image": {
+      "main": [
+        [
+          {
+            "node": "Set base64",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Responce",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Prompt & message ID": {
+      "main": [
+        [
+          {
+            "node": "Together.ai - Generate image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "LLM - Variations Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "LLM - Variations Generator",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "LLM Prompt Generator",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Set base",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM - Variations Generator": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LLM Prompt Generator": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set base": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LLM - Variations Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LLM Prompt Generator",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-08T10:45:09.838Z",
+  "id": "5Ye19iFVpEZmyh43",
+  "isArchived": false,
+  "meta": null,
+  "name": "My workflow 11",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "Image Prompt"
+            },
+            {
+              "name": "Message ID",
+              "type": "number"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        180,
+        220
+      ],
+      "id": "81818cff-e4a0-4799-8805-868ecd6f8198",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "97a8bb4e-e9d2-4505-8275-612529907f89",
+              "name": "Responce",
+              "value": "=Success",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1540,
+        200
+      ],
+      "id": "a4bea4fe-7833-4407-a43b-3fb2b0851d32",
+      "name": "Responce"
+    },
+    {
+      "parameters": {
+        "operation": "sendPhoto",
+        "chatId": "={{ $('When Executed by Another Workflow').item.json['Message ID'] }}",
+        "binaryData": true,
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1320,
+        200
+      ],
+      "id": "600a7214-9418-4add-87bf-5496b32c0f59",
+      "name": "Telegram",
+      "webhookId": "f344c2a5-c965-45c3-94af-1f0c89dbb3a6"
+    },
+    {
+      "parameters": {
+        "mode": "jsonToBinary",
+        "convertAllData": false,
+        "sourceKey": "=base64",
+        "options": {
+          "dataIsBase64": true,
+          "fileName": "image.png",
+          "mimeType": "image/png"
+        }
+      },
+      "id": "cc560e3e-7ca6-4d85-a927-074d0df78185",
+      "name": "Convert to/from binary data",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "97a8bb4e-e9d2-4505-8275-612529907f89",
+              "name": "Responce",
+              "value": "=There was an error, try again",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        380
+      ],
+      "id": "022f59f1-1fa5-4ed8-b887-2113630b6c51",
+      "name": "Error Responce"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6a66c349-0b72-45c0-aa8a-09951a9bafbe",
+              "name": "base64",
+              "value": "={{ $json.data[0].b64_json }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        880,
+        200
+      ],
+      "id": "d213c2f0-3f5b-4f77-8add-057b6da95356",
+      "name": "Set base64"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"model\": \"black-forest-labs/FLUX.1-schnell-Free\",\n    \"prompt\": \"{{ $json.Prompt }}\",\n    \"width\": 1024,\n    \"height\": 1024,\n    \"steps\": 4,\n    \"n\": 1,\n    \"response_format\": \"b64_json\"\n   }",
+        "options": {
+          "response": {
+            "response": {}
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        640,
+        220
+      ],
+      "id": "8d366c23-4a3a-4f20-90f9-d95666f3c726",
+      "name": "Together.ai - Generate image",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2dd14b7d-6531-4c29-99a1-8361654d55f9",
+              "name": "Prompt",
+              "value": "={{ $json[\"Image Prompt\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        420,
+        220
+      ],
+      "id": "afe5011f-5305-4149-ba62-54aea34bea2f",
+      "name": "Set Prompt & message ID"
+    },
+    {
+      "parameters": {
+        "content": "**🧠 Workflow for Assistant Agent (Image Generation + Telegram Delivery)**  \nThis workflow is triggered by another workflow and is responsible for generating an image from a prompt using the Together.ai API and sending it to Telegram. Here's a breakdown:\n\n1. **Trigger** – Activated by another workflow.  \n2. **Set Prompt & Message ID** – Extracts and formats the input prompt and associated message ID.  \n3. **Together.ai - Generate Image** – Sends the prompt to Together.ai to generate an image.  \n   - **Success ➝** Continue with base64 setup.  \n   - **Error ➝** Route to error response.  \n4. **Set base64** – Stores the base64-encoded image.  \n5. **Convert to/from binary data** – Converts JSON base64 string to binary format for Telegram compatibility.  \n6. **Telegram** – Sends the image via `sendPhoto` to the specified chat.  \n7. **Response** – Final confirmation/response of the process.  \n8. **Error Response** – Handles failures from Together.ai.",
+        "height": 700,
+        "width": 2060
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        140,
+        -140
+      ],
+      "id": "ad4b5f92-ad2d-41a2-b109-d17939053d67",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        200,
+        1020
+      ],
+      "id": "660c9233-8cde-43c8-8084-8f4d7394d043",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "014f8eb5-5855-4864-94b5-8c20d818939e",
+              "name": "prompt",
+              "value": "=3D ultra realistic of {{ $json.response.text }} 9:16 ratio, 4K",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1480,
+        1020
+      ],
+      "id": "1b9f49f5-9476-4827-b057-2adbc5ae3326",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "schemaType": "manual",
+        "inputSchema": "{\n  \"type\": \"array\",\n  \"items\": {\n    \"type\": \"object\",\n    \"properties\": {\n      \"animal\": { \"type\": \"string\" },\n      \"style\": { \"type\": \"string\" }\n    },\n    \"required\": [\"animal\", \"style\"]\n  }\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.2,
+      "position": [
+        800,
+        1180
+      ],
+      "id": "80d5a6a7-0a7f-425d-a70b-4bae67d7bd67",
+      "name": "Structured Output Parser"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        880,
+        1020
+      ],
+      "id": "b58c7c9e-9caf-41cd-83aa-5e50b559a219",
+      "name": "Split Out"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.together.xyz/v1/images/generations",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {}
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"model\": \"black-forest-labs/FLUX.1-schnell-Free\",\n  \"prompt\": {{ JSON.stringify($json.prompt) }},\n  \"width\": 576,\n  \"height\": 1024,\n  \"steps\": 4,\n  \"n\": 1,\n  \"response_format\": \"b64_json\",\n  \"stop\": []\n}",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1900,
+        1040
+      ],
+      "id": "631697ed-6b87-46ed-9330-9fd6c2d8746e",
+      "name": "HTTP Request",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1680,
+        1020
+      ],
+      "id": "16dff7d3-005d-48a5-8d74-94131aee68b0",
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "base64",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2320,
+        1040
+      ],
+      "id": "215d89bf-03f0-4c31-b940-9486c07a22da",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "amount": 10
+      },
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2520,
+        1040
+      ],
+      "id": "afd20da5-c3a8-4df0-8c03-7bcff9397229",
+      "name": "Wait",
+      "webhookId": "74276acc-e402-42a8-9cd5-dffc3cb51c58"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "create 6 different variations of the following\n\nAnimal: hamster\nStyle: roman armor, greek mythology\n\nChange the animal and the styles\n",
+        "hasOutputParser": true
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        460,
+        1020
+      ],
+      "id": "57db7153-9bbb-48c9-a112-48f13e475774",
+      "name": "LLM - Variations Generator"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Animal: humanoid buff Hedgehog\nStyle: sifi, modern milsim, Sonic the Hedgehog theme",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=# Overview  \nYou are a master image prompt generator specialized in crafting detailed, high-quality prompts for advanced image models like Flux. Your task is to generate vivid, well-structured prompts that accurately depict an animal dressed in a specified style, with a matching background that complements the theme.\n\n## Instructions:  \n- Clearly describe the animal's appearance, including fur, feathers, or scales.  \n- Specify the outfit and accessories that reflect the given style, ensuring they fit naturally.  \n- Include details about the background that reinforce the style, creating a cohesive scene.  \n- Use rich, descriptive language to enhance visual fidelity.  \n- Avoid generic terms—opt for precise, imaginative descriptions that maximize prompt effectiveness.  \n- Never output quotation marks (\"\") or newlines (\\n)\n\n## Example  \n- Input:  \nAnimal: Fox  \nStyle: Cyberpunk\n\n- Output:  \nA sleek red fox with vibrant fur and piercing blue cybernetic eyes, wearing a futuristic black leather jacket with neon blue accents and glowing circuitry patterns. A high-tech visor covers one eye, displaying holographic data. The fox stands confidently on a rain-slicked city street illuminated by neon signs in Japanese and English. Hovering drones and bustling pedestrians in cybernetic attire add depth to the scene, while distant flying cars streak through the dark, misty skyline."
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.5,
+      "position": [
+        1120,
+        1020
+      ],
+      "id": "df0b2248-4aa8-449e-afc0-6aab0e53241a",
+      "name": "LLM Prompt Generator"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "31a2b3db-78a0-41b8-815f-ffb6c572279d",
+              "name": "base64",
+              "value": "={{ $json.body.data[0].b64_json }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2120,
+        1040
+      ],
+      "id": "03567409-08ee-4d59-8feb-459f61a8cc67",
+      "name": "Set base"
+    },
+    {
+      "parameters": {
+        "content": "**⚙️ Test Workflow – Image Generation Loop with LLM Variations**\n\nThis workflow generates multiple image variations from prompt ideas created by an LLM, and processes them in a loop. Ideal for bulk creative generation/testing.\n\n1. **Trigger: When clicking ‘Test workflow’** – Manually initiated by user.\n2. **LLM Variations Generator** – Generates multiple prompt ideas using a language model.\n3. **Split Out** – Breaks the output into individual prompts for processing.\n4. **LLM Prompt Generator** – Formats each variation into a proper image generation prompt.\n5. **Edit Fields** – Manual editing or setup before generation.\n6. **Loop Over Items** – Iterates through each prompt.\n    - For each:\n      7. **HTTP Request** – Sends the prompt to Together.ai to generate an image.\n      8. **Set base** – Stores the base64 image output.\n      9. **Convert to File** – Converts base64 to a downloadable image file.\n     10. **Wait** – Delays next iteration to control rate or API limits.\n11. **Structured Output Parser** *(optional)* – Parses structured response (if needed).\n12. **OpenRouter Chat Model** *(optional)* – Adds advanced AI logic to refine prompts or parse outputs.",
+        "height": 940,
+        "width": 2820
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        140,
+        580
+      ],
+      "id": "7a4c0399-f211-433d-b9f4-d24a40abaa7e",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-5-haiku-20241022",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 3.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        460,
+        1180
+      ],
+      "id": "a1efa59c-e65c-45fc-9794-c0a631f21263",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-5-haiku-20241022",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 3.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1220,
+        1240
+      ],
+      "id": "53284adf-792d-4354-9bb2-be8f76ddb931",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-08T10:48:20.000Z",
+  "versionId": "4ae6b2e3-4bde-4ced-b856-5e846efe7018"
+}
