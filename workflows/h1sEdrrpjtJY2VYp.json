@@ -1,0 +1,442 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "NSFW Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Status": {
+      "main": [
+        [
+          {
+            "node": "Is Ready?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Fetch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is Ready?": {
+      "main": [
+        [
+          {
+            "node": "Fetch Result",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Submit Request": {
+      "main": [
+        [
+          {
+            "node": "Fetch Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Fetch Result": {
+      "main": [
+        [
+          {
+            "node": "Success",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "NSFW Filter": {
+      "main": [
+        [
+          {
+            "node": "400 Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Submit Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "400 Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "NSFW Filter",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "NSFW Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-08T16:01:09.377Z",
+  "id": "h1sEdrrpjtJY2VYp",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "My workflow 12",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai_text_to_image_generator",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "7687d676-13fd-4202-8682-139217926e5b",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "position": [
+        -40,
+        -60
+      ],
+      "webhookId": "5cca11bb-eaea-4c3a-86f7-16d5802b6ac8",
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "url": "=https://queue.fal.run/fal-ai/flux/requests/{{ $json.request_id }}/status",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "e56442f0-9efd-418f-b231-38c18241856f",
+      "name": "Fetch Status",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        700,
+        -60
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": 1
+      },
+      "id": "2d68e22c-7a0a-4984-b65c-ccb58397f5f0",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "position": [
+        1080,
+        120
+      ],
+      "webhookId": "150069ed-885b-497f-a32a-09e7088136e6",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "ac50759b-e2f3-4efd-a2af-f28b7d209b45",
+              "operator": {
+                "name": "filter.operator.equals",
+                "type": "string",
+                "operation": "equals"
+              },
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "COMPLETED"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "46624773-50ce-4bd2-a021-3d8b2dcdb0cc",
+      "name": "Is Ready?",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        880,
+        -60
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://queue.fal.run/fal-ai/flux/schnell",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\"prompt\": \"{{ $json.body.prompt }}\"}",
+        "options": {}
+      },
+      "id": "36f3a103-dc9e-43e2-92be-2bdd8f991b67",
+      "name": "Submit Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        500,
+        -60
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.response_url }}",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {}
+      },
+      "id": "4d498905-319c-4da2-b1d1-99a87b2714f3",
+      "name": "Fetch Result",
+      "type": "n8n-nodes-base.httpRequest",
+      "position": [
+        1080,
+        -60
+      ],
+      "typeVersion": 4.2,
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n{\n  \"error\": \"Prompt is in violation of terms of use. Please try again.\",\n  \"result\": []\n}\n}}",
+        "options": {
+          "responseCode": 400
+        }
+      },
+      "id": "2497eb6d-8d6d-4124-a295-7bb47d36b0b2",
+      "name": "400 Error",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        500,
+        300
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{\n{\n  \"error\": null,\n  \"result\": $json.images\n}\n}}",
+        "options": {}
+      },
+      "id": "b291201d-6bbe-4d63-a3fa-50af571126eb",
+      "name": "Success",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "position": [
+        1300,
+        -60
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "inputText": "={{ $json.body.prompt }}",
+        "categories": {
+          "categories": [
+            {
+              "category": "NSFW",
+              "description": "text is NSFW"
+            },
+            {
+              "category": "SFW",
+              "description": "text is SFW"
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "id": "aae60a63-79ad-4369-ac41-abad708dcd3c",
+      "name": "NSFW Filter",
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "position": [
+        140,
+        -60
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Receives text prompt through a webhook endpoint and filters the prompt for inappropriate content using AI moderation",
+        "height": 460,
+        "width": 540
+      },
+      "id": "77944a5b-9294-489d-8212-33b7c335353c",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -80,
+        -220
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-3-5-haiku-20241022",
+          "mode": "list",
+          "cachedResultName": "Claude Haiku 3.5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        160
+      ],
+      "id": "b3726689-3752-4fed-b279-15c0d0bf68a9",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "GfLb586wOGkPPztD",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -120,
+        340
+      ],
+      "id": "4b72ae68-7904-4065-a628-04456b72058c",
+      "name": "When chat message received",
+      "webhookId": "fe87ffb1-7a92-428c-b62d-a78b1ecab533"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "body": {
+            "prompt": "A person sitting under a moonlit sky",
+            "styleId": "1"
+          },
+          "query": {},
+          "params": {},
+          "headers": {
+            "host": "[insert your host]",
+            "accept": "*/*",
+            "origin": "http://localhost:3000",
+            "pragma": "no-cache",
+            "referer": "http://localhost:3000/",
+            "priority": "u=1, i",
+            "sec-ch-ua": "\"Chromium\";v=\"134\", \"Not:A-Brand\";v=\"24\", \"Google Chrome\";v=\"134\"",
+            "x-real-ip": "10.255.0.2",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundary6KvXTaJpPc6UJTId",
+            "cache-control": "no-cache",
+            "content-length": "268",
+            "sec-fetch-dest": "empty",
+            "sec-fetch-mode": "cors",
+            "sec-fetch-site": "cross-site",
+            "accept-encoding": "gzip, deflate, br, zstd",
+            "accept-language": "pl-PL,pl;q=0.9,en-US;q=0.8,en;q=0.7,fr;q=0.6,la;q=0.5,de;q=0.4,sk;q=0.3,nl;q=0.2,mt;q=0.1",
+            "x-forwarded-for": "10.255.0.2",
+            "sec-ch-ua-mobile": "?0",
+            "x-forwarded-host": "[insert your host]",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "sec-ch-ua-platform": "\"macOS\"",
+            "x-forwarded-server": "5f641c71d311"
+          },
+          "webhookUrl": "https://[insert your host]/webhook/ai_text_to_image_generator",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-08T16:01:09.377Z",
+  "versionId": "04f81e30-c23c-41f3-b066-43d7525b5705"
+}
