@@ -1,0 +1,544 @@
+{
+  "active": false,
+  "connections": {
+    "Tavily": {
+      "ai_tool": [
+        [
+          {
+            "node": "LinkedIn Post Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GPT_4.1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "LinkedIn Post Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Image Prompt Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LinkedIn Post Agent": {
+      "main": [
+        [
+          {
+            "node": "Image Prompt Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Image Prompt Agent": {
+      "main": [
+        [
+          {
+            "node": "Generate Image",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Image": {
+      "main": [
+        [
+          {
+            "node": "Convert to Binary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to Binary": {
+      "main": [
+        [
+          {
+            "node": "Send Post",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "LinkedIn Post Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Generate Image1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Image1": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-16T07:08:33.971Z",
+  "id": "MCrTjtohVjRHRKMJ",
+  "isArchived": false,
+  "meta": null,
+  "name": "Newsletter Tavily OpenAI Image",
+  "nodes": [
+    {
+      "parameters": {
+        "toolDescription": "Use this tool to search the web. ",
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n  \"query\": \"{searchTerm}\",\n  \"topic\": \"general\",\n  \"search_depth\": \"advanced\",\n  \"chunks_per_source\": 3,\n  \"max_results\": 1,\n  \"time_range\": null,\n  \"days\": 7,\n  \"include_answer\": true,\n  \"include_raw_content\": false,\n  \"include_images\": false,\n  \"include_image_descriptions\": false,\n  \"include_domains\": [],\n  \"exclude_domains\": []\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "searchTerm",
+              "description": "What the user is searching for. "
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        1120,
+        380
+      ],
+      "id": "58258f4e-ccc9-4f62-b954-4bd3ba573d03",
+      "name": "Tavily",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "OOlkmcaxOlUyKT0V",
+          "name": "n8n credential"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4.1",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        1260,
+        380
+      ],
+      "id": "7590c381-610e-4c68-8441-f1ccd9939118",
+      "name": "GPT_4.1",
+      "credentials": {
+        "openRouterApi": {
+          "id": "9axkEK1RzTaPyAL7",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "person": "=",
+        "shareMediaCategory": "IMAGE",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.linkedIn",
+      "typeVersion": 1,
+      "position": [
+        2620,
+        100
+      ],
+      "id": "f0c3d061-f8ae-4ee0-bced-eb4e5447dc3b",
+      "name": "LinkedIn",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Topic of Post: {{ $json['Topic of Post'] }}\n\nTarget Audience: {{ $json['Target Audience'] }}",
+        "options": {
+          "systemMessage": "=# Overview\nYou are an AI agent specialized in creating professional, educational, and engaging LinkedIn posts based on any topic provided by the user.\n\n## Objectives:\nAlways begin by conducting a real-time search using the Tavily tool to gather the most accurate, up-to-date information on the topic. The post should be written to appeal to the provided target audience.\n\nBased on your research, generate a well-structured LinkedIn post that:\n- Starts with an engaging hook\n- Professional in tone\n- Clear and easy to read\n- Educational and insightful\n- Light on emojis (use only when highly relevant and minimal)\n- Includes proper source attribution (e.g., “according to [source]”)\n- Contains relevant hashtags to improve visibility\n- Ends with a clear call to action (e.g., asking for thoughts, feedback, or shares)\n\n## Output Instructions:\n- Your ONLY output should be the final LinkedIn post text.\n- Do not include explanations, notes, or anything beyond the post itself.\n\n## Example Workflow:\n1) Receive a topic (e.g., “The ROI of warehouse automation”)\n2) Use Tavily to search and gather recent information or case studies\n3) Draft a LinkedIn post using that research\n4) Format it with source citations, clean structure, optional hashtags, and a call to action"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        1100,
+        100
+      ],
+      "id": "44d7a343-850f-433f-b8df-c42ea0813321",
+      "name": "LinkedIn Post Agent"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=LinkedIn Post: \n{{ $json.output }}",
+        "options": {
+          "systemMessage": "=# Overview\nYou are an AI agent that transforms LinkedIn posts into visual prompt descriptions for generating graphic marketing materials. These visuals are designed to be paired with the post on LinkedIn, helping communicate the message in a visually engaging, brand-aligned way.\n\n## Objective:\n- Read and analyze the given LinkedIn post.\n- Identify the main message, insight, or takeaway from the post.\n- Create a clear and compelling graphic prompt that can be used with a text-to-image generator.\n- The result should be a marketing-style graphic — not a literal scene or hyperrealistic photo — that:\n1) Visually supports or illustrates the key idea of the post\n2) Looks appropriate for use in a professional LinkedIn feed\n3) Feels polished, modern, and engaging\n\n## Output Instructions:\n- Output only the final image prompt. Do not output quotation marks.\n- Do not repeat or rephrase the LinkedIn post.\n- Do not add any explanations or extra content — just the image prompt.\n- Never leave things blank like \"Header area reserved for customizable callout text\"\n- Output numeric stats when available in the original post\n\n## Style Guidelines:\n- Think like a brand designer or marketing creative.\n- Visuals may include: text, charts, icons, abstract shapes, overlays, modern illustrations, motion-like effects, bold typography elements (described, not rendered), or metaphorical concepts.\n- You can mention layout suggestions (e.g., \"split screen design,\" \"header with bold title and subtle background illustration\").\n- Assume the output will be generated using AI image tools — your prompt should guide those tools effectively.\n\n## Example Prompt Format:\nA modern flat-style graphic showing a human brain connected to mechanical gears, representing the fusion of AI and automation. Minimalist background, soft gradients, clean sans-serif text placement space at the top.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.9,
+      "position": [
+        1540,
+        100
+      ],
+      "id": "8f96d836-ec81-4a90-b8c9-ea51cca5f9e3",
+      "name": "Image Prompt Agent"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer "
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "gpt-image-1"
+            },
+            {
+              "name": "prompt",
+              "value": "={{ $json.output }}"
+            },
+            {
+              "name": "size",
+              "value": "1024x1024"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1980,
+        100
+      ],
+      "id": "9f706544-b301-4fe3-8129-a4db94950419",
+      "name": "Generate Image"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        2180,
+        100
+      ],
+      "id": "deeab9c5-3469-4335-bc43-8b51bf91cde7",
+      "name": "Convert to Binary"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('On form submission').item.json.Email }}",
+        "subject": "Your LinkedIn Post is Here!",
+        "emailType": "text",
+        "message": "=Here you go Nate!\n\n\n{{ $('LinkedIn Post Agent').item.json.output }}",
+        "options": {
+          "appendAttribution": false,
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          }
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2440,
+        100
+      ],
+      "id": "86598f63-174a-49a2-aa81-360f87e7b746",
+      "name": "Send Post",
+      "webhookId": "20f8ef41-7183-41f1-9104-a6a042b807ce",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "vp5aoC4CS4nxk99T",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "formTitle": "LinkedIn Post Generator",
+        "formDescription": "Fill out these fields and you'll have a full LinkedIn post ready to go in a minute. ",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "placeholder": "name@example.com",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Topic of Post",
+              "placeholder": "Robots",
+              "requiredField": true
+            },
+            {
+              "fieldLabel": "Target Audience",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.2,
+      "position": [
+        820,
+        100
+      ],
+      "id": "2cc43be3-4c9f-46bb-a047-2941aeb6950f",
+      "name": "On form submission",
+      "webhookId": "359fa996-5531-40ae-be37-4a6e136952e2"
+    },
+    {
+      "parameters": {
+        "content": "# Content Generation",
+        "height": 260,
+        "width": 380
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        0
+      ],
+      "id": "717474d4-4ee3-47d0-9894-847a89fe5709",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "content": "# Generate Image\n",
+        "height": 260,
+        "width": 460,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1900,
+        0
+      ],
+      "id": "3a45e5c9-103a-43ec-be8d-d3c55a42b8c6",
+      "name": "Sticky Note1"
+    },
+    {
+      "parameters": {
+        "content": "# Post",
+        "height": 260,
+        "width": 400,
+        "color": 2
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        2380,
+        0
+      ],
+      "id": "cac01ca4-8103-41d3-a929-6998f882e2cd",
+      "name": "Sticky Note3"
+    },
+    {
+      "parameters": {
+        "content": "# Image Prompt\n",
+        "height": 260,
+        "width": 440,
+        "color": 3
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        0
+      ],
+      "id": "dbc1cfab-5379-413b-83e8-8e5b36cef432",
+      "name": "Sticky Note4"
+    },
+    {
+      "parameters": {
+        "content": "# Form Trigger",
+        "height": 260,
+        "width": 280,
+        "color": 4
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        740,
+        0
+      ],
+      "id": "b6c31a4a-8eb7-4262-8809-22b4c0e0c341",
+      "name": "Sticky Note5"
+    },
+    {
+      "parameters": {
+        "content": "## Tool & Model",
+        "height": 240,
+        "width": 380,
+        "color": 7
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        280
+      ],
+      "id": "4fd2d118-4e4d-4686-9292-b293add1b019",
+      "name": "Sticky Note2"
+    },
+    {
+      "parameters": {
+        "content": "# 🛠️ Setup Guide  \n**Author:** [Nate Herk](https://www.youtube.com/@nateherk)\n\nThis guide will walk you through the four steps to fully configure your automation workflow using OpenRouter, Tavily, OpenAI, and either Gmail or LinkedIn.\n\n---\n\n## ✅ Step 1: Set Up OpenRouter Credentials  \n1. Go to [openrouter.ai](https://openrouter.ai/)  \n2. Create an account and generate your API key  \n3. In n8n, create a new credential and paste in your OpenRouter API key for use with chat models  \n\n---\n\n## ✅ Step 2: Add Your Tavily Credential  \n1. Visit [tavily.com](https://tavily.com/)  \n2. Sign up and retrieve your API key  \n3. Create a new HTTP credential in n8n and input your Tavily key for web search capabilities  \n\n---\n\n## ✅ Step 3: Configure OpenAI for Image Generation  \n1. Go to the [OpenAI API Platform](https://platform.openai.com/docs/overview)  \n2. Generate an API key  \n3. In n8n, create a credential and use it in your HTTP Request node for generating images  \n\n---\n\n## ✅ Step 4: Connect Gmail or LinkedIn  \nTo distribute your AI-generated content, connect one of the following:  \n- **Gmail:** Use OAuth2 credentials and the Gmail node to send content via email  \n- **LinkedIn:** Use OAuth2 or an HTTP node (with access token) to post content directly to your feed  \n\n---\n\nNow you're ready to run your workflow. Happy automating!\n",
+        "height": 980,
+        "width": 720
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f930ed1f-8cb6-4e81-a728-2d1445f0ad05",
+      "name": "Sticky Note6"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        840,
+        740
+      ],
+      "id": "5f28e6dc-8a0a-40d1-8c2e-3c62cd5c1444",
+      "name": "When clicking ‘Test workflow’"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "data[0].b64_json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1280,
+        740
+      ],
+      "id": "208f8fcc-7c55-41ee-908f-802266423223",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/images/generations",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer YOUR API KEY"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "gpt-image-1"
+            },
+            {
+              "name": "prompt",
+              "value": "A cute baby sea otter"
+            },
+            {
+              "name": "size",
+              "value": "1024x1024"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        1060,
+        740
+      ],
+      "id": "8d02dd75-fa16-4249-9f58-f108cf7a525e",
+      "name": "Generate Image1"
+    },
+    {
+      "parameters": {
+        "content": "# Generation Image -> Binary Building Block",
+        "height": 380,
+        "width": 760,
+        "color": 5
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        740,
+        600
+      ],
+      "id": "aa6cdd41-e67f-4b45-acd3-03fb4f7fa437",
+      "name": "Sticky Note7"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-18T05:50:14.000Z",
+  "versionId": "e3a1a9cf-d916-4ff4-9893-927b5d4e98c1"
+}
