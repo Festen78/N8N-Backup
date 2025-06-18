@@ -1,0 +1,502 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Basic LLM Chain",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Basic LLM Chain": {
+      "main": [
+        [
+          {
+            "node": "Set output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set output": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-16T13:18:51.724Z",
+  "id": "TPeDwKgNMMYlnPRs",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Veille concurentielle",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -580,
+        60
+      ],
+      "id": "c962c615-7f36-47d1-bea6-cd960d573e5e",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are tasked with analyzing a competitor using publicly available data. Your objective is to create a detailed competitive intelligence report that follows strict ethical guidelines and focuses on key business metrics.\nAnalyze the following competitor: {{ $json.Site }}\nResearch and document these key aspects:\n*Brand positioning and market messaging\n*Product portfolio and recent launches\n*Pricing structure and recent adjustments\n*Client base and notable wins\n*Investment rounds and financial status\n*Organizational growth and hiring trends\n\nFor each focus area:\n*Utilize only public information from credible sources\n*Prioritize data from the past 12 months\n*Include specific metrics and timestamps\n*Note any information gaps clearly\n\nAcceptable sources include:\n*Official company websites\n*Press releases\n*News articles\n*Industry reports\n*Social media profiles\n*Job boards\n*Financial filings\n\nStructure your report with:\n*Clear section headers\n*Bullet points for key findings\n*Timestamps for all updates\n*Data visualizations where relevant\n\n\n*Only use publicly accessible information\n*Avoid speculation or unverified claims\n*Document all information sources\n*Maintain ethical research standards",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        220,
+        -160
+      ],
+      "id": "d1790b5f-0acd-4fa7-bcc7-a781c9562219",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": "perplexity/llama-3.1-sonar-small-128k-online",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        220,
+        40
+      ],
+      "id": "c8bd5475-3ae6-4221-927e-1fb86f171d5a",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "9axkEK1RzTaPyAL7",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "=Find news from the last month about: {{ $json.Nom }}, {{ $json.Site }}"
+            },
+            {
+              "name": "search_depth",
+              "value": "advanced"
+            },
+            {
+              "name": "topic",
+              "value": "news"
+            },
+            {
+              "name": "max_result",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        240,
+        200
+      ],
+      "id": "30e2999a-0772-4a3f-815a-cd2a6627c36a",
+      "name": "HTTP Request1",
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "YRXG8VSkpCjUC7Mn",
+          "name": "Tavily"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        540,
+        100
+      ],
+      "id": "205e75be-3280-48ce-906b-238a48adeb19",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fd74fd47-472b-4fed-b741-fdcd86daa0d5",
+              "name": "general_info",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            },
+            {
+              "id": "b501db53-7d29-4e92-9121-86ee16264044",
+              "name": "news",
+              "value": "={{ $json.results }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        740,
+        100
+      ],
+      "id": "1f7cdead-83d6-4d40-8685-8180f0f7c5f4",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=<inputs>\n1. Research data about the target {{ $json.general_info }}\n2. Recent news articles {{ $json.news }}\n</inputs>",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=You are tasked with analyzing two inputs and formatting them into a standardized intelligence report.\n\n<inputs>\n1. Research data about the target \n2. Recent news articles \n</inputs>\n\n<ouput>\nFormat your analysis using these exact headers:\n\n## Market Position\n- Current status\n- Competitive advantage\n- Target audience\n\n## Product Porfolio\n- Current offerings\n- Recent launches\n- Pipeline developments\n\n## Pricing Strategy\n- Market positioning\n- Recent changes\n- Promotional activities\n\n## Corporate updates\n- Leadership changes\n- Strategic initiatives\n- Company announcements\n\n## Financial Status\n- Funding rounds\n- Revenue indicators\n- Market performance\n\n## Growth Metrics\n- Team size\n- Market expansion\n- Customer acquisision\n</output>\n\n<rules>\n- Include dates for all developments\n- Note information gaps\n- Use bullet points for findings\n- Bold significant metrics\n- Write in French\n</rules>\n\n"
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        960,
+        100
+      ],
+      "id": "8675d353-9fa9-40f5-996c-c458bdc5cb42",
+      "name": "Basic LLM Chain"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        960,
+        320
+      ],
+      "id": "5fe61e60-0cef-436f-aaed-9742e242e2b0",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "1IHSjtWm70t1H313nJXKZFp3OhTTmg_Pq-PwyFRwPluM",
+          "mode": "list",
+          "cachedResultName": "Veille concurentielle",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IHSjtWm70t1H313nJXKZFp3OhTTmg_Pq-PwyFRwPluM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Recherche",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IHSjtWm70t1H313nJXKZFp3OhTTmg_Pq-PwyFRwPluM/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [
+            "Nom"
+          ],
+          "schema": [
+            {
+              "id": "Nom",
+              "displayName": "Nom",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Site",
+              "displayName": "Site",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "2025-01-15",
+              "displayName": "2025-01-15",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "text",
+              "displayName": "text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {
+          "handlingExtraData": "insertInNewColumn"
+        }
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1540,
+        100
+      ],
+      "id": "a1826c86-5d1d-4a1f-9d2b-c4013f1ea8ba",
+      "name": "Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G9J66r6X95onAdYf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "b2e1f7fb-ad92-46a6-9f32-e66697354b6d",
+              "name": "Nom",
+              "value": "={{ $('Google Sheets1').item.json.Nom }}",
+              "type": "string"
+            },
+            {
+              "id": "c38715bf-f299-4927-8889-9c220d03bc5a",
+              "name": "Site",
+              "value": "={{ $('Google Sheets1').item.json.Site }}",
+              "type": "string"
+            },
+            {
+              "id": "2ae2c4e2-4f0f-44a5-b891-c5200ea0d0cc",
+              "name": "={{ $now.format('dd/LL/yyyy') }}",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1320,
+        100
+      ],
+      "id": "aeaf0d83-eb4c-438c-b31d-d471bddec286",
+      "name": "Set output"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1IHSjtWm70t1H313nJXKZFp3OhTTmg_Pq-PwyFRwPluM",
+          "mode": "list",
+          "cachedResultName": "Veille concurentielle",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IHSjtWm70t1H313nJXKZFp3OhTTmg_Pq-PwyFRwPluM/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Recherche",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1IHSjtWm70t1H313nJXKZFp3OhTTmg_Pq-PwyFRwPluM/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -100,
+        -40
+      ],
+      "id": "7902eaf8-672d-472b-a043-9229409fd65c",
+      "name": "Google Sheets1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G9J66r6X95onAdYf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"company_name\": \"https://www.linkedin.com/in/herve-bod-psyko-corp-33aa20b2\",\n  \"limi\": 5\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        80,
+        380
+      ],
+      "id": "f1120926-8c79-4946-838e-fffb8b6e320c",
+      "name": "HTTP Request",
+      "disabled": true
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-18T05:45:24.000Z",
+  "versionId": "f6483ca7-954b-46d2-8179-84af00e13fd1"
+}
