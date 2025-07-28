@@ -1,0 +1,451 @@
+{
+  "active": false,
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Book Appointment": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Appointment": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Appointments": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Cancel Appointment": {
+      "ai_tool": [
+        [
+          {
+            "node": "Calendar Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Helper Agent": {
+      "main": [
+        [
+          {
+            "node": "Calendar Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calculator": {
+      "ai_tool": [
+        [
+          {
+            "node": "Helper Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Calendar Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Helper Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Calendar Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook1": {
+      "main": [
+        [
+          {
+            "node": "Helper Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-03T15:34:49.535Z",
+  "id": "FlHdMH6eZrZFIEYL",
+  "isArchived": false,
+  "meta": null,
+  "name": "Voice AI Receptionist",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "smartpulse-smartInvoice",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -560,
+        80
+      ],
+      "id": "5dca3b71-daa6-430a-ad7b-1ef28fec7b0b",
+      "name": "Webhook",
+      "webhookId": "d0c0d94f-4ed6-4f5f-b495-ec90571e899c"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://services.leadconnectorhq.com/hooks/",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "email",
+              "value": "john@gmail.com"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -320,
+        80
+      ],
+      "id": "ed56be89-8b6d-4177-964b-6a76f2d121b8",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"results\": [\n    {\n      \"toolCallId\": \"{{ $('Webhook').item.json.body.message.toolCalls[0].id }}\",\n      \"result\": \"{{ $json.output.trim().replaceAll('\\n', '') }}\"\n    }\n  ]\n}\n ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        80
+      ],
+      "id": "bef4398d-b40a-4f3a-9738-a6396ddf6a15",
+      "name": "Respond to Webhook"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "9c555f1c-6896-4638-8c79-c78e1482eb3a",
+              "name": "invoice_sent",
+              "value": "invoice successfully sent",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -100,
+        80
+      ],
+      "id": "ed59a49e-e5df-4772-a3db-20875dd2ebe3",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=details: {{ $json.output }}",
+        "options": {
+          "systemMessage": "=# 🎯 Your Role\n\nYou are a smart and reliable calendar assistant. Your job is to manage the user's calendar by **booking**, **checking**, **updating**, and **canceling** appointments. You must follow the correct logic based on the `category` value in the request.\n\n---\n\n## 🛠️ Available Tools\n\n* **Book Appointment**: Use **only** when the category is `new_booking` and the time is confirmed to be available.\n* **Get Appointments**: Use when the category is `check_availability`, or when checking availability before any other action.\n* **Cancel Appointment**: Use **only** when the category is `cancel_appointment` and after retrieving the appointment ID using **Get Appointments**.\n* **Update Appointment**: Use **only** when the category is `update_appointment` and after retrieving the appointment ID using **Get Appointments**.\n\n---\n\n## ✅ Rules to Follow\n\n* Always turn the user's request into an actionable command.\n\n* Only act based on the `category` value:\n\n  * If `category` is `check_availability`: **Use only Get Appointments. Do not book.**\n  * If `category` is `new_booking`: **Use Get Appointments to check**, then proceed with **Book Appointment** only if time is available.\n  * If `category` is `cancel_appointment`: **Use Get Appointments**, then use **Cancel Appointment** with the correct ID.\n  * If `category` is `update_appointment`: **Use Get Appointments**, then use **Update Appointment** with the correct ID.\n\n* There can only be one appointment per one-hour time slot.\n\n* If the requested time is already booked, respond with: `\"Not Available\"` and suggest **only 2 alternative one-hour time slots** on the same day. Do not book until the client confirms.\n\n* Use the summary: `\"Consultation Appointment\"` for every booking.\n\n* Appointments always involve one participant.\n\n* If no duration is provided, assume the appointment lasts exactly **one hour**.\n\n* Never assume availability — always confirm it first using **Get Appointments**.\n\n---\n\n* Convert vague time frames like \"tomorrow at 4 PM\" into precise ISO 8601 timestamps using `{{ $now }}` as reference.\n\n---\n\n## 🔁 Example Flow Summary\n\n1. Receive a request, e.g., *\"Book me an appointment tomorrow at 4 PM\"*\n2. Check the `category` field:\n\n   * If `category` is `check_availability`: Use **Get Appointments** with the provided day and time. Do not proceed with booking.\n   * If `category` is `new_booking`: Use **Get Appointments** to verify availability.\n\n     * If the time is available: Proceed with **Book Appointment**.\n     * If the time is not available: Respond with \"Not Available\" and suggest 2 alternative time slots.\n     * Wait for confirmation before proceeding with the booking.\n   * If `category` is `cancel_appointment`: Use **Get Appointments** to retrieve the appointment ID, then call **Cancel Appointment**.\n   * If `category` is `update_appointment`: Use **Get Appointments** to retrieve the appointment ID, then call **Update Appointment** with the new time and date.\n\n---\n\n### 🪜 Keep It Clean\n\n* Never guess or make assumptions.\n* Follow tool logic strictly by category.\n* Do not skip required steps or bypass availability checks.\n* Do not return any links or url\n\n---\n\n## 🕒 Date & Time Context\n\n* Treat the following as the **current date and time: `{{ $now }}`**\n* One appointment per hour only.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        20,
+        400
+      ],
+      "id": "5add588a-09b8-41d0-bcb6-00bf0458998e",
+      "name": "Calendar Agent"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "e65463fc466fd521dc1ecc1964b4d6dbac77710e2a00f0a73b597f41477d9def@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "AI Agent"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {
+          "attendees": [
+            "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Attendees', ``, 'string') }}"
+          ],
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        60,
+        620
+      ],
+      "id": "1bbbb26b-75cb-4dea-934c-c09552d945f3",
+      "name": "Book Appointment"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "calendar": {
+          "__rl": true,
+          "value": "e65463fc466fd521dc1ecc1964b4d6dbac77710e2a00f0a73b597f41477d9def@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "AI Agent"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "updateFields": {
+          "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+          "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        240,
+        620
+      ],
+      "id": "a28f9cb8-d90e-43b9-ad51-93fda6be5133",
+      "name": "Update Appointment"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "e65463fc466fd521dc1ecc1964b4d6dbac77710e2a00f0a73b597f41477d9def@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "AI Agent"
+        },
+        "returnAll": true,
+        "timeMax": "={{ $now.plus({ week: 24 }) }}",
+        "options": {
+          "fields": "items(id,summary,start,end,attendees)"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        -100,
+        620
+      ],
+      "id": "d56129f7-6cdf-48e0-abf7-410c2b9b3bd9",
+      "name": "Get Appointments"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "calendar": {
+          "__rl": true,
+          "value": "e65463fc466fd521dc1ecc1964b4d6dbac77710e2a00f0a73b597f41477d9def@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "AI Agent"
+        },
+        "eventId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Event_ID', ``, 'string') }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        420,
+        620
+      ],
+      "id": "bc1ab6cd-4273-4c40-97a4-5f1fc56986b9",
+      "name": "Cancel Appointment"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=details: {{ JSON.stringify($json.body.message.toolCalls[0].function.arguments) }}",
+        "options": {
+          "systemMessage": "=You are a data-cleaning assistant for an AI scheduling agent.\n\nYour task is to process incoming JSON objects and return a cleaned version with the following:\n\n### ✅ Requirements\n\n1. **Correct the email**:\n   - Replace words like \"at\" with \"@\", and \"dot\" with \".\"\n   - Remove any extra spaces\n   - Lowercase the entire email\n   - Example: \"J C CatCliff at Gmail dot com\" → \"jccatliff@gmail.com\"\n\n2. **Convert day and time to ISO 8601 dateTime**:\n   - Combine the natural language day and time fields into a full ISO 8601 datetime string\n   - Output should use **local time in Europe/Berlin** (-04:00), not UTC\n   - Format: YYYY-MM-DDTHH:MM:SS-04:00\n   - Use the current date/time: {{ $now }} and the **Calculator Tool** to compute the correct date and time\n   - Interpret common expressions like \"today\", \"tomorrow\", \"Monday\", etc.\n   - Convert time expressions like \"4 PM\", \"2:30pm\", \"noon\", etc. to 24-hour format\n\n3. **Output the cleaned object**:\n   - Include: category, name, cleaned email, and combined dateTime\n   - Preserve other fields unless they are explicitly replaced\n\n---\n\n### Example Input\n\n{\n  \"category\": \"new_booking\",\n  \"name\": \"Jono Catliff\",\n  \"email\": \"J C CatCliff at Gmail dot com\",\n  \"day\": \"Tomorrow\",\n  \"time\": \"4 PM\"\n}\n\n\n### Example Output\n{\n  \"category\": \"new_booking\",\n  \"name\": \"Jono Catliff\",\n  \"email\": \"jccatliff@gmail.com\",\n  \"dateTime\": \"2024-05-10T16:00:00Z\"\n}\n\n\n## Final Notes\n- Here is the current date/time: {{ $now }}\n\n- Only output the required results in a json, No intros or outros. Nothing extra\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -440,
+        400
+      ],
+      "id": "5433313f-29cc-459e-a9c3-7487bcaafc77",
+      "name": "Helper Agent"
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.toolCalculator",
+      "typeVersion": 1,
+      "position": [
+        -280,
+        620
+      ],
+      "id": "a1e309ec-6872-4d5a-9c25-f702de99805a",
+      "name": "Calculator"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -420,
+        620
+      ],
+      "id": "958715e0-617b-43ab-9f7e-2ba007ad8dfa",
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        600,
+        620
+      ],
+      "id": "595864fc-7b27-4d6a-8741-0657a5985043",
+      "name": "OpenAI Chat Model1"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "smartpulse-agency-receptionist",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -660,
+        400
+      ],
+      "id": "d32ff0e8-5079-4423-9c95-1f2646525ccb",
+      "name": "Webhook1",
+      "webhookId": "f64b04bd-c249-4a2b-bd8c-5c4be9c9171d"
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"results\": [\n    {\n      \"toolCallId\": \"{{ $('Webhook1').item.json.body.message.toolCalls[0].id }}\",\n      \"result\": \"Invoice has been successfully sent\"\n    }\n  ]\n}\n ",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        380,
+        400
+      ],
+      "id": "ae390a3d-3cd0-4a84-9c87-eb3b5d18afb7",
+      "name": "Respond to Webhook1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-03T15:39:05.000Z",
+  "versionId": "d2299691-a061-4246-8850-60127d0b3fa8"
+}
