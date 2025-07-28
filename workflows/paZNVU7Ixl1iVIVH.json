@@ -1,0 +1,19 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-06-27T14:03:36.123Z",
+  "id": "paZNVU7Ixl1iVIVH",
+  "isArchived": true,
+  "meta": null,
+  "name": "pdf to markdown",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-27T14:35:17.000Z",
+  "versionId": "54b55962-4ef9-4775-81c0-197af56d5838"
+}
