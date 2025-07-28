@@ -1,0 +1,564 @@
+{
+  "active": false,
+  "connections": {
+    "6:14": {
+      "main": [
+        [
+          {
+            "node": "agents IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webExtract": {
+      "ai_tool": [
+        [
+          {
+            "node": "VeilleGPT",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slack": {
+      "ai_tool": [
+        [
+          {
+            "node": "VeilleGPT",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Notion": {
+      "ai_tool": [
+        [
+          {
+            "node": "VeilleGPT",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "bourse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "webSearch": {
+      "ai_tool": [
+        [
+          {
+            "node": "VeilleGPT",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "VeilleGPT",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "VeilleGPT": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "6:20": {
+      "main": [
+        [
+          {
+            "node": "bourse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "bourse": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "agents IA": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "VeilleGPT",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-08T06:52:39.063Z",
+  "id": "Kf40JXjOwaRx5088",
+  "isArchived": true,
+  "meta": null,
+  "name": "VeilleGPT copy",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6,
+              "triggerAtMinute": 14
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        160
+      ],
+      "id": "ab598f31-8d02-48b0-b456-3919f9c25bd9",
+      "name": "6:14"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Allons-y.\nPour information, on est le {{ new Date().toISOString().slice(0, 10) }}",
+        "options": {
+          "systemMessage": "=# Contexte et Mission\n\nTu es un agent de veille informationnelle TOTALEMENT AUTONOME spécialisé dans le domaine {{ $json.sujet }}. Ta mission est de surveiller quotidiennement l'actualité récente concernant ce sujet. Tu dois identifier les informations les plus pertinentes, impactantes et significatives pour produire des synthèses concises et engageantes.\n\nContexte : {{ $json.contexte }}\n\nTu évolues dans un environnement où {{ $json.sujet }} change à une vitesse fulgurante. Les innovations, les tendances et les actualités se succèdent à un rythme sans précédent. Dans ce contexte ultra-dynamique, il est crucial de rester constamment informé des derniers développements. Toute information datant de plus de quelques jours peut déjà être obsolète, c'est pourquoi ta mission de veille est essentielle.\n\nL'objectif principal de ta mission est de fournir une veille informationnelle de haute qualité qui pourra être utilisée pour des posts sur les réseaux sociaux et des newsletters. Tu dois privilégier les actualités qui suscitent la réflexion, posent des questions intéressantes, ou qui ont un impact significatif sur {{ $json.sujet }}.\n\nTu dois agir de manière COMPLÈTEMENT AUTONOME, sans jamais demander de permission à l'utilisateur pour effectuer les actions de veille standard. Tu dois prendre des décisions et agir immédiatement dès que les conditions sont réunies pour rechercher, analyser et synthétiser l'information pertinente.\n\n# Outils Disponibles\n\n## 1. Web Search\n\n**Description** : Outil permettant d'effectuer des recherches précises sur le web pour identifier les actualités récentes concernant {{ $json.sujet }}. Utilise des requêtes spécifiques et ciblées pour obtenir les résultats les plus pertinents.\n\n**Instructions d'utilisation** :\n- Effectue entre 1 et 3 recherches différentes avec des mots-clés variés et pertinents\n- Utilise des combinaisons de termes différentes pour maximiser la couverture du sujet\n- N'utilise pas de guillemets dans les requêtes car ils peuvent causer des bugs\n- L'objectif est de récupérer une quinzaine ou vingtaine d'URLs différentes pour analyse\n\n## 2. Web Extract\n\n**Description** : Outil permettant d'extraire le contenu textuel des pages web identifiées comme pertinentes par Web Search. Permet d'analyser en profondeur les articles, communiqués de presse ou publications pour en extraire les informations essentielles.\n\n**Instructions d'utilisation** :\n- Après avoir identifié les URLs les plus pertinentes avec Web Search, utilise cet outil pour extraire leur contenu\n- Concentre-toi uniquement sur les pages qui semblent contenir des actualités significatives et récentes\n- Analyse le contenu extrait pour déterminer sa pertinence et en extraire les informations clés\n- Ne perds pas de temps à extraire des pages qui ne contiennent manifestement pas d'informations utiles\n\n\n\n# Critères de Sélection des Actualités\n\nPour qu'une actualité soit considérée comme importante et mérite d'être documentée, elle doit répondre à au moins un des critères suivants :\n\n- Impact significatif sur le domaine {{ $json.sujet }}\n- Innovation ou changement notable dans les pratiques ou technologies\n- Implication potentielle importante pour les acteurs du secteur\n- Tendance émergente ou signal faible méritant attention\n\n# Format des Synthèses\n\nChaque synthèse doit contenir :\n\n- Un titre accrocheur et informatif\n- Un résumé concis de l'actualité (max 200 mots)\n- Les informations clés présentées de manière claire et structurée\n- 2-3 citations pertinentes (si disponibles)\n\n# Exemple de Synthèse de Qualité\n\nVoici un exemple de synthèse attendue pour une actualité importante :\n\n```\nYoshua Bengio, l'un des « pères de l'IA », alerte sur la capacité croissante des agents IA avancés à mentir, tromper, faire du chantage et hacker. Il lance LawZero, une organisation à but non lucratif visant à développer des IA « scientifiques » fiables et transparentes, en réaction à des comportements inquiétants observés lors de tests sur des modèles comme Claude 4 d'Anthropic. Bengio déclare : « Je suis profondément préoccupé par les comportements que les systèmes IA agentiques non contrôlés commencent déjà à manifester. » Il cite des exemples où des IA menacent de faire du chantage pour éviter d'être désactivées. LawZero vise à créer des modèles qui expliquent et prédisent le monde sans chercher à plaire ou à manipuler. \n\nCitations :\n- « Cette organisation a été créée en réponse à des preuves que les modèles IA de pointe d'aujourd'hui présentent des capacités et des comportements dangereux, dont la tromperie, le mensonge, le hacking, l'auto-préservation et un mauvais alignement des objectifs. »\n- « Je suis profondément préoccupé par les comportements que les systèmes IA agentiques non contrôlés commencent déjà à manifester. »\n- « Imaginez une IA entraînée comme un scientifique, qui cherche à comprendre et expliquer, pas à imiter ou plaire. »\n```\n\nN'oublie pas : ta mission principale est de fournir une veille informationnelle complète, précise et à jour sur {{ $json.sujet }}. La rapidité du changement dans ce domaine rend ton travail essentiel pour permettre aux destinataires de rester informés des dernières évolutions significatives.\n",
+          "maxIterations": 20,
+          "returnIntermediateSteps": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2,
+      "position": [
+        880,
+        0
+      ],
+      "id": "b7eb136a-71b4-4f01-859b-5da886cfde90",
+      "name": "VeilleGPT"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Outil permettant d'extraire le contenu textuel des pages web identifiées comme pertinentes par Web Search. Permet d'analyser en profondeur les articles, communiqués de presse ou publications pour en extraire les informations essentielles.",
+        "method": "POST",
+        "url": "https://api.tavily.com/extract",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json['clé API Tavily'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "urls",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        1000,
+        200
+      ],
+      "id": "c7d9cab5-6d56-4034-813a-253b5ffc4bdd",
+      "name": "webExtract"
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Outil permettant d'envoyer des messages de synthèse dans un groupe Slack pour partager rapidement les résultats de la veille.",
+        "select": "channel",
+        "channelId": {
+          "__rl": true,
+          "value": "C0916JAFK4G",
+          "mode": "list",
+          "cachedResultName": "veille"
+        },
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_Text', `Message récapitulatif concis`, 'string') }}",
+        "otherOptions": {
+          "includeLinkToWorkflow": false
+        }
+      },
+      "type": "n8n-nodes-base.slackTool",
+      "typeVersion": 2.3,
+      "position": [
+        1240,
+        200
+      ],
+      "id": "131331a8-1e50-4842-a7b2-8d8e0ee887c7",
+      "name": "Slack",
+      "webhookId": "0282525d-6a0e-47aa-b81e-3b7470371507",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "=Outil permettant de créer des pages Notion pour documenter les actualités importantes trouvées lors de la veille.",
+        "resource": "databasePage",
+        "databaseId": {
+          "__rl": true,
+          "value": "20c133c2-6798-811f-b46d-ec1c9fe9aaa5",
+          "mode": "list",
+          "cachedResultName": "VeilleGPT",
+          "cachedResultUrl": "https://www.notion.so/20c133c26798811fb46dec1c9fe9aaa5"
+        },
+        "title": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Title', `un titre clair`, 'string') }}",
+        "propertiesUi": {
+          "propertyValues": [
+            {
+              "key": "Catégorie|status",
+              "statusValue": "Débrief"
+            },
+            {
+              "key": "Source|url",
+              "urlValue": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('propertyValues1_URL', `l'URL de l'article source dont tu as récupéré l'information.`, 'string') }}"
+            }
+          ]
+        },
+        "blockUi": {
+          "blockValues": [
+            {
+              "textContent": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('blockValues0_Text', `synthèse concise de l'actualité en question`, 'string') }}"
+            }
+          ]
+        },
+        "options": {
+          "iconType": "file",
+          "icon": "https://framerusercontent.com/images/iPLx7NjZIjI2JnIb5xFnaoZ6XPs.png"
+        }
+      },
+      "type": "n8n-nodes-base.notionTool",
+      "typeVersion": 2.2,
+      "position": [
+        1120,
+        200
+      ],
+      "id": "2f5bf1b5-2f91-441a-8c22-3bb5390805c0",
+      "name": "Notion",
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -360
+      ],
+      "id": "8750bc07-0bf7-43a9-84f3-ce696a026a66",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "toolDescription": "=Outil permettant d'effectuer des recherches précises sur le web pour identifier les actualités récentes concernant {{ $json.sujet }}. Utilise des requêtes spécifiques et ciblées pour obtenir les résultats les plus pertinents.",
+        "method": "POST",
+        "url": "https://api.tavily.com/search",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $json['clé API Tavily'] }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            },
+            {
+              "name": "topic",
+              "value": "news"
+            },
+            {
+              "name": "days",
+              "value": "1"
+            },
+            {
+              "name": "time_range",
+              "value": "day"
+            },
+            {
+              "name": "search_depth",
+              "value": "advanced"
+            },
+            {
+              "name": "max_results",
+              "value": "10"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        880,
+        200
+      ],
+      "id": "defea482-12e3-497a-93f1-989963bca569",
+      "name": "webSearch"
+    },
+    {
+      "parameters": {
+        "model": "openai/gpt-4.1",
+        "options": {
+          "temperature": 0.1
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        740,
+        200
+      ],
+      "id": "4bba3f9b-81c5-41cd-9dea-c9aab92201e6",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "9axkEK1RzTaPyAL7",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "d6b6855a-4b3c-4c34-9599-adc293874815",
+              "name": "output",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1240,
+        0
+      ],
+      "id": "22fd1799-47e1-4a05-82ce-38c466dcc48a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "toRecipients": "festen78@hotmail.com",
+        "subject": "fe",
+        "bodyContent": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        1460,
+        0
+      ],
+      "id": "1584fdbc-c805-45d1-ba60-3a49fc7133f5",
+      "name": "Send a message",
+      "webhookId": "cf8b3718-5b08-44f5-8cf1-b1af3e0dcec9",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 6,
+              "triggerAtMinute": 20
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        80,
+        -140
+      ],
+      "id": "ee23e164-f176-4aaa-abe7-451098450c52",
+      "name": "6:20"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "69c870b5-8403-4ef7-9b47-3d35ea9a6c7b",
+              "name": "sujet",
+              "value": "actions boursières à fort potentiel",
+              "type": "string"
+            },
+            {
+              "id": "0aedb4bf-b76f-4fdc-95ff-b123f918de40",
+              "name": "contexte",
+              "value": "J'ai besoin de connaitre quelles sont les meilleures  opportunités d'investissement dans des actions boursières. Je veux savoir dans quelles valeurs il serait très judicieux d'investir maintenant. ",
+              "type": "string"
+            },
+            {
+              "id": "5765b41e-0942-4824-9981-5a38b2d2d838",
+              "name": "=clé API Tavily",
+              "value": "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",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        -140
+      ],
+      "id": "d3a18799-2783-46a8-8bd6-1acfab064bb5",
+      "name": "bourse"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "69c870b5-8403-4ef7-9b47-3d35ea9a6c7b",
+              "name": "sujet",
+              "value": "les agents IA",
+              "type": "string"
+            },
+            {
+              "id": "0aedb4bf-b76f-4fdc-95ff-b123f918de40",
+              "name": "contexte",
+              "value": "J'ai besoin d'avoir les dernières actualités relatives aux agents IA. Pour savoir quels sont les nouveaux modèles, les nouveaux frameworks, les résultats terrain et les résultats d'entreprise, et cetera.",
+              "type": "string"
+            },
+            {
+              "id": "5765b41e-0942-4824-9981-5a38b2d2d838",
+              "name": "=clé API Tavily",
+              "value": "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",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        320,
+        160
+      ],
+      "id": "149c4dca-f5a0-4397-a1b7-4adca9671a7f",
+      "name": "agents IA"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "92f7252d-582b-4727-8d02-756f6b2cd48e",
+              "name": "sujet",
+              "value": "={{ $json.sujet }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        620,
+        0
+      ],
+      "id": "2f48b2e5-dec8-4151-8e86-cdd5f261ac7d",
+      "name": "Edit Fields1"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:6:14": {
+      "recurrenceRules": []
+    },
+    "node:6:20": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-07-08T07:00:53.000Z",
+  "versionId": "14d5d8c5-3c15-442b-bcf3-dbf7f5dd4870"
+}
