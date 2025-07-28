@@ -1,0 +1,92 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Google Contacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-23T08:50:04.227Z",
+  "id": "RPYau1cL2qp40rKm",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Personal Contact Finder",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"name\": \"Jono Catliff\"\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        500,
+        160
+      ],
+      "id": "0a2f0f2a-96ef-40c5-92e5-59c91ca043f0",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 1,
+        "fields": [
+          "phoneNumbers",
+          "names",
+          "emailAddresses"
+        ],
+        "useQuery": true,
+        "query": "={{ $json.name }}"
+      },
+      "type": "n8n-nodes-base.googleContacts",
+      "typeVersion": 1,
+      "position": [
+        720,
+        160
+      ],
+      "id": "539ad7a1-78f0-40c9-bd7d-5535b610562b",
+      "name": "Google Contacts"
+    },
+    {
+      "parameters": {
+        "content": "Objectif :\nChercher les coordonnées (email, téléphone, nom) d’une personne dans Google Contacts à partir de son nom.\n\nFonctionnement :\n\nLe workflow est déclenché avec un nom (ex. : \"Jono Catliff\").\n\nUne requête est faite à Google Contacts avec ce nom.\n\nIl retourne les infos de contact associées (1 seul résultat max).\n\nUtilisation :\n✅ Simple outil interne pour retrouver rapidement les coordonnées d’un contact connu.",
+        "height": 260,
+        "width": 820
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        420,
+        -200
+      ],
+      "id": "65e1f906-f0d6-46a8-a725-4586cf8d6493",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "name": "Jono Catliff"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-23T08:51:39.000Z",
+  "versionId": "aeb02c24-57b5-4bf9-9d06-776937dbe644"
+}
