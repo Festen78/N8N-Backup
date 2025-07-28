@@ -482,7 +482,8 @@
           "id": "sVJFboA9IQbh5ayi",
           "name": "GitHub account"
         }
-      }
+      },
+      "onError": "continueRegularOutput"
     },
     {
       "parameters": {
@@ -733,6 +734,6 @@
   "staticData": null,
   "tags": [],
   "triggerCount": 0,
-  "updatedAt": "2025-06-05T06:09:18.000Z",
-  "versionId": "96153c35-e588-40cd-b722-c9cfb5084bbf"
+  "updatedAt": "2025-07-28T14:35:13.000Z",
+  "versionId": "ff24ea17-1c2d-4ab7-b606-d7996dc96086"
 }
