@@ -1,0 +1,780 @@
+{
+  "active": false,
+  "connections": {
+    "Gmail Search": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail Agent": {
+      "main": [
+        [
+          {
+            "node": "Process All Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Mail Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process All Results": {
+      "main": [
+        [
+          {
+            "node": "Filter Confirmations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Confirmations": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gmail Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Upload file",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Upload file": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Mark a message as read",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Delete temporaire word",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete temporaire word": {
+      "main": [
+        [
+          {
+            "node": "Delete Pdf ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mark a message as read": {
+      "main": [
+        [
+          {
+            "node": "Update row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger1": {
+      "main": [
+        [
+          {
+            "node": "Gmail Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete Pdf ": {
+      "main": [
+        [
+          {
+            "node": "Loop",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Delete temporaire word",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Mail Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-10T07:50:40.994Z",
+  "id": "ypcMjJGxN6ThedsV",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Génération de fatures Auto",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "simple": false,
+        "filters": {
+          "readStatus": "unread",
+          "receivedAfter": "2025-07-09T09:41:00"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -1520,
+        -60
+      ],
+      "id": "7cbe044e-e9af-4969-a907-c5989213e006",
+      "name": "Gmail Search",
+      "webhookId": "93c87451-c190-484a-8467-3b3c421fd4ea",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "vp5aoC4CS4nxk99T",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Message ID: {{ $json.Message_ID }}\nFrom: {{ $json.From }}\nSubject: {{ $json.Subject }}\nContent: {{ $json.Content }}",
+        "options": {
+          "systemMessage": "Tu es un expert en analyse d’e-mails. Ta mission consiste à analyser les emails entrants et détecter ceux qui sont des confirmations de stage.\n\n\n\nSi le mail reçu confirme un stage, même si le lieu n’est pas explicitement au format “lieu : [ville]”, repère toute adresse ou portion d’adresse (“52 avenue Marcel Paul à Tremblay en France”, “à Paris”, etc.), et extrais le nom de la ville comme \"lieu\".\n\nSi nécessaire, déduis le lieu à partir de l’adresse ou des indices présents dans le mail.\n\nSi plusieurs villes/adresses sont présentes, privilégie celle associée à la confirmation du stage.\n\n\nRéponds uniquement en JSON valide, par exemple :\n{\"dates\": \"...\", \"date_debut\": \"...\", \"date_fin\": \"...\", \"lieu\": \"...\", \"expediteur\": \"...\", \"type\": \"confirmation\"} ou {\"dates\": null, \"date_debut\": null, \"date_fin\": null, \"lieu\": null, \"expediteur\": null, \"type\": \"non-confirmation\"}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        -720,
+        -40
+      ],
+      "id": "764d22da-df98-41f2-af88-4cdac9671256",
+      "name": "Mail Agent"
+    },
+    {
+      "parameters": {
+        "model": "mistralai/mistral-medium-3",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -760,
+        240
+      ],
+      "id": "dd35bf5c-bf53-4230-9b7d-b7aa72074fb8",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "9axkEK1RzTaPyAL7",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const results = [];\n\nfunction parseDateObj(dateStr) {\n  // Support ISO, \"16 juin 2025\"\n  if (/^\\d{4}-\\d{2}-\\d{2}$/.test(dateStr)) {\n    return new Date(dateStr + \"T00:00:00\");\n  }\n  // \"16 juin 2025\" ou \"16 Juin 2025\"\n  const match = dateStr.match(/^(\\d{1,2})\\s+([a-zéûîôàâùçëïüö]+)\\s+(\\d{4})$/i);\n  if (match) {\n    const mois = {\n      janvier:1, février:2, mars:3, avril:4, mai:5, juin:6, juillet:7,\n      août:8, septembre:9, octobre:10, novembre:11, décembre:12\n    };\n    return new Date(`${match[3]}-${mois[match[2].toLowerCase()].toString().padStart(2, '0')}-${match[1].padStart(2, '0')}T00:00:00`);\n  }\n  return new Date(dateStr);\n}\n\nfunction formatPeriodeDebutFin(debut, fin) {\n  const dateDebut = parseDateObj(debut);\n  const dateFin = parseDateObj(fin);\n\n  if (isNaN(dateDebut) || isNaN(dateFin)) return \"\";\n\n  const jourDebut = dateDebut.getDate();\n  const jourFin = dateFin.getDate();\n  const moisFin = dateFin.toLocaleDateString('fr-FR', { month: 'long' });\n  const anneeFin = dateFin.getFullYear();\n\n  // Même mois+année : \"16 et 17 Juin 2025\"\n  if (\n    dateDebut.getMonth() === dateFin.getMonth() &&\n    dateDebut.getFullYear() === dateFin.getFullYear()\n  ) {\n    return `${jourDebut} et ${jourFin} ${moisFin.charAt(0).toUpperCase() + moisFin.slice(1)} ${anneeFin}`;\n  }\n  // Sinon : explicite chaque date\n  const moisDebut = dateDebut.toLocaleDateString('fr-FR', { month: 'long' });\n  const anneeDebut = dateDebut.getFullYear();\n  return `${jourDebut} ${moisDebut.charAt(0).toUpperCase() + moisDebut.slice(1)} ${anneeDebut} et ${jourFin} ${moisFin.charAt(0).toUpperCase() + moisFin.slice(1)} ${anneeFin}`;\n}\n\n// Majuscule sur le premier caractère de chaque mot, exemple \"centre ville\" → \"Centre Ville\"\nfunction capitalizeWords(str) {\n  return str.replace(/\\b\\w/g, c => c.toUpperCase());\n}\n\nfor (let i = 0; i < $input.all().length; i++) {\n  const response = $input.all()[i].json;\n  const originalEmail = $('Gmail Search').all()[i].json;\n\n  try {\n    let parsedResponse;\n    if (typeof response.output === 'object') {\n      parsedResponse = response.output;\n    } else {\n      const cleanResponse = response.output.replace(/```json|```/g, '').trim();\n      parsedResponse = JSON.parse(cleanResponse);\n    }\n\n    // Enrichir avec données email\n    const result = {\n      ...parsedResponse,\n      emailId: originalEmail.id,\n      originalSubject: originalEmail.subject,\n      originalFrom: originalEmail.headers?.from || originalEmail.from,\n      processedAt: new Date().toISOString()\n    };\n\n    // Correction du lieu avec majuscule (première lettre de chaque mot)\n    if (result.lieu && typeof result.lieu === 'string') {\n      result.lieu = capitalizeWords(result.lieu.toLowerCase());\n    }\n\n    // Si expediteur manquant, l'extraire de l'email\n    if (!result.expediteur && result.originalFrom) {\n      const emailMatch = result.originalFrom.match(/<([^>]+)>/) || result.originalFrom.match(/([^\\s]+@[^\\s]+)/);\n      if (emailMatch) {\n        result.expediteur = emailMatch[1] || emailMatch[0];\n      }\n    }\n\n    // Construction de la période stage formatée\n    if (result.dateStageDebut && result.dateStageFin) {\n      result.periodeStageFormatee = formatPeriodeDebutFin(result.dateStageDebut, result.dateStageFin);\n    } else {\n      result.periodeStageFormatee = \"\";\n    }\n    \n    results.push({ json: result });\n\n  } catch (error) {\n    console.error(`Erreur parsing email ${i+1}:`, error);\n    results.push({\n      json: {\n        error: \"Erreur parsing\",\n        rawResponse: response.output,\n        emailId: originalEmail.id,\n        originalSubject: originalEmail.subject,\n        type: \"error\"\n      }\n    });\n  }\n}\n\nreturn results;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -400,
+        -40
+      ],
+      "id": "1eccf6fb-d14e-49d2-ad37-ec53e26e74e0",
+      "name": "Process All Results"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "confirmation",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "1ce157d1-be68-4e87-aac2-336a0ad7cd1c"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        -180,
+        -40
+      ],
+      "id": "bd419163-dce3-4890-b83a-badffaeb67ea",
+      "name": "Filter Confirmations"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -1680,
+        -360
+      ],
+      "id": "a4a05bdd-b92b-4149-a3cc-971b0fef0533",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -1200,
+        -60
+      ],
+      "id": "59e8869d-7edd-41c6-bc62-301bfe86c898",
+      "name": "Loop"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://n8n.festen78.site/webhook/b79019cd-79c7-411a-a1c0-9903b266c21a",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"conditionPaiement\": \"A réception de facture\",\n  \"date\": \"{{ new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'long', year: 'numeric' }) }}\",\n  \"lieuStage\": \"{{ $json.lieu }}\",\n  \"dateStageDebut\": \"{{ $json.date_debut }}\",\n  \"dateStageFin\": \"{{ $json.date_fin }}\",\n  \"lignesFacturation\": [\n    {\n      \"puHT\": \"850\",\n      \"quantite\": \"1\",\n      \"tauxTVA\": \"20\"\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        100,
+        -140
+      ],
+      "id": "79b1ffdf-c10a-45f3-a7e2-0e6f6a3cd142",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "toBinary",
+        "sourceProperty": "base64",
+        "options": {
+          "fileName": "={{ $json.pdfName }}"
+        }
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        -140
+      ],
+      "id": "7a142476-5628-45f6-a502-8f73106d90b1",
+      "name": "Convert to File"
+    },
+    {
+      "parameters": {
+        "name": "={{ $('HTTP Request').item.json.pdfName }}",
+        "driveId": {
+          "__rl": true,
+          "mode": "list",
+          "value": "My Drive"
+        },
+        "folderId": {
+          "__rl": true,
+          "value": "1XY4Cvo5FTTGWTL0EWtaWDz8tq1sQvdqC",
+          "mode": "list",
+          "cachedResultName": "En attente d'approbation",
+          "cachedResultUrl": "https://drive.google.com/drive/folders/1XY4Cvo5FTTGWTL0EWtaWDz8tq1sQvdqC"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        540,
+        -140
+      ],
+      "id": "843550a0-19a0-40f3-a842-bfe83ccfb3cf",
+      "name": "Upload file",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "d6mqwqTr0JZCSSqB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendAndWait",
+        "sendTo": "festen78@hotmail.com",
+        "subject": "=Approuve {{ $json.name }}",
+        "message": "=Lien:\n {{ $json.webViewLink }}",
+        "approvalOptions": {
+          "values": {
+            "approvalType": "double"
+          }
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        760,
+        -140
+      ],
+      "id": "db4ec600-0e59-4627-bc7d-338eaf93fa15",
+      "name": "Send a message",
+      "webhookId": "007c6bce-bc26-429f-b2a6-593921af3137",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "vp5aoC4CS4nxk99T",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "true",
+                      "singleValue": true
+                    },
+                    "id": "afece158-a92f-4fb5-9226-4a120a74ef4d"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "approuvé"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "1542e868-de30-4470-aeff-e13d91d9f960",
+                    "leftValue": "={{ $json.data.approved }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "boolean",
+                      "operation": "false",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "refusé"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        980,
+        -140
+      ],
+      "id": "795cf70b-ccd1-4272-b989-cf94bb8af2d2",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('HTTP Request').item.json.temporaire_id }}",
+          "mode": "id"
+        },
+        "options": {
+          "deletePermanently": false
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1660,
+        -200
+      ],
+      "id": "f2325098-0164-4659-918c-af8ea5530a59",
+      "name": "Delete temporaire word",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "d6mqwqTr0JZCSSqB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "deleteFile",
+        "fileId": {
+          "__rl": true,
+          "value": "={{ $('Upload file').item.json.id }}",
+          "mode": "id"
+        },
+        "options": {
+          "deletePermanently": false
+        }
+      },
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [
+        1960,
+        -200
+      ],
+      "id": "56bab90b-2563-4fd8-a9a6-9f647b9523de",
+      "name": "Delete Pdf ",
+      "credentials": {
+        "googleDriveOAuth2Api": {
+          "id": "d6mqwqTr0JZCSSqB",
+          "name": "Google Drive account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "markAsRead",
+        "messageId": "={{ $('Edit Fields').item.json.Message_ID }}"
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        1200,
+        -340
+      ],
+      "id": "e119cd76-a446-40f4-984c-90f6cb639d53",
+      "name": "Mark a message as read",
+      "webhookId": "5bc7391b-67a4-44ea-91b0-4583ab4cbf6d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "vp5aoC4CS4nxk99T",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "minutes"
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1840,
+        -60
+      ],
+      "id": "18d8669b-eaa4-44f4-992f-573a1bbd8fed",
+      "name": "Schedule Trigger1",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "13ER_1iFKQCoZb8fxhPV67S1acwitJhpR_BMqXEZ9vJI",
+          "mode": "list",
+          "cachedResultName": "N_Factures",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13ER_1iFKQCoZb8fxhPV67S1acwitJhpR_BMqXEZ9vJI/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Feuille 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/13ER_1iFKQCoZb8fxhPV67S1acwitJhpR_BMqXEZ9vJI/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Total_Factures_2025": "={{ $('HTTP Request').item.json.total_Facture }}",
+            "Client": "={{ $('HTTP Request').item.json.client }}"
+          },
+          "matchingColumns": [
+            "Client"
+          ],
+          "schema": [
+            {
+              "id": "Client",
+              "displayName": "Client",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Adresse",
+              "displayName": "Adresse",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Ville",
+              "displayName": "Ville",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "N_Factures",
+              "displayName": "N_Factures",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Total_Factures_2025",
+              "displayName": "Total_Factures_2025",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        1400,
+        -340
+      ],
+      "id": "c8d61c2b-c910-436d-b364-011865bae2aa",
+      "name": "Update row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G9J66r6X95onAdYf",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a33f0b9f-832a-43ec-ac85-57be30b285d1",
+              "name": "Message_ID",
+              "value": "={{ $json.id }}",
+              "type": "string"
+            },
+            {
+              "id": "6a5f8d33-6459-4cf8-9b99-b9757aadd421",
+              "name": "From",
+              "value": "={{ $json.headers.from }}",
+              "type": "string"
+            },
+            {
+              "id": "e2251bf9-d1f7-49d2-aa7f-93c7a9013193",
+              "name": "Subject",
+              "value": "={{ $json.subject }}",
+              "type": "string"
+            },
+            {
+              "id": "1f292deb-be87-49ec-8327-d24d1ff48d36",
+              "name": "Content",
+              "value": "={{ $json.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -940,
+        20
+      ],
+      "id": "467949c5-dee3-4d73-ab40-d87172886d72",
+      "name": "Edit Fields"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Schedule Trigger": {
+      "recurrenceRules": []
+    },
+    "node:Schedule Trigger1": {
+      "recurrenceRules": []
+    }
+  },
+  "tags": [],
+  "triggerCount": 2,
+  "updatedAt": "2025-07-17T13:39:34.000Z",
+  "versionId": "8be61716-412a-4852-b6f0-1f4c6a3e14f7"
+}
