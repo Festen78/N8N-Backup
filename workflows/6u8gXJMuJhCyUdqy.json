@@ -1,0 +1,168 @@
+{
+  "active": false,
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-23T08:50:55.786Z",
+  "id": "6u8gXJMuJhCyUdqy",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Google Maps",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"search\": \"landscaping\",\n  \"location\": \"New York\",\n  \"state\": \"NY\",\n  \"country\": \"us\",\n  \"results\": 0\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -460,
+        120
+      ],
+      "id": "06b32c06-f296-4351-b420-ef0ec60b9c46",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/2Mdma1N6Fd0y3QEjR/runs?waitForFinish=300",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer <YOUR_API_KEY>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"city\": \"{{ $json.location }}\",\n    \"countryCode\": \"{{ $json.country }}\",\n    \"language\": \"en\",\n    \"locationQuery\": \"{{ $json.location }}\",\n    \"maxCrawledPlacesPerSearch\": {{ $if($json.results > 5, 5, $json.results) }},\n    \"searchStringsArray\": [\n        \"{{ $json.search }}\"\n    ],\n    \"skipClosedPlaces\": false,\n    \"state\": \"{{ $json.state }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -240,
+        120
+      ],
+      "id": "1d2a7d16-56e3-4fb2-a5ec-f345e86f6ba1",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.apify.com/v2/datasets/{{ $json.data.defaultDatasetId }}/items?format=json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer Bearer <YOUR_API_KEY>"
+            },
+            {
+              "name": "="
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -20,
+        120
+      ],
+      "id": "b5c76dde-7eb3-4097-af0a-6412e209b071",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        200,
+        120
+      ],
+      "id": "9aef260f-7071-45e1-9a80-14ef0d35680d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "content": "Objectif :\nLancer une recherche d'entreprises locales sur Google Maps via l'API Apify, récupérer et agréger les données.\n\nFonctionnement :\n\nReçoit des paramètres : secteur d'activité, lieu, pays, nombre de résultats…\n\nFait une requête à Apify (acteur Google Maps Scraper).\n\nRécupère les résultats depuis le dataset généré.\n\nAgrège les données finales.\n\nUtilisation :\n✅ Génération automatisée de listes d’entreprises locales selon un secteur (ex : landscaping à New York). Utile pour du lead gen B2B ou de la prospection.\n\n",
+        "height": 300,
+        "width": 1080
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        -620,
+        -340
+      ],
+      "id": "93954e22-304f-4e86-bd8e-b38830909c2e",
+      "name": "Sticky Note"
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "search": "landscaping",
+          "location": "New York",
+          "state": "NY",
+          "country": "us",
+          "results": 10
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-23T08:51:18.000Z",
+  "versionId": "76e039ff-1ea7-4886-bdb2-3855f4265a48"
+}
