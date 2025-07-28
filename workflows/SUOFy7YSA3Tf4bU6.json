@@ -1,0 +1,279 @@
+{
+  "active": false,
+  "connections": {
+    "Gmail Search": {
+      "main": [
+        [
+          {
+            "node": "Debug All Emails",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Debug All Emails": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Mail Agent": {
+      "main": [
+        [
+          {
+            "node": "Process All Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Mail Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process All Results": {
+      "main": [
+        [
+          {
+            "node": "Filter Confirmations",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Confirmations": {
+      "main": [
+        [
+          {
+            "node": "Final Confirmations",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gmail Search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [],
+        [
+          {
+            "node": "Mail Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-10T07:12:07.854Z",
+  "id": "SUOFy7YSA3Tf4bU6",
+  "isArchived": true,
+  "meta": null,
+  "name": "My workflow 12",
+  "nodes": [
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 5,
+        "filters": {
+          "readStatus": "unread"
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        -600,
+        -20
+      ],
+      "id": "c58d00df-7897-43c8-aae9-7ac2998aa7de",
+      "name": "Gmail Search",
+      "webhookId": "93c87451-c190-484a-8467-3b3c421fd4ea",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "vp5aoC4CS4nxk99T",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Debug : Affichage de TOUS les emails non lus\nconsole.log('=== TOUS LES EMAILS NON LUS ===');\nconsole.log('Nombre total d\\'emails:', $input.all().length);\n\nfor (let i = 0; i < $input.all().length; i++) {\n  const email = $input.all()[i].json;\n  console.log(`Email ${i+1}:`, {\n    id: email.id,\n    subject: email.subject,\n    from: email.headers?.from || email.from,\n    date: email.date\n  });\n}\n\nconsole.log('=== FIN LISTE EMAILS ===');\nreturn $input.all();"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -380,
+        -20
+      ],
+      "id": "54ebfe07-6a47-4fe4-8bbe-513acee8224a",
+      "name": "Debug All Emails"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Message ID: {{ $json.id }}\nFrom: {{ $json.From }}\nSubject: {{ $json.Subject }}\nContent: {{ $json.snippet }}",
+        "options": {
+          "systemMessage": "# Présentation\nTu es un expert en analyse d'email. Ta mission consiste à analyser les e-mails entrants et de détecter lesquels concernent une confirmation de stage.\n\n## Role\nSi le mail reçu est considéré comme une confirmation de stage, tu dois extraire:\n- les dates concernées\n- le lieu concerné\n- l'adresse mail de l'expéditeur\n\n### Format\nRéponds UNIQUEMENT avec un JSON valide :\n\nSi c'est une confirmation de stage :\n{\"dates\": \"06 et 07 Juillet 2025\", \"lieu\": \"Rouen\", \"expediteur\": \"expediteur@gmail.com\", \"type\": \"confirmation\"}\n\nSi ce n'est PAS une confirmation de stage :\n{\"dates\": null, \"lieu\": null, \"expediteur\": null, \"type\": \"non-confirmation\"}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.8,
+      "position": [
+        60,
+        -20
+      ],
+      "id": "a3782251-659f-4b53-ac8d-c2ee2f28046a",
+      "name": "Mail Agent"
+    },
+    {
+      "parameters": {
+        "model": "mistralai/mistral-7b-instruct",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        260
+      ],
+      "id": "ee14f34c-feab-4683-ba0b-cf0cb5125e92",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "9axkEK1RzTaPyAL7",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Traitement de TOUS les résultats IA\nconsole.log('=== ANALYSE DE TOUS LES EMAILS ===');\nconsole.log('Nombre de réponses IA:', $input.all().length);\n\nconst results = [];\n\nfor (let i = 0; i < $input.all().length; i++) {\n  const response = $input.all()[i].json;\n  const originalEmail = $('Debug All Emails').all()[i].json;\n  \n  console.log(`\\n--- EMAIL ${i+1} ---`);\n  console.log('Sujet:', originalEmail.subject);\n  console.log('De:', originalEmail.headers?.from || originalEmail.from);\n  console.log('Réponse IA:', response.output);\n  \n  try {\n    let parsedResponse;\n    if (typeof response.output === 'object') {\n      parsedResponse = response.output;\n    } else {\n      const cleanResponse = response.output.replace(/```json|```/g, '').trim();\n      parsedResponse = JSON.parse(cleanResponse);\n    }\n    \n    // Enrichir avec données email\n    const result = {\n      ...parsedResponse,\n      emailId: originalEmail.id,\n      originalSubject: originalEmail.subject,\n      originalFrom: originalEmail.headers?.from || originalEmail.from,\n      processedAt: new Date().toISOString()\n    };\n    \n    // Si expediteur manquant, l'extraire de l'email\n    if (!result.expediteur && result.originalFrom) {\n      const emailMatch = result.originalFrom.match(/<([^>]+)>/) || result.originalFrom.match(/([^\\s]+@[^\\s]+)/);\n      if (emailMatch) {\n        result.expediteur = emailMatch[1] || emailMatch[0];\n      }\n    }\n    \n    console.log('Type détecté:', result.type);\n    if (result.type === 'confirmation') {\n      console.log('CONFIRMATION TROUVÉE!');\n      console.log('  Dates:', result.dates);\n      console.log('  Lieu:', result.lieu);\n      console.log('  Expéditeur:', result.expediteur);\n    }\n    \n    results.push({ json: result });\n    \n  } catch (error) {\n    console.error(`Erreur parsing email ${i+1}:`, error);\n    results.push({\n      json: {\n        error: \"Erreur parsing\",\n        rawResponse: response.output,\n        emailId: originalEmail.id,\n        originalSubject: originalEmail.subject,\n        type: \"error\"\n      }\n    });\n  }\n}\n\nconsole.log(`\\n=== RÉSUMÉ: ${results.length} emails analysés ===`);\nconst confirmations = results.filter(r => r.json.type === 'confirmation');\nconsole.log(`Confirmations trouvées: ${confirmations.length}`);\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        360,
+        -40
+      ],
+      "id": "624dcd27-05a3-4047-9471-b8c24189a76d",
+      "name": "Process All Results"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 1
+          },
+          "conditions": [
+            {
+              "leftValue": "={{ $json.type }}",
+              "rightValue": "confirmation",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              },
+              "id": "1ce157d1-be68-4e87-aac2-336a0ad7cd1c"
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        580,
+        0
+      ],
+      "id": "e37bfa96-be45-4c93-8881-fc31c0f9a576",
+      "name": "Filter Confirmations"
+    },
+    {
+      "parameters": {
+        "jsCode": "console.log('\\n=== TOUTES LES CONFIRMATIONS DE STAGE ===');\n\nconst confirmations = $input.all();\nconsole.log(`Nombre total de confirmations: ${confirmations.length}`);\n\nconst finalResults = [];\n\nfor (let i = 0; i < confirmations.length; i++) {\n  const conf = confirmations[i].json;\n  const result = {\n    dates: conf.dates,\n    lieu: conf.lieu,\n    expediteur: conf.expediteur,\n    emailId: conf.emailId,\n    originalSubject: conf.originalSubject\n  };\n  \n  console.log(`\\nConfirmation ${i+1}:`);\n  console.log('  Sujet original:', result.originalSubject);\n  console.log('  Dates:', result.dates);\n  console.log('  Lieu:', result.lieu);\n  console.log('  Expéditeur:', result.expediteur);\n  console.log('  Email ID:', result.emailId);\n  \n  finalResults.push({ json: result });\n}\n\nconsole.log(`\\n=== TRAITEMENT TERMINÉ: ${finalResults.length} confirmations détectées ===`);\nreturn finalResults;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        860,
+        -180
+      ],
+      "id": "d5a22cc9-6719-4b9b-9bef-682dc1b5ae08",
+      "name": "Final Confirmations"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -640,
+        -300
+      ],
+      "id": "0abde747-160c-47ca-b173-5e88504b1f14",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        -160,
+        -20
+      ],
+      "id": "16bc53c2-c29a-4a00-8c76-6a1930e5d8e3",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-10T07:41:50.000Z",
+  "versionId": "78e02b30-733b-4ee8-8eea-e495579437a5"
+}
