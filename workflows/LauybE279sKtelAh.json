@@ -1,0 +1,198 @@
+{
+  "active": false,
+  "connections": {
+    "Formulaire PDF": {
+      "main": [
+        [
+          {
+            "node": "Extraire le texte du PDF",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extraire le texte du PDF": {
+      "main": [
+        [
+          {
+            "node": "Formater en Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Formater en Markdown": {
+      "main": [
+        [
+          {
+            "node": "Convert to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Créer fichier Markdown": {
+      "main": [
+        [
+          {
+            "node": "Préparer la réponse",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Convert to File": {
+      "main": [
+        [
+          {
+            "node": "Créer fichier Markdown",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-27T14:36:52.614Z",
+  "id": "LauybE279sKtelAh",
+  "isArchived": false,
+  "meta": null,
+  "name": "pdf to markdown",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "pdf-to-markdown",
+        "formTitle": "Convertisseur PDF vers Markdown",
+        "formDescription": "Uploadez votre fichier PDF pour le convertir en Markdown",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Fichier PDF",
+              "fieldType": "file",
+              "multipleFiles": false,
+              "acceptFileTypes": ".pdf",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9d8af2c4-0f46-428b-8883-1d293aaa7fa6",
+      "name": "Formulaire PDF",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [
+        1120,
+        480
+      ],
+      "webhookId": "6f5004c6-4a09-4612-b49c-b0bdbd853f33"
+    },
+    {
+      "parameters": {
+        "operation": "pdf",
+        "binaryPropertyName": "Fichier_PDF",
+        "options": {}
+      },
+      "id": "466a2b03-25d5-4f89-be0c-3c30c11509b4",
+      "name": "Extraire le texte du PDF",
+      "type": "n8n-nodes-base.extractFromFile",
+      "typeVersion": 1,
+      "position": [
+        1320,
+        480
+      ],
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Récupérer le texte extrait\nconst pdfText = $input.first().json.text;\n\n// Fonction pour nettoyer et formater le texte\nfunction formatToMarkdown(text) {\n  let markdown = text;\n  \n  // Séparer les pages (basé sur les sauts de page PDF)\n  const pages = markdown.split('\\f');\n  \n  // Traiter chaque page\n  let formattedMarkdown = '';\n  \n  pages.forEach((page, index) => {\n    if (page.trim()) {\n      // Ajouter un séparateur de page\n      if (index > 0) {\n        formattedMarkdown += '\\n\\n---\\n\\n';\n      }\n      \n      // Nettoyer les espaces excessifs\n      let cleanedPage = page.replace(/\\s+/g, ' ').trim();\n      \n      // Détecter et formater les titres (texte en majuscules)\n      cleanedPage = cleanedPage.replace(/^([A-Z][A-Z\\s]{10,})$/gm, (match) => {\n        return '# ' + match.trim();\n      });\n      \n      // Détecter les sous-titres\n      cleanedPage = cleanedPage.replace(/^(\\d+\\.\\s+.+)$/gm, (match) => {\n        return '## ' + match;\n      });\n      \n      // Formater les listes à puces\n      cleanedPage = cleanedPage.replace(/^[•·-]\\s+(.+)$/gm, '- $1');\n      \n      // Formater les paragraphes\n      cleanedPage = cleanedPage.replace(/(.{80,}?)\\s+/g, '$1\\n');\n      \n      // Ajouter des sauts de ligne entre les paragraphes\n      cleanedPage = cleanedPage.replace(/\\.\\s+([A-Z])/g, '.\\n\\n$1');\n      \n      formattedMarkdown += cleanedPage;\n    }\n  });\n  \n  // Ajouter les métadonnées\n  const metadata = `---\\ntitle: Document converti\\ndate: ${new Date().toISOString()}\\nsource: PDF\\n---\\n\\n`;\n  \n  return metadata + formattedMarkdown;\n}\n// Convertir en markdown\nconst markdownContent = formatToMarkdown(pdfText);\n\n// Récupérer le nom du fichier original\nconst originalFileName = $('Formulaire PDF').first().json['Fichier PDF'].filename;\nconst markdownFileName = originalFileName.replace('.pdf', '.md');\n\nreturn {\n  json: {\n    markdown: markdownContent,\n    originalFileName: originalFileName,\n    markdownFileName: markdownFileName,\n    pageCount: pdfText.split('\\f').length\n  }\n};"
+      },
+      "id": "c9ba110c-8b19-4fb0-bca5-d05262436a77",
+      "name": "Formater en Markdown",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1520,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "sourceKey": "=",
+        "options": {}
+      },
+      "id": "90c1985d-7b5a-4de6-895b-acf3262db7ba",
+      "name": "Créer fichier Markdown",
+      "type": "n8n-nodes-base.moveBinaryData",
+      "typeVersion": 1,
+      "position": [
+        1940,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "288deeae-ef53-4fa7-8e44-d292fb9bbcbc",
+      "name": "Préparer la réponse",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        2140,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "binary",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Disposition",
+                "value": "attachment; filename=\"{{ $json.fileName }}\""
+              }
+            ]
+          }
+        }
+      },
+      "id": "4d907828-b031-47fb-815a-fc1022977412",
+      "name": "Renvoyer le fichier",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2220,
+        580
+      ],
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "operation": "html",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.convertToFile",
+      "typeVersion": 1.1,
+      "position": [
+        1740,
+        480
+      ],
+      "id": "1c102182-7970-49f4-be7c-4a4f8e0d19d1",
+      "name": "Convert to File"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-27T14:45:35.000Z",
+  "versionId": "f2365cb6-377c-4209-b65a-325447f72f92"
+}
