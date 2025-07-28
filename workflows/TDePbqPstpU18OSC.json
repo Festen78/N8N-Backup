@@ -1,0 +1,1105 @@
+{
+  "active": false,
+  "connections": {
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Personal Contact Finder": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Maps": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram1": {
+      "main": [
+        [
+          {
+            "node": "OpenAI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Telegram1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "OpenAI1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request2": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request3": {
+      "main": [
+        [
+          {
+            "node": "Aggregate",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenRouter Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-03T15:39:23.446Z",
+  "id": "TDePbqPstpU18OSC",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Voice AI Caller",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "=You are a helpful voice AI agent that excels at calling people on behalf of your user. You'll either have to find people through the personal contacts tool or find phone numbers on Google Maps.\n\n##Tools\n1. Call the contact_finder tool to find people in the users contacts list. Always ask the user to confirm after this step which contact they're interested in calling.\n2. Call the google_maps_scraper tool to find businesses. The user should provide how many businesses they want you to find, but if they don't provide an answer, please provide 5. Always ask the user to confirm after this step which business they're interested in calling.\n3. Call the voice_agent tool to call the contact or business. Never call multiple contacts or businesses during the same message or request. Always make sure that you confirm which contact the user wants to call from the result provided from the contact_finder or google_maps_scraper tool before calling. If you book an appointment successfully, always schedule it on the calendar tool immediately afterwards\n4. Call the Google Calendar tool after a call to book a successful event. If there is no successful event, do not book anything on the calendar.\n\n##Rules\n- If you find contacts or businesses on Google Maps, please always clarify which contact you'd like the user to call. You can only call one contact or business per request. \n- NEVER call multiple people simultaenously under any circumstances\n- ALWAYS ask the context of the call. They need to provide: who you're calling, what the goal is, timeframes if necessary, and what happens if you can't achieve the outcome.\n- Only book a calendar event 1) after the voice agent and 2) if the voice agent was successful in booking something\n\nToday's date is {{ $now }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        820,
+        -40
+      ],
+      "id": "dcfb5f8d-b9f3-46f9-806e-c644b13dccbb",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('Telegram Trigger').item.json.message.chat.id }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        780,
+        180
+      ],
+      "id": "754848b8-1da2-4ba3-8ac6-a70c8f7598f9",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "name": "contact_finder",
+        "description": "Call this tool to find my personal contacts",
+        "workflowId": {
+          "__rl": true,
+          "value": "nKNLrKOkRx6ohVvV",
+          "mode": "list",
+          "cachedResultName": "Personal Contact Finder"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "name": "={{ $fromAI(\"name\", \"name of person\") }}"
+          },
+          "matchingColumns": [
+            "name"
+          ],
+          "schema": [
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1040,
+        180
+      ],
+      "id": "54f5dab1-4d95-4042-bcbc-80009682c19a",
+      "name": "Personal Contact Finder"
+    },
+    {
+      "parameters": {
+        "name": "google_maps_scraper",
+        "description": "Call this tool to search for a business using google maps",
+        "workflowId": {
+          "__rl": true,
+          "value": "tWSdcM1eNNTcgGsN",
+          "mode": "list",
+          "cachedResultName": "Feb 17th Google Maps"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "results": "={{ $fromAI(\"numberOfSearchResults\", \"how many search results does the user want, which is a numerical value\") }}",
+            "country": "={{ $fromAI(\"countryCodeLowerCase\", \"this is the country code that you'll use to search Google Maps with, such asus, ca, etc - it must be lower case\") }}",
+            "state": "={{ $fromAI(\"stateInitials\", \"this is the intials of the state that you'll use to search Google Maps with, such as NY, CA, etc - uppercase\") }}",
+            "location": "={{ $fromAI(\"city\", \"this is the city that you'll use to search Google Maps with, such as New York, Los Angeles, etc\") }}",
+            "search": "={{ $fromAI(\"industry\", \"this is the industry that you'll use to search Google Maps with, such as landscaping, roofing, photography, etc\") }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "search",
+              "displayName": "search",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "location",
+              "displayName": "location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "state",
+              "displayName": "state",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "country",
+              "displayName": "country",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "results",
+              "displayName": "results",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "number"
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        900,
+        180
+      ],
+      "id": "f8c31551-0e10-4f77-bd95-7335d35f8c7f",
+      "name": "Google Maps"
+    },
+    {
+      "parameters": {
+        "name": "voice_agent",
+        "description": "Call this tool to make voice calls",
+        "workflowId": {
+          "__rl": true,
+          "value": "XyFfj6eWQZSJw870",
+          "mode": "list",
+          "cachedResultName": "Feb 17 Voice Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "end_time": "={{ $fromAI(\"endTime\", \"the end time of the booking the user is looking to book if any\") }}",
+            "start_time": "={{ $fromAI(\"startTime\", \"the start time of the booking the user is looking to book if any\") }}",
+            "date": "={{ $fromAI(\"date\", \"the date of the user is looking to book if any\") }}",
+            "first_message": "={{ $fromAI(\"first_message\", \"Please provide what the opening first message should be out of the voice agents mouth\") }}",
+            "context": "={{ $fromAI(\"context\", \"please provide the context of the call, so that the call agent knows exactly what to talk about\") }}",
+            "goal": "={{ $fromAI(\"conversation_goal\", \"Please provide what the goal is of the conversation\") }}",
+            "relationship": "={{ $fromAI(\"relationship\", \"Please provide the relationship the user has with this entity. Is it a friend or a business?\") }}",
+            "name": "={{ $fromAI(\"name\", \"Please providethe person or businesses name\") }}",
+            "fall_back_plan": "={{ $fromAI(\"fall_back_plan\", \"Please provide a fallback plan in case the entity is not available at the given time. Should default to calling back in 10 minutes if user wants to move forward with it\") }}",
+            "special_requests": "={{ $fromAI(\"special_requests\", \"Please provide any special requests here\") }}",
+            "special_request_required": "={{ $fromAI(\"special_requests_required\", \"Is the special request required? This is a boolean field - either true or false\") }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "start_time",
+              "displayName": "start_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "end_time",
+              "displayName": "end_time",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string"
+            },
+            {
+              "id": "context",
+              "displayName": "context",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "first_message",
+              "displayName": "first_message",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "goal",
+              "displayName": "goal",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "name",
+              "displayName": "name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "relationship",
+              "displayName": "relationship",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "fall_back_plan",
+              "displayName": "fall_back_plan",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "special_requests",
+              "displayName": "special_requests",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            },
+            {
+              "id": "special_request_required",
+              "displayName": "special_request_required",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "boolean",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        1180,
+        180
+      ],
+      "id": "096b7f90-ff70-4cb1-a4e8-3b1dca68cb7a",
+      "name": "Voice Agent"
+    },
+    {
+      "parameters": {
+        "calendar": {
+          "__rl": true,
+          "value": "e65463fc466fd521dc1ecc1964b4d6dbac77710e2a00f0a73b597f41477d9def@group.calendar.google.com",
+          "mode": "list",
+          "cachedResultName": "AI Agent"
+        },
+        "start": "={{ $fromAI(\"startTime\", \"the start time of the booking\") }}",
+        "end": "={{ $fromAI(\"endTime\", \"the end time of the booking\") }}",
+        "additionalFields": {
+          "description": "={{ $fromAI(\"event_description\", \"the description of the booking\") }}",
+          "summary": "={{ $fromAI(\"event_summary\", \"the title/summary of the booking\") }}"
+        }
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        1320,
+        180
+      ],
+      "id": "3715dd02-bcc5-484d-9ee3-a7254db86a56",
+      "name": "Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "HqZZ3w3bG7q4lRs5",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -200,
+        -60
+      ],
+      "id": "8630bb94-f8a1-468a-9d51-7f7d5f6b5250",
+      "name": "Telegram Trigger",
+      "webhookId": "600c6d64-98f1-4597-9448-1397bd15b675",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        180,
+        -140
+      ],
+      "id": "c5ded150-9457-4e1d-af08-4b5e850d4752",
+      "name": "Telegram1",
+      "webhookId": "8b826288-7a45-4a12-bbf7-e07462532efb",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        420,
+        -140
+      ],
+      "id": "fd1b7d70-d10c-42d7-ac80-e1fe7048beff",
+      "name": "OpenAI",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [
+        620,
+        -40
+      ],
+      "id": "af07c8df-33c7-4aa9-a510-07967148b59e",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "31c62aff-11d6-4909-9803-9a4574da9fb3",
+              "name": "text",
+              "value": "={{ $('Telegram Trigger').item.json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        180,
+        20
+      ],
+      "id": "e891933a-5f1b-4821-979c-2e4b7100b964",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "b59a106b-1951-414f-8a7d-28586d74750a",
+                    "leftValue": "={{ $json.message.voice }}",
+                    "rightValue": "d",
+                    "operator": {
+                      "type": "object",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f45c3cc7-dc14-4a4a-bcf0-f8a112acb88c",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "exists",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        -20,
+        -60
+      ],
+      "id": "1e40f159-4024-4e94-978f-e7ed0f4d2403",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        1180,
+        -40
+      ],
+      "id": "ce6cd106-3527-4def-bc3e-d3c68b9b94d5",
+      "name": "Telegram",
+      "webhookId": "43eeb17e-4ed7-4476-adad-7b22f5484bdd",
+      "credentials": {
+        "telegramApi": {
+          "id": "TdopjscdaXwD9KAN",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"date\": \"\",\n  \"start_time\": \"\",\n  \"end_time\": \"\",\n  \"context\": \"\",\n  \"first_message\": \"\",\n  \"goal\": \"\",\n  \"name\": \"\",\n  \"relationship\": \"\",\n  \"fall_back_plan\": \"\",\n  \"special_requests\": \"\",\n  \"special_request_required\": true\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -20,
+        520
+      ],
+      "id": "11bea6f2-9e29-4b15-b60c-049c030caa50",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <YOUR_API_KEY>"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"phoneNumberId\": \"ENTER_VALUE_HERE\",\n  \"assistantId\": \"ENTER_VALUE_HERE\",\n  \"customer\": {\n    \"number\": \"ENTER_VALUE_HERE\"\n  },\n  \"type\": \"outboundPhoneCall\",\n  \"assistant\": {\n        \"name\": \"Will\",\n        \"voice\": {\n          \"provider\": \"playht\",\n          \"voiceId\": \"will\"\n        },\n        \"firstMessageMode\": \"assistant-waits-for-user\",\n        \"backgroundSound\": \"off\",\n        \"firstMessage\": \"{{ $('When Executed by Another Workflow').item.json.first_message }}\",\n        \"model\": {\n        \"provider\": \"openai\",\n        \"model\": \"gpt-3.5-turbo\",\n        \"messages\": [\n          {\n            \"role\": \"system\",\n            \"content\": \"{{ $json.message.content.vapi_voice_call_context_prompt }}. If they ask for a call back number, they can reach me at 604-123-4567, and my email is email@gmail.com\"\n        }]\n      }\n    }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        560,
+        520
+      ],
+      "id": "52bfcd7e-1893-4b18-a6bc-4f2f0053193b",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "url": "=  https://api.vapi.ai/call/{{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <YOUR_API_KEY>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        800,
+        520
+      ],
+      "id": "6115cf6c-16d0-44b9-89e3-248f3b3cfad5",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1020,
+        520
+      ],
+      "id": "ba09da93-63ff-4c5b-a84e-aa03289d8eeb",
+      "name": "Wait",
+      "webhookId": "59fb23df-b7cd-4984-bb43-6b915413af49"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6317e9c3-fc74-4080-b8af-f24a00c1789b",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "ended",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1240,
+        520
+      ],
+      "id": "9a614ec1-30eb-4f13-8f10-0500accca68c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "33999b2c-11b6-41b4-b2c0-9ba40d2cf3f7",
+              "name": "call_transcript",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1540,
+        520
+      ],
+      "id": "8d8e6164-501e-45d8-a598-62184b69d78c",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're an intelligent voice AI bot that is fantastic at creating prompts and opening call ines for Vapi outbound calls to schedule all types of meetings and appointments, such as barbershops, dinners, etc. for your client Jono.\n\n##Rules\n- The voice agent must sound happy, nice and upbeat. The conversation should be more casual.\n- The voice agent must be as detailed as possible so that Vapi can understand everything about the call and context.\n- Please enter in the backup plan if the goal cannot be met. If this is not provided, then the backup should be to call the place back to re-schedule.\nMake sure to structure the data strictly according to the JSON format provided",
+              "role": "system"
+            },
+            {
+              "content": "=Please create a Vapi opening line and call prompt for this type of call:\n {{ $json.context }}\nDate: {{ $json.date }} (if needed)\nStart time: {{ $json.start_time }} (if needed)\nEnd Time: {{ $json.end_time }} (if needed)\nThese times are a range, where I'm available within\nFirst Message: {{ $json.first_message }} (this is just for additional context)\nSpecial Requests: {{ $json.special_requests }}\nIs Special Request Required?\nGoal: {{ $json.goal }}\nName of place you're calling: {{ $json.name }}\nFriend or business: {{ $json.relationship }}\nFall Back Plan: {{ $json.fall_back_plan }}\nContext: {{ $json.context }}\n\n##Context\n- You are an AI voice agent making an outbound call on behalf of you client Jono\n- NEVER under any circumstances pretend like you're working or representing {{ $json.name }}. You're only representing Jono.\n- Your goal is: {{ $json.goal }}\n- The opening line should be the first thing that's said. For example: \"Hello, I'm giving {{ $json.name }} because I'm looking to make a dinner reservation\""
+            },
+            {
+              "content": "Strictly output the response in valid JSON format in 2 text fields. DO NOT PUT THIS INTO AN OBJECT. Only use the two text fields as exactly shown below:\n{\n  \"vapi_voice_call_first_message\": \"\",\n  \"vapi_voice_call_context_prompt\": \"\"\n}\n\nEnsure the response is correctly formatted as JSON, including the curly braces, key names, and values. Do not omit or modify any part of the structure.\n",
+              "role": "assistant"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        200,
+        520
+      ],
+      "id": "2786bfb4-deb8-47a9-9a08-7e87a2f9bf6c",
+      "name": "OpenAI1"
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        660,
+        960
+      ],
+      "id": "683cda07-11ce-4801-a195-a47145546a3e",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.apify.com/v2/acts/2Mdma1N6Fd0y3QEjR/runs?waitForFinish=300",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Authorization",
+              "value": "Bearer <YOUR_API_KEY>"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n    \"city\": \"{{ $json.location }}\",\n    \"countryCode\": \"{{ $json.country }}\",\n    \"language\": \"en\",\n    \"locationQuery\": \"{{ $json.location }}\",\n    \"maxCrawledPlacesPerSearch\": {{ $if($json.results > 5, 5, $json.results) }},\n    \"searchStringsArray\": [\n        \"{{ $json.search }}\"\n    ],\n    \"skipClosedPlaces\": false,\n    \"state\": \"{{ $json.state }}\"\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        960
+      ],
+      "id": "b570db3c-b1e1-4346-9f79-3b37c2e5f74b",
+      "name": "HTTP Request2"
+    },
+    {
+      "parameters": {
+        "url": "=https://api.apify.com/v2/datasets/{{ $json.data.defaultDatasetId }}/items?format=json",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer Bearer <YOUR_API_KEY>"
+            },
+            {
+              "name": "="
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        960
+      ],
+      "id": "3b5fc017-ebb8-4c3f-bfdc-cf8aab353bb9",
+      "name": "HTTP Request3"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        640,
+        180
+      ],
+      "id": "6c239ea4-6201-4f6a-b666-9cfa23cec650",
+      "name": "OpenRouter Chat Model",
+      "credentials": {
+        "openRouterApi": {
+          "id": "9axkEK1RzTaPyAL7",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "limit": 1,
+        "fields": [
+          "phoneNumbers",
+          "names",
+          "emailAddresses"
+        ],
+        "useQuery": true,
+        "query": "={{ $json.name }}"
+      },
+      "type": "n8n-nodes-base.googleContacts",
+      "typeVersion": 1,
+      "position": [
+        460,
+        1240
+      ],
+      "id": "61d53249-dde6-4fcd-a349-1206e897941e",
+      "name": "Google Contacts",
+      "disabled": true
+    }
+  ],
+  "pinData": {
+    "When Executed by Another Workflow": [
+      {
+        "json": {
+          "date": "February 17th 2025",
+          "start_time": "5pm",
+          "end_time": "8pm",
+          "context": "The user is looking to book a dinner reservation tonight between 5-8pm at Tandoori chicken to eat at the restaurant.",
+          "first_message": "Hello, I'd like to book a dinner reservation tonight.",
+          "goal": "To book a dinner reservation tonight between 5-8pm",
+          "name": "Tandoori Chicken",
+          "relationship": "business",
+          "fall_back_plan": "Please do not book the dinner reservation, instead politely mention that you'll have to call back in 10 minutes if you decide to book",
+          "special_requests": "I'd like to get a table by the window",
+          "special_request_required": true
+        }
+      }
+    ],
+    "OpenAI1": [
+      {
+        "json": {
+          "index": 0,
+          "message": {
+            "role": "assistant",
+            "content": {
+              "vapi_voice_call_first_message": "Hello, I'm calling Tandoori Chicken because I'm looking to make a dinner reservation.",
+              "vapi_voice_call_context_prompt": "Hi there! I'm an AI voice agent reaching out on behalf of my client, Jono. We're looking to book a dinner reservation at Tandoori Chicken for tonight, February 17th, 2025, anytime between 5 PM and 8 PM. Jono would love to have a table by the window if that's possible. If window seats aren't available, that's fine; we just want to ensure a spot within that timeframe. If we can't secure a reservation right away, please let us know, and we'll call back in 10 minutes to try again."
+            },
+            "refusal": null
+          },
+          "logprobs": null,
+          "finish_reason": "stop"
+        }
+      }
+    ]
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-03T16:18:48.000Z",
+  "versionId": "76484dbe-ec10-4bf2-aea3-71a556f0b6a9"
+}
