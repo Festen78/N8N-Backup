@@ -1,0 +1,119 @@
+{
+  "active": false,
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-25T14:17:48.544Z",
+  "id": "Kv43xq6HOAstMn2n",
+  "isArchived": false,
+  "meta": null,
+  "name": "ollama perso",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "c6d7bb2c-05b2-462a-bac3-1b8cf0cbc6a0",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://79.84.107.109:11434/api/generate",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "mistral:7b"
+            },
+            {
+              "name": "prompt",
+              "value": "quel est la femelle du chien ?"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        220,
+        0
+      ],
+      "id": "454d7f98-d9a0-4738-83b3-a0eab6122377",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        660,
+        0
+      ],
+      "id": "81aa5633-d6a7-41e4-aa19-ab1ebf09ef4f",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "jsCode": "const lines = items[0].json.data.trim().split('\\n');\nlet fullText = '';\nfor (const line of lines) {\n  const obj = JSON.parse(line);\n  fullText += obj.response;\n  if (obj.done) break;\n}\nreturn [{ json: { fullText } }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        440,
+        0
+      ],
+      "id": "a11f032c-bb6f-4672-9c5c-bab1a458cc02",
+      "name": "Code"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-25T15:38:09.000Z",
+  "versionId": "2c78499c-ccb8-464a-8031-0ee8ac93e061"
+}
