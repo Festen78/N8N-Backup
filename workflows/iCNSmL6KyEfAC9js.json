@@ -1,0 +1,268 @@
+{
+  "active": false,
+  "connections": {
+    "OpenAI1": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "OpenAI1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-07-03T16:20:36.241Z",
+  "id": "iCNSmL6KyEfAC9js",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Feb 17 Voice Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "GPT-4O"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "You're an intelligent voice AI bot that is fantastic at creating prompts and opening call ines for Vapi outbound calls to schedule all types of meetings and appointments, such as barbershops, dinners, etc. for your client Jono.\n\n##Rules\n- The voice agent must sound happy, nice and upbeat. The conversation should be more casual.\n- The voice agent must be as detailed as possible so that Vapi can understand everything about the call and context.\n- Please enter in the backup plan if the goal cannot be met. If this is not provided, then the backup should be to call the place back to re-schedule.\nMake sure to structure the data strictly according to the JSON format provided",
+              "role": "system"
+            },
+            {
+              "content": "=Please create a Vapi opening line and call prompt for this type of call:\n {{ $json.context }}\nDate: {{ $json.date }} (if needed)\nStart time: {{ $json.start_time }} (if needed)\nEnd Time: {{ $json.end_time }} (if needed)\nThese times are a range, where I'm available within\nFirst Message: {{ $json.first_message }} (this is just for additional context)\nSpecial Requests: {{ $json.special_requests }}\nIs Special Request Required?\nGoal: {{ $json.goal }}\nName of place you're calling: {{ $json.name }}\nFriend or business: {{ $json.relationship }}\nFall Back Plan: {{ $json.fall_back_plan }}\nContext: {{ $json.context }}\n\n##Context\n- You are an AI voice agent making an outbound call on behalf of you client Jono\n- NEVER under any circumstances pretend like you're working or representing {{ $json.name }}. You're only representing Jono.\n- Your goal is: {{ $json.goal }}\n- The opening line should be the first thing that's said. For example: \"Hello, I'm giving {{ $json.name }} because I'm looking to make a dinner reservation\""
+            },
+            {
+              "content": "Strictly output the response in valid JSON format in 2 text fields. DO NOT PUT THIS INTO AN OBJECT. Only use the two text fields as exactly shown below:\n{\n  \"vapi_voice_call_first_message\": \"\",\n  \"vapi_voice_call_context_prompt\": \"\"\n}\n\nEnsure the response is correctly formatted as JSON, including the curly braces, key names, and values. Do not omit or modify any part of the structure.\n",
+              "role": "assistant"
+            }
+          ]
+        },
+        "jsonOutput": true,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        340,
+        -120
+      ],
+      "id": "e8425486-df52-458d-bab7-4f58a499c753",
+      "name": "OpenAI1",
+      "credentials": {
+        "openAiApi": {
+          "id": "v1DLTzLc10CcUL14",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "33999b2c-11b6-41b4-b2c0-9ba40d2cf3f7",
+              "name": "call_transcript",
+              "value": "={{ $json.transcript }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1680,
+        -120
+      ],
+      "id": "3c3f74eb-b877-4063-a6f2-a5c5d9bba57a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "6317e9c3-fc74-4080-b8af-f24a00c1789b",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "ended",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1380,
+        -120
+      ],
+      "id": "096a0ef7-cb43-4135-923a-7e3a05dcf393",
+      "name": "If"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1160,
+        -120
+      ],
+      "id": "87626014-4952-4976-88b9-29dadcf4dd44",
+      "name": "Wait",
+      "webhookId": "59fb23df-b7cd-4984-bb43-6b915413af49"
+    },
+    {
+      "parameters": {
+        "url": "=  https://api.vapi.ai/call/{{ $json.id }}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer <YOUR_API_KEY>"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        940,
+        -120
+      ],
+      "id": "e8893703-c018-450f-a89d-fe7bdcc22dfa",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.vapi.ai/call",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "Bearer 0c99486b-6d39-4aa0-8c20-58bb7ab31d9d"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"phoneNumberId\": \"5e1c2eb7-8fd2-4c84-85dd-4d8abea55c4e\",\n  \"assistantId\": \"bcb374e5-551f-45ca-ac95-1263af8c26fa\",\n  \"customer\": {\n    \"number\": \"+33614950827\"\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        700,
+        -120
+      ],
+      "id": "2c7e4b94-b6f1-4c14-bd24-a4b4963eaf36",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "inputSource": "jsonExample",
+        "jsonExample": "{\n  \"date\": \"\",\n  \"start_time\": \"\",\n  \"end_time\": \"\",\n  \"context\": \"\",\n  \"first_message\": \"\",\n  \"goal\": \"\",\n  \"name\": \"\",\n  \"relationship\": \"\",\n  \"fall_back_plan\": \"\",\n  \"special_requests\": \"\",\n  \"special_request_required\": true\n}"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        120,
+        -120
+      ],
+      "id": "a0e72d54-0a2b-46eb-9d71-369bbda8b00b",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-04T08:25:57.000Z",
+  "versionId": "78cb0f2a-1c30-4331-a6e3-209bcd65ef7f"
+}
