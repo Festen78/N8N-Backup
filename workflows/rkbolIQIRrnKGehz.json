@@ -1,0 +1,175 @@
+{
+  "active": false,
+  "connections": {
+    "Error Trigger": {
+      "main": [
+        [
+          {
+            "node": "Postgres",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Microsoft Outlook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "createdAt": "2025-06-19T14:52:31.192Z",
+  "id": "rkbolIQIRrnKGehz",
+  "isArchived": false,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  },
+  "name": "Error logger",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.errorTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ff711bd3-564c-4ceb-8453-5a5a697bbf87",
+      "name": "Error Trigger"
+    },
+    {
+      "parameters": {
+        "schema": {
+          "__rl": true,
+          "mode": "list",
+          "value": "public"
+        },
+        "table": {
+          "__rl": true,
+          "value": "error_log",
+          "mode": "list",
+          "cachedResultName": "error_log"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "timestamp": "={{ $now.format('yyyy-MM-dd') }}",
+            "workflow": "={{ $json.workflow.name }}",
+            "url": "={{ $json.execution.url }}",
+            "node": "={{ $json.execution.error.node.name }}",
+            "error_message": "={{ $json.execution.error.message }}"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "timestamp",
+              "displayName": "timestamp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "dateTime",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "workflow",
+              "displayName": "workflow",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "url",
+              "displayName": "url",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "node",
+              "displayName": "node",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "error_message",
+              "displayName": "error_message",
+              "required": true,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.postgres",
+      "typeVersion": 2.6,
+      "position": [
+        280,
+        -100
+      ],
+      "id": "b7d057ce-2741-417a-af1f-6a6e6957b938",
+      "name": "Postgres",
+      "credentials": {
+        "postgres": {
+          "id": "vxAuTUizldBQluUp",
+          "name": "Postgres account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toRecipients": "festen78@hotmail.com",
+        "subject": "=N8N Error ",
+        "bodyContent": "={{ $json.workflow.name }}\n\n{{ $json.execution.url }}\n\n{{ $json.execution.error.node.name }}\n\n{{ $json.execution.error.message }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.microsoftOutlook",
+      "typeVersion": 2,
+      "position": [
+        280,
+        120
+      ],
+      "id": "fe58d106-aa28-4224-86b4-d406b30bc264",
+      "name": "Microsoft Outlook",
+      "webhookId": "8da107fe-11a4-4b66-8826-c5cf4616aebc",
+      "credentials": {
+        "microsoftOutlookOAuth2Api": {
+          "id": "f0Al1lhrqDCxEOiA",
+          "name": "Microsoft Outlook account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-06-20T17:19:22.000Z",
+  "versionId": "91aa652a-980d-4b00-9d0a-e901688a5e29"
+}
