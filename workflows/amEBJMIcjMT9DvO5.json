@@ -1,0 +1,19 @@
+{
+  "active": false,
+  "connections": {},
+  "createdAt": "2025-07-03T15:41:38.942Z",
+  "id": "amEBJMIcjMT9DvO5",
+  "isArchived": false,
+  "meta": null,
+  "name": "test vapi",
+  "nodes": [],
+  "pinData": {},
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "updatedAt": "2025-07-03T15:41:38.942Z",
+  "versionId": "f48d24ff-52e6-4231-ab0f-8d5f791b6e47"
+}
